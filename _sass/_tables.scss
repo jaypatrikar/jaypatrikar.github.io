@@ -3,7 +3,7 @@
    ========================================================================== */
 
 table {
-  margin-bottom: 1em;
+  margin-bottom: 0em;
   width: 100%;
   font-family: $global-font-family;
   font-size: $type-size-6;
@@ -11,7 +11,7 @@ table {
   // border: 1px solid $light-gray;
 
   & + table {
-    margin-top: 1em;
+    margin-top: 0em;
   }
 }
 
@@ -29,6 +29,8 @@ th {
 
 td {
   padding: 0.5em;
+  // height: 10em;
+  
   // border-bottom: 1px solid $light-gray;
   // border-right: 1px solid $light-gray;
 }
@@ -39,3 +41,50 @@ tr, td, th {
 tr:hover {
   background-color: rgb(238, 238, 238);
 }
+// tr:nth-child(even) {background-color: #f2f2f2;}
+/* ==========================================================================
+   TABLES
+   ========================================================================== */
+
+   table.pub {
+    margin-bottom: 0em;
+    width: 100%;
+    font-family: $global-font-family;
+    font-size: $type-size-6;
+    // border-collapse: collapse;
+    // border: 1px solid $light-gray;
+  
+    & + table.pub {
+      margin-top: 0em;
+    }
+  }
+  
+  thead.pub {
+    background-color: $lighter-gray;
+    border-bottom: 1px solid $light-gray;
+  }
+  
+  th.pub {
+    padding: 0.5em;
+    font-weight: bold;
+    text-align: left;
+    // border-right: 1px solid $light-gray;
+  }
+  
+  td.pub {
+    padding: 0.5em;
+    height: 10em;
+   
+    
+    // border-bottom: 1px solid $light-gray;
+    // border-right: 1px solid $light-gray;
+  }
+  
+  tr.pub, td.pub, th.pub {
+    // vertical-align: middle;
+  }
+  tr.pub:hover {
+    background-color: rgb(238, 238, 238);
+  }
+  // tr:nth-child(even) {background-color: #f2f2f2;}
+  

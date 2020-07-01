@@ -8,6 +8,8 @@ citation: ' Jay Patrikar,  Venkata Makkapati,  Anay Pattanaik,  Hardik Parwana, 
 paperurl: 'https://asmedigitalcollection.asme.org/dynamicsystems/article/141/7/071008/726490/Nested-Saturation-Based-Guidance-Law-for-Unmanned'
 video: 'https://www.youtube.com/watch?v=QY1wZhKi6-I&feature=youtu.be'
 pdf: 'http://academicpages.github.io/files/paper1.pdf'
+excerpt: "Mahathi Bhargavapuri,  Jay Patrikar,  Soumya Sahoo,  Mangal Kothari"
+
 
 ---
 Use [Google Scholar](https://scholar.google.com/scholar?q=Sequential+auto+landing+of+multiple+UAVs+using+control+constrained+path+following){:target="_blank"} for full citation
