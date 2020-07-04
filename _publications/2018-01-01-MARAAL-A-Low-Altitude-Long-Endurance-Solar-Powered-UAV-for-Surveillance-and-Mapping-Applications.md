@@ -9,6 +9,7 @@ paperurl: 'https://asmedigitalcollection.asme.org/dynamicsystems/article/141/7/0
 video: 'https://www.youtube.com/watch?v=QY1wZhKi6-I&feature=youtu.be'
 pdf: 'http://academicpages.github.io/files/paper1.pdf'
 excerpt: "Mahathi Bhargavapuri,  Jay Patrikar,  Soumya Sahoo,  Mangal Kothari"
+pic : "MARAAL1.png"
 
 ---
 Use [Google Scholar](https://scholar.google.com/scholar?q=MARAAL:+A+Low+Altitude+Long+Endurance+Solar+Powered+UAV+for+Surveillance+and+Mapping+Applications){:target="_blank"} for full citation

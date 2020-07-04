@@ -8,7 +8,8 @@ citation: ' Hardik Parwana,  Jay Patrikar,  Mangal Kothari, &quot;A novel fully 
 paperurl: 'https://asmedigitalcollection.asme.org/dynamicsystems/article/141/7/071008/726490/Nested-Saturation-Based-Guidance-Law-for-Unmanned'
 video: 'https://www.youtube.com/watch?v=QY1wZhKi6-I&feature=youtu.be'
 pdf: 'http://academicpages.github.io/files/paper1.pdf'
-excerpt: "Mahathi Bhargavapuri,  <b>Jay Patrikar</b>,  Soumya Sahoo,  Mangal Kothari"
+excerpt: "Hardik Parwana,  <b>Jay Patrikar</b>,  Mangal Kothari"
+pic : "QUAT1.png"
 
 ---
 Use [Google Scholar](https://scholar.google.com/scholar?q=A+novel+fully+quaternion+based+nonlinear+attitude+and+position+controller){:target="_blank"} for full citation

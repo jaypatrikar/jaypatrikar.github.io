@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Jay Patrikar"
+title                    : "Home"
 title_separator          : "-"
 name                     : &name "Jay Patrikar"
 description              : &description "haha description"
@@ -82,9 +82,9 @@ analytics:
 author:
   name             : "Jay Patrikar"
   avatar           : "profile.jpg"
-  bio              : "  "
+  bio              : ""
   location         : "Pittsburgh, PA"
-  employer         :
+  employer         : 
   pubmed           : #"https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
   googlescholar    : "https://scholar.google.com/citations?user=T16259QAAAAJ&hl=en"
   email            :  "jaypat@cmu.edu"
@@ -115,6 +115,7 @@ author:
   xing             :
   youtube          :
   wikipedia        :
+  CV : "/files/cv.pdf"  
 
 
 # Reading Files

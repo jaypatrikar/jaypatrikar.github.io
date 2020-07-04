@@ -28,7 +28,7 @@
       <table class="pub">
 
         <tr class="pub">
-          <td class="pub"  width="30%" align="top">
+          <td class="pub"  width="20%" align="top">
             <img  src="{{ post.pic | prepend: "/images/" | prepend: base_path }}">
           </td>
           <td>
@@ -47,12 +47,10 @@
            <a href=" {{ post.paperurl }} ">[link]</a> <a href=" {{ post.pdf }} ">[pdf]</a> <a href=" {{ post.video }} ">[video]</a>
              {% elsif post.pdf %}
              <a href=" {{ post.paperurl }} ">[link]</a> <a href=" {{ post.pdf }} ">[pdf]</a> 
-             {% elsif post.paperurl and post.video %}
+             {% elsif post.video %}
              <a href=" {{ post.paperurl }} ">[link]</a>  <a href=" {{ post.video }} ">[video]</a>
               {% elsif post.paperurl %}
              <a href=" {{ post.paperurl }} ">[link]</a> 
-             {% elsif post.video %}
-             <a href=" {{ post.video }} ">[video]</a>
               {% endif %}
 
           </p>

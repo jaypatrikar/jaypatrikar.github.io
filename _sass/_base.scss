@@ -21,8 +21,14 @@ body {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h3, h4, h5, h6 {
   margin: 0em 0 0.5em;
+  line-height: 1.2;
+  font-family: $header-font-family;
+  font-weight: bold;
+}
+h2 {
+  margin: 0em 0 0em;
   line-height: 1.2;
   font-family: $header-font-family;
   font-weight: bold;
@@ -36,6 +42,10 @@ h1 {
 h2 {
   font-size: $type-size-4;
 }
+
+// h2.pub {
+//   margin-top: 2em;
+// }
 
 h3 {
   font-size: $type-size-5;
@@ -197,6 +207,7 @@ figure {
   img {
     width: 100%;
     border-radius: $border-radius;
+    border-color: black;
     -webkit-transition: $global-transition;
     transition: $global-transition;
     margin-right: 100em;
@@ -348,14 +359,26 @@ b, i, strong, em, blockquote, p, q, span, figure, img, h1, h2, header, input, a,
   flex: 1;
 }
 
-img {
-  display: inline-block;
-  vertical-align: left;
-  width: 100px;
-}
-.text {
-  display: inline-block;
-  vertical-align: middle;
-  width: calc(100% - 100px);    
+
+
+a:link {
+  color: black;
+  background-color: transparent;
+  text-decoration: underline;
 }
 
+a:visited {
+  color: rgb(158, 158, 158);
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: orange;
+  background-color: transparent;
+  text-decoration: underline;
+}
+// div.just {
+//   text-align: justify;
+//   text-justify: inter-word;
+// }
