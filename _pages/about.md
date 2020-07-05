@@ -9,8 +9,9 @@ redirect_from:
 ---
 Hello! My name is Jay Patrikar. I am a PhD student in the [Robotics Institute](https://www.ri.cmu.edu/) at [Carnegie Mellon University](https://www.cmu.edu/) advised by [Dr Sebastian Scherer](https://www.ri.cmu.edu/ri-faculty/sebastian-scherer/). I am part of the [AirLab](http://theairlab.org/) and the [Field Robotics Center](https://frc.ri.cmu.edu/).
 
-My research lies at the intersection of Artificial Intelligence, Field Robotics and Aerospace Engineering. Previously, I have completed my Master of Science in Robotics (MSR) at Carnegie Mellon University (CMU). Before CMU, I completed my Masters and Bachelor of Technology in Engineering from the [Department of Aerospace Engineering](https://www.iitk.ac.in/aero/) at the Indian Institute of Technology Kanpur where I was advised by [Dr Mangal Kothari](https://www.iitk.ac.in/aero/mangal/) in the [Intelligent Guidance and Control Laboratory](https://www.iitk.ac.in/aero/mangal/). 
-<!-- My current research efforts are focused on developing tools and algorithms that enable safe operations of mobile robots in critical environments without sacrificing performance.  -->
+My research lies at the intersection of Artificial Intelligence, Field Robotics and Aerospace Engineering. 
+<!-- Previously, I have completed my Master of Science in Robotics (MSR) at Carnegie Mellon University (CMU). Before CMU, I completed my Masters and Bachelor of Technology in Engineering from the [Department of Aerospace Engineering](https://www.iitk.ac.in/aero/) at the Indian Institute of Technology Kanpur where I was advised by [Dr Mangal Kothari](https://www.iitk.ac.in/aero/mangal/) in the [Intelligent Guidance and Control Laboratory](https://www.iitk.ac.in/aero/mangal/).  -->
+My current research efforts are focused on developing tools and algorithms that enable safe operations of mobile robots in critical environments without sacrificing performance. 
 
 
 
