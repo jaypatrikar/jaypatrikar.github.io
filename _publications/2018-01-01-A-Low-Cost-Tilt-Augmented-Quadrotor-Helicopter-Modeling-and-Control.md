@@ -1,7 +1,7 @@
 ---
 title: "A Low-Cost Tilt-Augmented Quadrotor Helicopter: Modeling and Control"
 collection: publications
-permalink: /publication/2018-01-01-A-Low-Cost-Tilt-Augmented-Quadrotor-Helicopter-Modeling-and-Control
+permalink: /publications/2018-01-01-A-Low-Cost-Tilt-Augmented-Quadrotor-Helicopter-Modeling-and-Control.html
 date: 2018-01-01
 venue: 'In the proceedings of 2018 International Conference on Unmanned Aircraft Systems (ICUAS)'
 citation: ' Mahathi Bhargavapuri,  Jay Patrikar,  Soumya Sahoo,  Mangal Kothari, &quot;A Low-Cost Tilt-Augmented Quadrotor Helicopter: Modeling and Control.&quot; In the proceedings of 2018 International Conference on Unmanned Aircraft Systems (ICUAS), 2018.'

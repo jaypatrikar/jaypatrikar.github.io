@@ -2,7 +2,7 @@
 title: "Real-time Motion Planning of Curvature Continuous Trajectories
 for Urban UAV Operations in Wind"
 collection: publications
-permalink: /publication/2020-01-01-Wind-Planning
+permalink: /publications/2020-01-01-Wind-Planning.html
 date: 2020-01-01
 venue: 'In the proceedings of 2020 International Conference on Unmanned Aircraft Systems (ICUAS)'
 citation: ' Mahathi Bhargavapuri,  Jay Patrikar,  Soumya Sahoo,  Mangal Kothari, &quot;A Low-Cost Tilt-Augmented Quadrotor Helicopter: Modeling and Control.&quot; In the proceedings of 2018 International Conference on Unmanned Aircraft Systems (ICUAS), 2018.'
@@ -31,7 +31,7 @@ presented for comparison. For the given simulation scenario,
 we could demonstrate a 93% success rate for the algorithm in
 finding a valid trajectory.
 
-![](/images/WINDPLAN2.png)
+![](./images/WINDPLAN2.png)
 
 *Overall Approach: Offline, we generate a trajectory library of precomputed wind-agnostic BVP solutions on a
 predefined grid. Online, we use the trajectory library to provide wind-aware surrogate solutions to perform real-time planning.

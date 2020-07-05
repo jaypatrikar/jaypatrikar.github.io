@@ -1,7 +1,7 @@
 ---
 title: "A novel fully quaternion based nonlinear attitude and position controller"
 collection: publications
-permalink: /publication/2018-01-01-A-novel-fully-quaternion-based-nonlinear-attitude-and-position-controller
+permalink: /publications/2018-01-01-A-novel-fully-quaternion-based-nonlinear-attitude-and-position-controller.html
 date: 2018-01-01
 venue: 'In the proceedings of AIAA Guidance, Navigation, and Control Conference'
 citation: ' Hardik Parwana,  Jay Patrikar,  Mangal Kothari, &quot;A novel fully quaternion based nonlinear attitude and position controller.&quot; In the proceedings of AIAA Guidance, Navigation, and Control Conference, 2018, 2018.'

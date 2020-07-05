@@ -1,7 +1,7 @@
 ---
 title: "MARAAL: A Low Altitude Long Endurance Solar Powered UAV for Surveillance and Mapping Applications"
 collection: publications
-permalink: /publication/2018-01-01-MARAAL-A-Low-Altitude-Long-Endurance-Solar-Powered-UAV-for-Surveillance-and-Mapping-Applications
+permalink: /publications/2018-01-01-MARAAL-A-Low-Altitude-Long-Endurance-Solar-Powered-UAV-for-Surveillance-and-Mapping-Applications.html
 date: 2018-01-01
 venue: 'In the proceedings of 2018 23rd International Conference on Methods and Models in Automation and Robotics, MMAR 2018'
 citation: ' Vijay Dwivedi,  Jay Patrikar,  Amulya Addamane,  A. Ghosh, &quot;MARAAL: A Low Altitude Long Endurance Solar Powered UAV for Surveillance and Mapping Applications.&quot; In the proceedings of 2018 23rd International Conference on Methods and Models in Automation and Robotics, MMAR 2018, 2018.'

@@ -1,7 +1,7 @@
 ---
 title: "Convolutional Neural Network Based Sensors for Mobile Robot Relocalization"
 collection: publications
-permalink: /publication/2018-01-01-Convolutional-Neural-Network-Based-Sensors-for-Mobile-Robot-Relocalization
+permalink: /publications/2018-01-01-Convolutional-Neural-Network-Based-Sensors-for-Mobile-Robot-Relocalization.html
 date: 2018-01-01
 venue: 'In the proceedings of 2018 23rd International Conference on Methods and Models in Automation and Robotics, MMAR 2018'
 citation: ' Harsh Sinha,  Jay Patrikar,  Eeshan Dhekane,  Gaurav Pandey,  Mangal Kothari, &quot;Convolutional Neural Network Based Sensors for Mobile Robot Relocalization.&quot; In the proceedings of 2018 23rd International Conference on Methods and Models in Automation and Robotics, MMAR 2018, 2018.'
@@ -24,6 +24,6 @@ localization error of 0.3 m in indoor environments and 1.3 m in outdoor environm
 makes CNN-sensors real-time, robust, low-cost and less computation-intensive substitutes for
 other sensors, with immense potential for a wider use in mobile robotics.
 
-![](/images/CNN2.png)
+![](./images/CNN2.png)
 
 Use [Google Scholar](https://scholar.google.com/scholar?q=Convolutional+Neural+Network+Based+Sensors+for+Mobile+Robot+Relocalization){:target="_blank"} for full citation

@@ -1,7 +1,7 @@
 ---
 title: "Sequential auto-landing of multiple UAVs using control constrained path following"
 collection: publications
-permalink: /publication/2019-01-01-Sequential-auto-landing-of-multiple-UAVs-using-control-constrained-path-following
+permalink: /publications/2019-01-01-Sequential-auto-landing-of-multiple-UAVs-using-control-constrained-path-following.html
 date: 2019-01-01
 venue: 'In the proceedings of AIAA Scitech 2019 Forum'
 citation: ' Jay Patrikar,  Venkata Makkapati,  Anay Pattanaik,  Hardik Parwana,  Mangal Kothari, &quot;Nested Saturation Based Guidance Law for Unmanned Aerial Vehicles.&quot; Journal of Dynamic Systems, Measurement and Control, Transactions of the ASME, 2019.'
