@@ -8,7 +8,7 @@ citation: ' Jay Patrikar,  Venkata Makkapati,  Anay Pattanaik,  Hardik Parwana, 
 paperurl: 'https://asmedigitalcollection.asme.org/dynamicsystems/article/141/7/071008/726490/Nested-Saturation-Based-Guidance-Law-for-Unmanned'
 video: 'https://www.youtube.com/watch?v=QY1wZhKi6-I'
 embed : "https://www.youtube.com/embed/QY1wZhKi6-I"
-pdf: './files/NSGL.pdf'
+pdf: '/files/NSGL.pdf'
 excerpt: "<b>Jay Patrikar</b>, Venkata Ramana Makkapati, Anay Pattanaik, Hardik Parwana, Mangal Kothari"
 pic: "NSGL1.png"
 
