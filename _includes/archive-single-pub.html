@@ -29,7 +29,7 @@
 
         <tr class="pub">
           <td class="pub"  width="20%" align="top">
-            <img  src="{{ post.pic | prepend: "/images/" | prepend: base_path }}">
+            <a href="{{ base_path }}{{ post.url }}" rel="permalink">  <img  src="{{ post.pic | prepend: "/images/" | prepend: base_path }}"></a>
           </td>
           <td>
             <h2 >
