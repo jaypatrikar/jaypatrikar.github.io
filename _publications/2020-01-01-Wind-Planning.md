@@ -8,6 +8,10 @@ venue: 'In the proceedings of 2020 International Conference on Unmanned Aircraft
 citation: ' Mahathi Bhargavapuri,  Jay Patrikar,  Soumya Sahoo,  Mangal Kothari, &quot;A Low-Cost Tilt-Augmented Quadrotor Helicopter: Modeling and Control.&quot; In the proceedings of 2018 International Conference on Unmanned Aircraft Systems (ICUAS), 2018.'
 excerpt: "<b>Jay Patrikar</b>,Vishal Dugar, Vaibhav Arcot and Sebastian Scherer"
 pic : "WINDPLAN1.png"
+paperurl: 'https://ieeexplore.ieee.org/abstract/document/9213837'
+pdf: './files/patrikar2020.pdf'
+
+
 ---
 
 A key challenge in enabling autonomous Unmanned
