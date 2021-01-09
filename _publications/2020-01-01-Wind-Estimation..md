@@ -10,6 +10,8 @@ video: 'https://www.youtube.com/watch?v=U4XdYgSJRZM&feature=emb_logo'
 embed : "https://www.youtube.com/embed/U4XdYgSJRZM"
 excerpt: "<b>Jay Patrikar</b>, Brady G. Moon, and Sebastian Scherer"
 pic : "WINDEST2.png"
+paperurl: 'https://ras.papercept.net/proceedings/IROS20/0786.pdf'
+
 ---
 A high-quality estimate of wind fields can potentially
 improve the safety and performance of Unmanned Aerial

@@ -6,7 +6,7 @@ date: 2018-01-01
 venue: 'In the proceedings of 2018 23rd International Conference on Methods and Models in Automation and Robotics, MMAR 2018'
 citation: ' Harsh Sinha,  Jay Patrikar,  Eeshan Dhekane,  Gaurav Pandey,  Mangal Kothari, &quot;Convolutional Neural Network Based Sensors for Mobile Robot Relocalization.&quot; In the proceedings of 2018 23rd International Conference on Methods and Models in Automation and Robotics, MMAR 2018, 2018.'
 paperurl: 'https://ieeexplore.ieee.org/abstract/document/8485921'
-excerpt: "<b>Jay Patrikar</b>, Harsh Sinha, Eeshan Dhekane,  Gaurav Pandey,  Mangal Kothari"
+excerpt: "<b>Jay Patrikar*</b>, Harsh Sinha*, Eeshan Dhekane*,  Gaurav Pandey,  Mangal Kothari"
 pic : "CNN1.png"
 ---
 

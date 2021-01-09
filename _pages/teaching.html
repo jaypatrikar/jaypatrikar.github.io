@@ -4,9 +4,20 @@ title: "Teaching"
 permalink: /teaching/
 author_profile: true
 ---
-
 {% include base_path %}
+<h2>Courses</h2>
+<br>
 
 {% for post in site.teaching reversed %}
+  {% include archive-single.html %}
+{% endfor %}
+<br><br>
+<br>
+<br>
+
+<h2>Workshops</h2>
+<br>
+
+{% for post in site.talks reversed %}
   {% include archive-single.html %}
 {% endfor %}
