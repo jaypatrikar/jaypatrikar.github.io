@@ -9,7 +9,7 @@ citation: ' Mahathi Bhargavapuri,  Jay Patrikar,  Soumya Sahoo,  Mangal Kothari,
 excerpt: "<b>Jay Patrikar</b>,Vishal Dugar, Vaibhav Arcot and Sebastian Scherer"
 pic : "WINDPLAN1.png"
 paperurl: 'https://ieeexplore.ieee.org/abstract/document/9213837'
-pdf: './files/patrikar2020.pdf'
+pdf: '../files/patrikar2020.pdf'
 
 
 ---

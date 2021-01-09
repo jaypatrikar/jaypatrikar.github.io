@@ -9,7 +9,7 @@ paperurl: 'https://arc.aiaa.org/doi/abs/10.2514/6.2018-1587'
 video: 'https://www.youtube.com/watch?v=4bJHLSYMYxw'
 embed : "https://www.youtube.com/embed/4bJHLSYMYxw"
 excerpt: "Hardik Parwana,  <b>Jay Patrikar</b>,  Mangal Kothari"
-pdf : "/files/quat.pdf"
+pdf : "../files/quat.pdf"
 pic : "QUAT1.png"
 
 ---
