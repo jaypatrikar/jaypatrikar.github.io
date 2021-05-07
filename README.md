@@ -1,4 +1,15 @@
 
 ## To push changes
 
-git push github master
+git push origin master
+
+## Docker
+
+docker-compose build 
+docker-compose run --rm --service-ports ruby_dev
+
+##bundler
+bundle install
+bundle exec jekyll liveserve --host 0.0.0.0 --port 3000 
+
+
