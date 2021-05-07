@@ -42,6 +42,9 @@
             </h2>
             <p>{{post.excerpt}} <br>
              <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} <br>
+
+            
+
             {% if post.pdf and post.video %}
 
            <a href=" {{ post.paperurl }} ">[link]</a> <a href=" {{ post.pdf }} ">[pdf]</a> <a href=" {{ post.video }} ">[video]</a>

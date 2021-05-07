@@ -14,7 +14,8 @@ My research lies at the intersection of Artificial Intelligence, Field Robotics 
 Previously, I have completed my Master of Science in Robotics (MSR) at Carnegie Mellon University (CMU). Before CMU, I completed my Masters and Bachelor of Technology in Engineering from the [Department of Aerospace Engineering](https://www.iitk.ac.in/aero/) at the Indian Institute of Technology Kanpur where I was advised by [Dr Mangal Kothari](https://www.iitk.ac.in/aero/mangal/) in the [Intelligent Guidance and Control Laboratory](https://www.iitk.ac.in/aero/mangal/). 
 
 
-I am passionate about aviation. I currently hold a FAA Part 107 Remote Pilot License and a FAA Part 61 Student Pilot License.  
+I am passionate about aviation. I currently hold a FAA Part 107 Remote Pilot License and a FAA Part 61 Student Pilot License.  I am also the President of [The Flying Club](https://www.cmuflyingclub.org/), a CMU community organization for promoting general aviation. 
+
 
 
 
