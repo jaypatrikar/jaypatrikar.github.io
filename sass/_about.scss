@@ -12,16 +12,17 @@
     margin: 20px auto;
     padding: 10px;
 }
+
 .gallery {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    gap: 15px; /* Space between video items */
+    justify-content: space-between; /* Even spacing between items */
 }
 
 .video-item {
-    margin: 15px;
-    flex: 1 1 calc(33.33% - 30px); /* 3 videos per row with margins */
-    max-width: 300px;
+    flex: 1 1 calc(33% - 30px); /* Ensures 3 videos per row */
+    max-width: 32%; /* Max width ensures videos don't overflow */
 }
 
 iframe {
@@ -31,22 +32,18 @@ iframe {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-// p {
-//     text-align: center;
-//     margin-top: 8px;
-//     font-size: 16px;
-//     color: #333;
-// }
 
-/* Ensure responsiveness for smaller screens */
+/* Responsive layout for smaller screens */
 @media (max-width: 900px) {
     .video-item {
-        flex: 1 1 calc(50% - 30px); /* 2 videos per row */
+        flex: 1 1 calc(50% - 20px); /* 2 videos per row on medium screens */
+        max-width: 48%;
     }
 }
 
 @media (max-width: 600px) {
     .video-item {
-        flex: 1 1 100%; /* 1 video per row */
+        flex: 1 1 100%; /* 1 video per row on small screens */
+        max-width: 100%;
     }
 }
