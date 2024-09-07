@@ -20,12 +20,33 @@
 
 .video-item {
     margin: 15px;
-    width: 300px;
+    flex: 1 1 calc(33.33% - 30px); /* 3 videos per row with margins */
+    max-width: 300px;
 }
 
 iframe {
     width: 100%;
-    height: auto;
+    height: 200px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+// p {
+//     text-align: center;
+//     margin-top: 8px;
+//     font-size: 16px;
+//     color: #333;
+// }
+
+/* Ensure responsiveness for smaller screens */
+@media (max-width: 900px) {
+    .video-item {
+        flex: 1 1 calc(50% - 30px); /* 2 videos per row */
+    }
+}
+
+@media (max-width: 600px) {
+    .video-item {
+        flex: 1 1 100%; /* 1 video per row */
+    }
 }
