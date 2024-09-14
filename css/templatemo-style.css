@@ -194,7 +194,7 @@ body {
 }
 
 a {
-  color: #006699;
+  color: #DD571E;
   -webkit-transition: all 150ms ease-in-out;
   -moz-transition: all 150ms ease-in-out;
   -ms-transition: all 150ms ease-in-out;
@@ -203,7 +203,7 @@ a {
   text-decoration: none !important;
 }
 a:hover {
-  color: #555555;
+  color: #FCAE1E;
 }
 
 h1, h2, h3, h4, h5 {
@@ -340,7 +340,7 @@ h3.profile-title {
   display: block;
 }
 .main-navigation li.highlight {
-  background: #334050;
+  background: #FCAE1E;
 }
 .main-navigation li a {
   padding: 12px;
@@ -355,13 +355,13 @@ h3.profile-title {
   font-size: 24px;
 }
 .main-navigation li a:hover {
-  background: #414E5E;
+  background: #FCAE1E;
 }
 .main-navigation li a.active {
-  background: #495461;
+  background: #FCAE1E;
 }
 .main-navigation li a.active:hover {
-  background: #495461;
+  background: #FCAE1E;
 }
 
 .social-icons {
@@ -373,17 +373,17 @@ h3.profile-title {
   display: inline-block;
 }
 .top-section a {
-  color: #ffd6ba;
+  color: #DD571E;
 }
 .top-section a:hover {
-  color: #282e35;
+  color: #FCAE1E;
 }
 .social-icons a {
   font-size: 18px;
   color: white;
 }
 .social-icons a:hover {
-  color: #282e35;
+  color: #FCAE1E;
 }
 
 .ai-google-scholar {
@@ -459,7 +459,7 @@ h3.profile-title {
   display: block;
   padding: 20px;
   margin-top: 30px;
-  background: #6cc0f7;
+  background: #da8b14;
   color: white;
   font-size: 18px;
 }
@@ -867,4 +867,46 @@ h3.profile-title {
 }
 #footer p.copyright-text a:hover {
   color: #6cc0f7;
+}
+.idx_container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* Vertically center the content */
+            height: 60vh;
+            gap: 40px;  /* Increased space between left and right sections */
+
+}
+
+.idx_section {
+    flex: 1; /* Takes equal space for both sections */
+    padding: 20px;
+}
+
+.idx_left {
+            background-color: #ffffff;
+            line-height: 1.5;  /* Increased line spacing */
+            display: flex;
+            /* font-weight: bold; */
+            text-align: right;  /* Right-align text */
+
+            justify-content: center;  /* Horizontally center the text */
+            flex-direction: column;   /* Center the content vertically */
+        }
+
+.idx_right {
+    background-color: #ffffff;
+    text-align: justify; /* Justify the text */
+
+}
+/* Media query for screens smaller than 600px */
+@media (max-width: 992px) {
+    .idx_container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .idx_section {
+        padding: 10px;
+        height: auto;
+    }
 }
