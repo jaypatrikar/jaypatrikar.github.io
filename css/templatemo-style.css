@@ -670,7 +670,7 @@ h3.profile-title {
 
 /*----- life item ---- */
 .life-item {
-  margin-bottom: 20px;
+  margin-bottom: 1px;
 
   display: flex;
   align-items: center;
@@ -690,7 +690,7 @@ h3.profile-title {
 }
 
 .life-item-pub-img {
-  width: 300px;
+  width: 200px;
   float: left;
   align-self: flex-start;
 }
@@ -750,7 +750,7 @@ h3.profile-title {
 
 .li-separator {
   border-bottom: 1px #dddddd solid;
-  margin: 15px 0% 15px 0px;
+  margin: 5px 0% 5px 0px;
 }
 
 .bulleted {
@@ -872,7 +872,7 @@ h3.profile-title {
             display: flex;
             justify-content: space-between;
             align-items: center; /* Vertically center the content */
-            height: 60vh;
+            height: 40vh;
             gap: 40px;  /* Increased space between left and right sections */
 
 }
@@ -887,7 +887,7 @@ h3.profile-title {
             line-height: 1.5;  /* Increased line spacing */
             display: flex;
             /* font-weight: bold; */
-            text-align: right;  /* Right-align text */
+            text-align: center;  /* Right-align text */
 
             justify-content: center;  /* Horizontally center the text */
             flex-direction: column;   /* Center the content vertically */
