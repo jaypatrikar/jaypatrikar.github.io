@@ -701,6 +701,12 @@ h3.profile-title {
   display: block;
   object-fit: cover;
 }
+.life-item-pub-img iframe {
+  max-width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+  object-fit: cover;
+}
 
 .life-item-content {
   width: 90%;
