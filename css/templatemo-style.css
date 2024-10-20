@@ -898,7 +898,16 @@ h3.profile-title {
             justify-content: center;  /* Horizontally center the text */
             flex-direction: column;   /* Center the content vertically */
         }
+.idx_left_research {
+            background-color: #ffffff;
+            line-height: 1.5;  /* Increased line spacing */
+            display: flex;
+            /* font-weight: bold; */
+            text-align: justify;  /* Right-align text */
 
+            justify-content: center;  /* Horizontally center the text */
+            flex-direction: column;   /* Center the content vertically */
+        }
 .idx_right {
     background-color: #ffffff;
     text-align: justify; /* Justify the text */
