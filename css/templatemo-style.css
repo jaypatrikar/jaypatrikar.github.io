@@ -947,10 +947,10 @@ h3.profile-title {
     height:200px;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1324px) {
     .responsive-image {
         content: url('../img/splash.png');
         width: 550px;
-        height:200px;
+        height:auto;
     }
 }
