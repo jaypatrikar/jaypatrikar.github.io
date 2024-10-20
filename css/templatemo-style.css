@@ -874,21 +874,48 @@ h3.profile-title {
 #footer p.copyright-text a:hover {
   color: #6cc0f7;
 }
-.idx_container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center; /* Vertically center the content */
-            height: 40vh;
-            gap: 40px;  /* Increased space between left and right sections */
+.news_container {
+    display: flex;
+    height: auto;
+    padding: 20px;
 
+}
+.idx_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create a 2-column grid */
+    grid-gap: 40px; /* Gap between the blocks */
+    height: auto;
 }
 
 .idx_section {
-    flex: 1; /* Takes equal space for both sections */
     padding: 20px;
+    height: auto; /* Adjust height as needed */
 }
 
-.idx_left {
+.idx_left, .idx_right {
+    background-color: #ffffff;
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;  /* Vertically center content */
+    text-align: justify;  /* Center-align text */
+}
+
+/* Media query for screens smaller than 992px */
+@media (max-width: 992px) {
+    .idx_container {
+        grid-template-columns: 1fr; /* Change to a single column (4x1) layout */
+    }
+
+    .idx_section {
+        height: auto; /* Auto height for stacked blocks */
+    }
+    .divider {
+        margin: 10px 0; /* Adjust margin for smaller screens if necessary */
+    }
+}
+
+.idx_left_phd {
             background-color: #ffffff;
             line-height: 1.5;  /* Increased line spacing */
             display: flex;
@@ -898,33 +925,7 @@ h3.profile-title {
             justify-content: center;  /* Horizontally center the text */
             flex-direction: column;   /* Center the content vertically */
         }
-.idx_left_research {
-            background-color: #ffffff;
-            line-height: 1.5;  /* Increased line spacing */
-            display: flex;
-            /* font-weight: bold; */
-            text-align: justify;  /* Right-align text */
 
-            justify-content: center;  /* Horizontally center the text */
-            flex-direction: column;   /* Center the content vertically */
-        }
-.idx_right {
-    background-color: #ffffff;
-    text-align: justify; /* Justify the text */
-
-}
-/* Media query for screens smaller than 600px */
-@media (max-width: 992px) {
-    .idx_container {
-        flex-direction: column;
-        height: auto;
-    }
-
-    .idx_section {
-        padding: 10px;
-        height: auto;
-    }
-}
 .blinking-cursor {
     font-weight: bold;
     font-size: 36px; /* Increased font size */
@@ -942,15 +943,39 @@ h3.profile-title {
     }
 }
 .responsive-image {
-    max-width: 600px;
-    width: 550px;
-    height:200px;
+    max-width: 100%; /* Scale image with available width */
+    height: auto; /* Maintain aspect ratio */
+
 }
 
-@media (max-width: 1324px) {
+@media (max-width: 1524px) {
     .responsive-image {
         content: url('../img/splash.png');
-        width: 550px;
-        height:auto;
+    max-width: 100%; /* Scale image with available width */
+    height: auto; /* Maintain aspect ratio */
     }
+
+}
+.divider {
+    grid-column: span 2; /* Make the divider span across both columns */
+    border-top: 2px solid #000; /* Style the horizontal line */
+    margin: 20px 0; /* Add margin above and below the line */
+}
+/* Caption styling */
+.image-caption {
+    margin-top: 0; /* Remove top margin */
+    font-size: 1em; /* Adjust font size as needed */
+    line-height: 1.5; /* Add line height for better readability */
+    padding: 0 10px; /* Add padding to the sides for spacing */
+}
+.image-container {
+    display: flex;
+    flex-direction: column; /* Stack the image and caption vertically */
+    align-items: center; /* Center the content */
+    margin-left: 3px;
+}
+.research-container {
+    display: flex;
+    flex-direction: column; /* Stack the image and caption vertically */
+    align-items: center; /* Center the content */
 }
