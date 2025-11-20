@@ -991,15 +991,22 @@ h3.profile-title {
 
 .life-item-img {
   width: 70px;
-  float: left;
-  align-self: flex-start;
+  flex-shrink: 0;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
 }
 
 .life-item-img img {
-  max-width: 100%;
-  height: auto; /* Maintain aspect ratio */
+  max-width: 70px;
+  max-height: 70px;
+  width: auto;
+  height: auto;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
+  margin: auto;
 }
 
 .life-item-pub-img {
@@ -1032,6 +1039,46 @@ h3.profile-title {
   .life-item-content {
     width: 100%;
     margin-left: 0;
+    padding-right: 0 !important;
+  }
+  
+  /* Stack dates and locations vertically on mobile */
+  .life-item-content > h5:first-of-type {
+    position: relative !important;
+    text-align: left !important;
+    width: 100% !important;
+    margin-bottom: 0.25rem !important;
+    right: auto !important;
+    top: auto !important;
+    left: auto !important;
+  }
+  
+  .life-item-content h5.extra-space-loc {
+    position: relative !important;
+    text-align: left !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.5rem !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+  }
+  
+  .life-item-content > h5:not(:first-of-type):not(.extra-space-loc):not(.life-item-title) {
+    width: 100% !important;
+    padding-right: 0 !important;
+    position: relative !important;
+  }
+  
+  .life-item-content > h5.life-item-title {
+    padding-right: 0 !important;
+    width: 100% !important;
+    display: block !important;
+    justify-content: flex-start !important;
+  }
+  
+  .life-item-content {
+    position: relative !important;
   }
 }
 
@@ -1051,8 +1098,61 @@ h3.profile-title {
 .life-item-content {
   width: 90%;
   margin-left: 10px;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   color: var(--color-text-body);
+  position: relative;
+}
+
+/* First row: Name/Title on left, Date on right */
+.life-item-content > h5.life-item-title {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: baseline !important;
+  margin: 0 !important;
+  margin-bottom: 0.25rem !important;
+  width: 100% !important;
+}
+
+/* Date positioned on the right */
+.life-item-content > h5:first-of-type {
+  position: absolute !important;
+  right: 0 !important;
+  top: 0 !important;
+  margin: 0 !important;
+  text-align: right !important;
+  width: auto !important;
+}
+
+/* Location positioned below date on the right */
+.life-item-content h5.extra-space-loc {
+  position: absolute !important;
+  right: 0 !important;
+  top: 1.5rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--color-text-secondary) !important;
+  font-weight: 400 !important;
+  font-size: 0.9375rem !important;
+  line-height: 1.5 !important;
+  text-align: right !important;
+  width: auto !important;
+  display: block !important;
+}
+
+/* Other content on the left */
+.life-item-content > h5:not(:first-of-type):not(.extra-space-loc):not(.life-item-title) {
+  display: block !important;
+  margin: 0 !important;
+  margin-bottom: 0.25rem !important;
+  line-height: 1.5 !important;
+  width: calc(100% - 200px) !important;
+  padding-right: 200px;
+}
+
+.life-item-content > h5.life-item-title {
+  padding-right: 200px;
+  width: 100% !important;
 }
 
 .life-item-content span {
