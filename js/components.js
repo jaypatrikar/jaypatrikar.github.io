@@ -49,6 +49,14 @@
                     throw new Error('Empty response from component');
                 }
                 container.innerHTML = html;
+                // Re-initialize toggle menu after components load
+                if (typeof $ !== 'undefined') {
+                    $(".toggle-menu").off('click').on('click', function(e) {
+                        e.preventDefault();
+                        $(".responsive-menu").stop(true, true).slideToggle();
+                        return false;
+                    });
+                }
                 // Re-initialize any scripts that depend on the loaded content
                 if (typeof initializeComponents === 'function') {
                     initializeComponents();

@@ -739,6 +739,11 @@ h3.profile-title {
   background: var(--color-dark);
 }
 
+.responsive-header .main-navigation.responsive-menu {
+  display: none;
+  overflow: hidden;
+}
+
 .responsive-header .main-navigation ul {
   margin: 0;
   padding: 0;
@@ -747,9 +752,8 @@ h3.profile-title {
 
 /* Tablet and below (max-width: 991px) */
 @media screen and (max-width: 991px) {
-  .responsive-header .main-navigation {
+  .responsive-header .main-navigation.responsive-menu {
     margin-top: 0;
-    display: none;
   }
   
   .responsive-header p {
