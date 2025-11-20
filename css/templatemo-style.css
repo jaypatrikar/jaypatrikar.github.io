@@ -236,23 +236,26 @@ h1, h2, h3, h4, h5 {
 .banner-bg .fa-angle-right {
   color: #00ff00;
 }
-@media screen and (max-width: 1290px) {
-  .main-content,
-  .banner-bg {
-    width: 70%;
-  }
-}
-@media screen and (max-width: 992px) {
-  .main-content,
-  .banner-bg {
-    width: 100%;
-  }
-}
 
 .content-wrapper {
   padding: 0 50px 0 50px;
 }
-@media screen and (max-width: 992px) {
+
+/*---------------------------------------------------------
+  Responsive Breakpoints (Bootstrap Standard)
+  - Mobile: < 768px
+  - Tablet: 768px - 991px
+  - Desktop: 992px - 1199px
+  - Large Desktop: >= 1200px
+-------------------------------------------------------- */
+
+/* Tablet and below (max-width: 991px) */
+@media screen and (max-width: 991px) {
+  .main-content,
+  .banner-bg {
+    width: 100%;
+  }
+  
   .content-wrapper {
     padding: 0 30px;
   }
@@ -286,6 +289,20 @@ hr {
   padding-top: 50px;
 }
 
+/* Tablet and below (max-width: 991px) */
+@media screen and (max-width: 991px) {
+  .page-section {
+    padding-top: 40px;
+  }
+}
+
+/* Mobile (max-width: 767px) */
+@media screen and (max-width: 767px) {
+  .page-section {
+    padding-top: 30px;
+  }
+}
+
 /*---------------------------------------------------------
  3. Header
 -------------------------------------------------------- */
@@ -298,10 +315,16 @@ hr {
   color: white;
   overflow-y: auto;
 }
-@media screen and (max-width: 1290px) {
+
+/* Tablet landscape and medium desktops (max-width: 1199px) */
+@media screen and (max-width: 1199px) {
   .sidebar-menu {
-    overflow-y: auto;
-    width: 30%;
+    width: 28%;
+  }
+  
+  .main-content,
+  .banner-bg {
+    width: 72%;
   }
 }
 
@@ -324,6 +347,16 @@ hr {
 }
 .profile-image img {
   width: 100%;
+}
+
+/* Tablet (768px - 991px) */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .sidebar-menu .profile-image {
+    width: 120px;
+    height: 120px;
+    -webkit-border-radius: 60px;
+    border-radius: 60px;
+  }
 }
 
 h3.profile-title {
@@ -404,18 +437,18 @@ h3.profile-title {
   background: #1f1e1e;
   text-align: center;
 }
-@media screen and (max-width: 992px) {
+
+/* Tablet and below (max-width: 991px) */
+@media screen and (max-width: 991px) {
   .responsive-header .main-navigation {
     margin-top: 10px;
     display: none;
   }
-}
-@media screen and (max-width: 992px) {
+  
   .responsive-header p {
     color: white;
   }
-}
-@media screen and (max-width: 992px) {
+  
   .responsive-header .profile-image {
     float: left;
     width: 100px;
@@ -425,30 +458,30 @@ h3.profile-title {
     overflow: hidden;
     margin-right: 30px;
   }
+  
   .responsive-header .profile-content {
     text-align: left;
     margin-top: 5px;
     overflow: hidden;
   }
+  
   .responsive-header .social-icons {
     text-align: left;
     padding: 0px;
   }
-}
-
-@media screen and (max-width: 992px) {
+  
   .top-section {
     padding-bottom: 0;
   }
-}
-
-@media screen and (max-width: 992px) {
+  
   .main-navigation a {
     padding: 10px;
   }
+  
   .main-navigation a.active {
     background: #1f1e1e !important;
   }
+  
   .main-navigation a:hover {
     background: #1f1e1e !important;
   }
@@ -577,6 +610,37 @@ h3.profile-title {
   z-index: 2;
 }
 
+/* Tablet and below (max-width: 991px) */
+@media screen and (max-width: 991px) {
+  .banner-bg {
+    padding: 40px 30px;
+  }
+  
+  .welcome-text h2 {
+    font-size: 32px;
+  }
+  
+  .welcome-text h5 {
+    font-size: 18px;
+  }
+}
+
+/* Mobile (max-width: 767px) */
+@media screen and (max-width: 767px) {
+  .banner-bg {
+    padding: 30px 20px;
+  }
+  
+  .welcome-text h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .welcome-text h5 {
+    font-size: 16px;
+  }
+}
+
 .banner-overlay {
   position: absolute;
   width: 100%;
@@ -693,6 +757,33 @@ h3.profile-title {
   width: 220px;
   float: left;
   align-self: flex-start;
+}
+
+/* Tablet and below (max-width: 991px) */
+@media screen and (max-width: 991px) {
+  .life-item-pub-img {
+    width: 180px;
+  }
+}
+
+/* Mobile (max-width: 767px) */
+@media screen and (max-width: 767px) {
+  .life-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .life-item-img,
+  .life-item-pub-img {
+    width: 100%;
+    float: none;
+    margin-bottom: 15px;
+  }
+  
+  .life-item-content {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 .life-item-pub-img img {
@@ -901,17 +992,18 @@ h3.profile-title {
     text-align: justify;  /* Center-align text */
 }
 
-/* Media query for screens smaller than 992px */
-@media (max-width: 992px) {
+/* Tablet and below (max-width: 991px) */
+@media screen and (max-width: 991px) {
     .idx_container {
-        grid-template-columns: 1fr; /* Change to a single column (4x1) layout */
+        grid-template-columns: 1fr; /* Single column layout for tablets and mobile */
     }
 
     .idx_section {
-        height: auto; /* Auto height for stacked blocks */
+        height: auto;
     }
+    
     .divider {
-        margin: 10px 0; /* Adjust margin for smaller screens if necessary */
+        margin: 10px 0;
     }
 }
 
@@ -943,18 +1035,17 @@ h3.profile-title {
     }
 }
 .responsive-image {
-    max-width: 100%; /* Scale image with available width */
-    height: auto; /* Maintain aspect ratio */
-
+    max-width: 100%;
+    height: auto;
 }
 
-@media (max-width: 1524px) {
+/* Large desktop and below (max-width: 1199px) - Switch to smaller image */
+@media screen and (max-width: 1199px) {
     .responsive-image {
         content: url('../img/splash.png');
-    max-width: 100%; /* Scale image with available width */
-    height: auto; /* Maintain aspect ratio */
+        max-width: 100%;
+        height: auto;
     }
-
 }
 .divider {
     grid-column: span 2; /* Make the divider span across both columns */

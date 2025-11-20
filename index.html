@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js"> <!--<![endif]-->
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Jay Patrikar | About Me</title>
-    <meta name="description" content="">
+    <meta name="description"
+        content="Jay Patrikar - PhD Student in Robotics at Carnegie Mellon University. Research focused on safe and reliable real-world autonomy, combining data-driven approaches with provably safe methods.">
     <!--
     	Volton Template
     	http://www.templatemo.com/tm-441-volton
@@ -30,25 +27,34 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jaypatrikar.github.io/">
+    <meta property="og:title" content="Jay Patrikar | About Me">
+    <meta property="og:description"
+        content="PhD Student in Robotics at Carnegie Mellon University. Research focused on safe and reliable real-world autonomy.">
+    <meta property="og:image" content="https://jaypatrikar.github.io/img/profile.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://jaypatrikar.github.io/">
+    <meta property="twitter:title" content="Jay Patrikar | About Me">
+    <meta property="twitter:description"
+        content="PhD Student in Robotics at Carnegie Mellon University. Research focused on safe and reliable real-world autonomy.">
+    <meta property="twitter:image" content="https://jaypatrikar.github.io/img/profile.jpg">
 
     <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    <!-- Google Analytics 4 - Replace G-XXXXXXXXXX with your GA4 Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-88631709-1', 'auto');
-        ga('send', 'pageview');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
     </script>
 </head>
 
 <body>
-    <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
 
     <div class="responsive-header visible-xs visible-sm">
         <div class="container">
@@ -64,12 +70,16 @@
                             <p class="profile-description"><br /></p>
                             <div class="social-icons">
                                 <ul>
-                                    <li><a href="https://www.linkedin.com/in/jaypatrikar" target="_blank"><i
+                                    <li><a href="https://www.linkedin.com/in/jaypatrikar" target="_blank"
+                                            rel="noopener noreferrer" aria-label="LinkedIn profile"><i
                                                 class="fa fa-linkedin"></i></a></li>
-                                    <li><a href="https://twitter.com/patrikarjay" target="_blank"><i
+                                    <li><a href="https://twitter.com/patrikarjay" target="_blank"
+                                            rel="noopener noreferrer" aria-label="Twitter profile"><i
                                                 class="fa fa-twitter"></i></a></li>
                                     <li><a href="https://scholar.google.com/citations?user=T16259QAAAAJ&hl=en"
-                                            target="_blank"><i class="ai ai-google-scholar"></i></a></li>
+                                            target="_blank" rel="noopener noreferrer"
+                                            aria-label="Google Scholar profile"><i class="ai ai-google-scholar"></i></a>
+                                    </li>
 
                                 </ul>
                             </div> <!-- .social-icons -->
@@ -99,17 +109,23 @@
             <!-- <p class="profile-description">borisi (at) stanford (dot) edu</p> -->
             <p class="profile-description"><br /></p>
             <p class="profile-description">PhD Student</p>
-            <p class="profile-description"><a href="https://theairlab.org/" target="_blank">AirLab</a></p>
-            <p class="profile-description"><a href="https://www.ri.cmu.edu/" target="_blank">Robotics Institute</a></p>
-            <p class="profile-description"><a href="https://www.cmu.edu/" target="_blank">Carnegie Mellon University</a>
+            <p class="profile-description"><a href="https://theairlab.org/" target="_blank"
+                    rel="noopener noreferrer">AirLab</a></p>
+            <p class="profile-description"><a href="https://www.ri.cmu.edu/" target="_blank"
+                    rel="noopener noreferrer">Robotics Institute</a></p>
+            <p class="profile-description"><a href="https://www.cmu.edu/" target="_blank"
+                    rel="noopener noreferrer">Carnegie Mellon University</a>
             </p>
         </div> <!-- top-section -->
         <div class="social-icons">
             <ul>
-                <li><a href="https://www.linkedin.com/in/jaypatrikar" target="_blank"><i class="fa fa-linkedin"></i></a>
+                <li><a href="https://www.linkedin.com/in/jaypatrikar" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn profile"><i class="fa fa-linkedin"></i></a>
                 </li>
-                <li><a href="https://twitter.com/patrikarjay" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="https://scholar.google.com/citations?user=T16259QAAAAJ&hl=en" target="_blank"><i
+                <li><a href="https://twitter.com/patrikarjay" target="_blank" rel="noopener noreferrer"
+                        aria-label="Twitter profile"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://scholar.google.com/citations?user=T16259QAAAAJ&hl=en" target="_blank"
+                        rel="noopener noreferrer" aria-label="Google Scholar profile"><i
                             class="ai ai-google-scholar"></i></a></li>
             </ul>
         </div> <!-- .social-icons -->
@@ -125,7 +141,7 @@
 
 
     <div class="banner-bg" id="top">
-        <div class="banner-overlay"><img src="img/drone-banner.jpeg" alt="" /></div>
+        <div class="banner-overlay"><img src="img/drone-banner.jpeg" alt="Drone banner image" /></div>
         <div class="welcome-text">
             <h2><span class="blinking-cursor"></span> Hello, World!</h2>
             <h5>I am a full-stack roboticist focused on safe and reliable real-world autonomy.
@@ -148,10 +164,13 @@
                                 <h4>School Of Computer Science</h4>
                                 <p>Carnegie Mellon University</p>
                             </span>
-                            <p><a href="https://www.linkedin.com/in/jaypatrikar" target="_blank">Linkedin </a> |
-                                <a href="https://scholar.google.com/citations?user=T16259QAAAAJ&hl=en" target="_blank">
+                            <p><a href="https://www.linkedin.com/in/jaypatrikar" target="_blank"
+                                    rel="noopener noreferrer">Linkedin </a> |
+                                <a href="https://scholar.google.com/citations?user=T16259QAAAAJ&hl=en" target="_blank"
+                                    rel="noopener noreferrer">
                                     Google
-                                    Scholar </a> | <a href="files/cv.pdf" target="_blank"> CV </a>
+                                    Scholar </a> | <a href="files/cv.pdf" target="_blank" rel="noopener noreferrer"> CV
+                                </a>
                             </p>
                             <p> jaypat[at]cmu.edu </p>
                         </div>
@@ -159,26 +178,32 @@
 
                                 <br>
                                 <b>About Me: </b> I am a PhD student in the <a href="https://www.ri.cmu.edu/"
-                                    target="_blank">Robotics
-                                    Institute</a> at <a href="https://www.cmu.edu/" target="_blank">Carnegie
-                                    Mellon University</a> advised by <a href="https://theairlab.org/" target="_blank">Dr
+                                    target="_blank" rel="noopener noreferrer">Robotics
+                                    Institute</a> at <a href="https://www.cmu.edu/" target="_blank"
+                                    rel="noopener noreferrer">Carnegie
+                                    Mellon University</a> advised by <a href="https://theairlab.org/" target="_blank"
+                                    rel="noopener noreferrer">Dr
                                     Sebastian Scherer</a>.
                                 During my PhD, I have
                                 collaborated
-                                with <a href="https://research.nvidia.com/labs/avg/" target="_blank">NVIDIA
+                                with <a href="https://research.nvidia.com/labs/avg/" target="_blank"
+                                    rel="noopener noreferrer">NVIDIA
                                     Research</a>, where I
-                                worked with <a href="https://profiles.stanford.edu/marco-pavone" target="_blank">Dr
+                                worked with <a href="https://profiles.stanford.edu/marco-pavone" target="_blank"
+                                    rel="noopener noreferrer">Dr
                                     Marco Pavone's</a> group as well as a
-                                summer at <a href="https://www.microsoft.com/en-us/research/" target="_blank">Microsoft
+                                summer at <a href="https://www.microsoft.com/en-us/research/" target="_blank"
+                                    rel="noopener noreferrer">Microsoft
                                     Research</a>
-                                working with <a href="https://www.microsoft.com/en-us/research/" target="_blank">Dr
+                                working with <a href="https://www.microsoft.com/en-us/research/" target="_blank"
+                                    rel="noopener noreferrer">Dr
                                     Ashish Kapoor's</a> group.
                                 <br><br>
                                 Prior to my PhD, I earned a Masters in Robotics at <a href="https://www.cmu.edu/"
-                                    target="_blank">Carnegie
+                                    target="_blank" rel="noopener noreferrer">Carnegie
                                     Mellon University</a>. I also have a Masters
                                 and Bachelors of Technology in Aerospace Engineering from <a
-                                    href="https://www.iitk.ac.in/" target="_blank">IIT
+                                    href="https://www.iitk.ac.in/" target="_blank" rel="noopener noreferrer">IIT
                                     Kanpur</a>.
 
                                 <br />
@@ -187,7 +212,8 @@
                                 I am passionate about aviation. I currently hold a FAA Private Pilot
                                 License. I
                                 am also
-                                the Founding President of <a href="https://www.cmuflyingclub.org" target="_blank">The
+                                the Founding President of <a href="https://www.cmuflyingclub.org" target="_blank"
+                                    rel="noopener noreferrer">The
                                     Flying Club</a>, a CMU community organization for promoting
                                 general aviation.
                                 <br />
@@ -216,32 +242,35 @@
                                     real-world
                                     settings. I am
                                     particularly interested in <i> intelligently combining <a
-                                            href="https://arc.aiaa.org/doi/abs/10.2514/6.2024-4251"
-                                            target="_blank">large-scale
+                                            href="https://arc.aiaa.org/doi/abs/10.2514/6.2024-4251" target="_blank"
+                                            rel="noopener noreferrer">large-scale
                                             data-driven
                                             approaches</a> with
-                                        <a href="https://ieeexplore.ieee.org/abstract/document/10160953"
-                                            target="_blank">provably
+                                        <a href="https://ieeexplore.ieee.org/abstract/document/10160953" target="_blank"
+                                            rel="noopener noreferrer">provably
                                             safe
                                             methods</a></i>.
                                     <br><br>
                                     I enjoy working in multiple
                                     safety-critical domains like <a
-                                        href="https://ieeexplore.ieee.org/abstract/document/9561658"
-                                        target="_blank">unmanned aerial
+                                        href="https://ieeexplore.ieee.org/abstract/document/9561658" target="_blank"
+                                        rel="noopener noreferrer">unmanned aerial
                                         vehicles</a>, <a href="https://ieeexplore.ieee.org/abstract/document/10449372"
-                                        target="_blank">shared
+                                        target="_blank" rel="noopener noreferrer">shared
                                         airspace
-                                        autonomy</a> and <a href="https://arxiv.org/abs/2405.11139"
-                                        target="_blank">autonomous
+                                        autonomy</a> and <a href="https://arxiv.org/abs/2405.11139" target="_blank"
+                                        rel="noopener noreferrer">autonomous
                                         driving</a> with applications in <a
-                                        href="https://ieeexplore.ieee.org/abstract/document/10449372" target="_blank">
+                                        href="https://ieeexplore.ieee.org/abstract/document/10449372" target="_blank"
+                                        rel="noopener noreferrer">
                                         human-robot interactions</a>, <a href="https://arxiv.org/abs/2110.03119"
-                                        target="_blank">
-                                        robust planning</a>, <a href="https://arxiv.org/abs/2405.11139" target="_blank">
+                                        target="_blank" rel="noopener noreferrer">
+                                        robust planning</a>, <a href="https://arxiv.org/abs/2405.11139" target="_blank"
+                                        rel="noopener noreferrer">
                                         long-tail uncertainty
                                         quantification</a> and <a
-                                        href="https://arc.aiaa.org/doi/abs/10.2514/6.2024-4251" target="_blank">
+                                        href="https://arc.aiaa.org/doi/abs/10.2514/6.2024-4251" target="_blank"
+                                        rel="noopener noreferrer">
                                         motion prediction</a>.
                                     <!-- <div class="divider"></div> -->
 
@@ -283,41 +312,48 @@
                             <ul>
                                 <li>● Move over, autopilot: This AI can avoid other
                                     planes,<i> Popular Science, Sept 2022</i><a
-                                        href="https://www.popsci.com/technology/artificial-intelligence-fly-planes/?amp">
+                                        href="https://www.popsci.com/technology/artificial-intelligence-fly-planes/?amp"
+                                        target="_blank" rel="noopener noreferrer">
                                         [Link] </a>
                                 </li>
-                                <li>● CMU's AI pilot lands in the news,<i> Practical AI – Episode #189, Sept 2022
-                                    </i><a href="https://changelog.com/practicalai/189">
+                                <li>● CMU's AI pilot lands in the news,<i> Practical AI – Episode #189, Sept 2022
+                                    </i><a href="https://changelog.com/practicalai/189" target="_blank"
+                                        rel="noopener noreferrer">
                                         [Link] </a>
                                 </li>
                                 <li>● Drones bearing parcels deliver big carbon savings,
-                                    <i> Nature, Aug 2022</i><a
-                                        href="https://www.nature.com/articles/d41586-022-02101-3">
+                                    <i> Nature, Aug 2022</i><a href="https://www.nature.com/articles/d41586-022-02101-3"
+                                        target="_blank" rel="noopener noreferrer">
                                         [Link] </a>
                                 </li>
                                 <li>● Researchers Develop AI Pilot for Navigating Crowded Airspace,
                                     <i> Aviation Today, Aug 2022</i><a
-                                        href="https://www.aviationtoday.com/2022/08/29/researchers-develop-ai-pilot-navigating-crowded-airspace/">
+                                        href="https://www.aviationtoday.com/2022/08/29/researchers-develop-ai-pilot-navigating-crowded-airspace/"
+                                        target="_blank" rel="noopener noreferrer">
                                         [Link] </a>
                                 </li>
                                 <li>● AI Pilot Can Navigate Crowded Airspace,
                                     <i> CMU School Of Computer Science, Aug 2022</i><a
-                                        href="https://www.cs.cmu.edu/news/2022/ai-pilot">
+                                        href="https://www.cs.cmu.edu/news/2022/ai-pilot" target="_blank"
+                                        rel="noopener noreferrer">
                                         [Link] </a>
                                 </li>
                                 <li>● Flying Club To Promote Aviation at CMU,
                                     <i>The Piper, June 2021</i><a
-                                        href="https://www.cmu.edu/piper/news/archives/2021/june/flying-club.html">
+                                        href="https://www.cmu.edu/piper/news/archives/2021/june/flying-club.html"
+                                        target="_blank" rel="noopener noreferrer">
                                         [Link] </a>
                                 </li>
                                 <li>● The Flying Club Has Taken Off
                                     <i>The Piper, October 2022</i><a
-                                        href="https://www.cmu.edu/piper/news/archives/2022/october/flying-club-stuco.html">
+                                        href="https://www.cmu.edu/piper/news/archives/2022/october/flying-club-stuco.html"
+                                        target="_blank" rel="noopener noreferrer">
                                         [Link] </a>
                                 </li>
                                 <li>● CMU-Africa Students Explore Aviation Collaborations with CMU Pittsburgh Club,
                                     <i>The Piper, November 2023</i><a
-                                        href="https://www.cmu.edu/news/stories/archives/2023/november/cmu-africa-students-explore-aviation-collaborations-with-cmu-pittsburgh-club">
+                                        href="https://www.cmu.edu/news/stories/archives/2023/november/cmu-africa-students-explore-aviation-collaborations-with-cmu-pittsburgh-club"
+                                        target="_blank" rel="noopener noreferrer">
                                         [Link] </a>
                                 </li>
                             </ul>
@@ -330,7 +366,7 @@
                     <div class="col-md-12 text-center">
 
                         <p class="copyright-text">&copy; 2016 - 2024 Jay Patrikar. <a
-                                href="https://www.borisivanovic.com/">Template.</a> </p>
+                                href="https://www.borisivanovic.com/" rel="noopener noreferrer">Template.</a> </p>
                     </div>
                 </div>
 
