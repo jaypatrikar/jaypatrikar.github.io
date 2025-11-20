@@ -6,47 +6,51 @@ http://www.templatemo.com/tm-441-volton
 
 */
 
-/* Modern Typography - Using Inter from Google Fonts with system font fallback */
+/* Modern Typography - Using Roboto from Google Fonts with system font fallback */
 
 /*---------------------------------------------------------
  Color Palette - CSS Variables
 -------------------------------------------------------- */
 :root {
-  /* Primary Brand Colors */
-  --color-primary: #FCAE1E;        /* Main accent orange/yellow */
-  --color-primary-dark: #DD571E;   /* Darker orange for links */
-  --color-primary-light: #FFC947;  /* Lighter orange for hover states */
+  /* Primary Brand Colors - Forest Green & Emerald (Natural & Professional) */
+  --color-primary: #10B981;        /* Emerald - Main accent */
+  --color-primary-dark: #059669;   /* Darker Emerald - For links */
+  --color-primary-light: #34D399;  /* Light Emerald - Lighter for hover states */
+  
+  /* Accent Colors */
+  --color-accent: #6EE7B7;         /* Mint - Secondary accent */
+  --color-accent-light: #A7F3D0;   /* Light Mint - Hover states */
   
   /* Dark Backgrounds */
-  --color-dark: #1f1e1e;           /* Main dark background */
-  --color-dark-secondary: #2a2828; /* Secondary dark */
-  --color-dark-text: #2a2a2a;      /* Dark text for headings */
+  --color-dark: #0F172A;           /* Slate - Main dark background */
+  --color-dark-secondary: #1E293B; /* Darker Slate - Secondary dark */
+  --color-dark-text: #1E293B;      /* Dark text for headings */
   
   /* Text Colors */
-  --color-text-primary: #2a2a2a;   /* Primary text (headings) */
-  --color-text-body: #555555;       /* Body text */
-  --color-text-secondary: #666666;  /* Secondary text */
-  --color-text-muted: #999999;      /* Muted text */
+  --color-text-primary: #1E293B;   /* Primary text (headings) - Dark Slate */
+  --color-text-body: #475569;       /* Body text - Medium Slate */
+  --color-text-secondary: #64748B;  /* Secondary text */
+  --color-text-muted: #94A3B8;      /* Muted text */
   
   /* Neutral Colors */
   --color-white: #ffffff;
-  --color-gray-light: #dddddd;      /* Borders, dividers */
-  --color-gray-medium: #808080;     /* Hover borders */
+  --color-gray-light: #E2E8F0;      /* Borders, dividers - Light slate */
+  --color-gray-medium: #94A3B8;     /* Hover borders */
   
   /* Semantic Colors */
-  --color-success: #3D9970;        /* Success/highlight green */
-  --color-link: #FCAE1E;            /* Link color */
-  --color-link-hover: #FFC947;      /* Link hover */
+  --color-success: #10B981;        /* Success/highlight - Emerald */
+  --color-link: #059669;            /* Link color - Dark Emerald */
+  --color-link-hover: #10B981;      /* Link hover - Emerald */
   
   /* Sidebar Colors */
-  --color-sidebar-bg: linear-gradient(180deg, #2a2828 0%, #1f1e1e 100%);
+  --color-sidebar-bg: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
   --color-sidebar-text: rgba(255, 255, 255, 0.9);
   --color-sidebar-text-muted: rgba(255, 255, 255, 0.75);
   
   /* Overlay Colors */
-  --color-overlay-dark: rgba(0, 0, 0, 0.1);
+  --color-overlay-dark: rgba(15, 23, 42, 0.1);
   --color-overlay-light: rgba(255, 255, 255, 0.05);
-  --color-overlay-primary: rgba(252, 174, 30, 0.15);
+  --color-overlay-primary: rgba(16, 185, 129, 0.15);
 }
 
 /*---------------------------------------------------------
@@ -205,7 +209,7 @@ body {
   font-size: 1rem; /* 16px base */
   line-height: 1.65; /* Improved readability */
   color: var(--color-text-body);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -223,10 +227,10 @@ a:hover {
   color: var(--color-primary);
 }
 
-/* Modern Typography Scale */
+/* Modern Typography Scale - Roboto for headings */
 h1, h2, h3, h4, h5, h6 {
   color: var(--color-text-primary);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-weight: 600;
   line-height: 1.3;
   margin-top: 0;
@@ -245,6 +249,74 @@ p {
   margin-bottom: 1rem;
   line-height: 1.7;
   color: var(--color-text-body);
+  font-size: 1rem;
+}
+
+/* Consistent typography classes across all pages */
+.page-body-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text-body);
+  max-width: 100%;
+}
+
+.page-intro-text {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+}
+
+/* Research in News section */
+.news-details {
+  text-align: left;
+}
+
+.news-summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+.news-summary::-webkit-details-marker {
+  display: none;
+}
+
+.news-summary::before {
+  content: '▶';
+  display: inline-block;
+  margin-right: 0.5rem;
+  color: var(--color-primary);
+  transition: transform 0.2s ease;
+  font-size: 0.875rem;
+}
+
+.news-details[open] .news-summary::before {
+  transform: rotate(90deg);
+}
+
+.news-summary:hover {
+  color: var(--color-primary);
+}
+
+.news-summary .section-subtitle {
+  display: inline-block;
+}
+
+/* Center on mobile */
+@media screen and (max-width: 767px) {
+  .news-details {
+    text-align: center;
+  }
 }
 
 ul, ol {
@@ -332,25 +404,29 @@ li {
   }
 }
 
-h4.widget-title {
-  font-size: 1rem;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+/* Consistent widget-title styling across all pages */
+h2.widget-title {
+  font-size: 2rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  color: var(--color-text-primary);
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+h4.widget-title {
+  font-size: 1.25rem;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 600;
   margin-bottom: 1.25rem;
   color: var(--color-text-primary);
 }
 
 h5.widget-title {
-  font-size: 0.875rem;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-size: 1.125rem;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-weight: 600;
   margin-bottom: 1.25rem;
-  color: var(--color-text-primary);
-}
-
-h2.widget-title {
   color: var(--color-text-primary);
 }
 
@@ -424,14 +500,14 @@ hr {
   border-radius: 75px;
   overflow: hidden;
   margin: 0 auto 25px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 4px rgba(252, 174, 30, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 4px rgba(30, 58, 138, 0.15);
   transition: all 0.3s ease;
   background: var(--color-overlay-light);
 }
 .profile-image:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 0 4px rgba(252, 174, 30, 0.2);
-  border-color: rgba(252, 174, 30, 0.4);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 0 4px rgba(30, 58, 138, 0.25);
+  border-color: rgba(14, 165, 233, 0.5);
 }
 .profile-image img {
   width: 100%;
@@ -453,7 +529,7 @@ h3.profile-title {
   margin-bottom: 0.5rem;
   color: var(--color-white);
   font-size: 1.25rem;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-weight: 600;
   letter-spacing: 0.02em;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -519,7 +595,7 @@ h3.profile-title {
   transition: transform 0.25s ease;
 }
 .main-navigation li a:hover {
-  background: rgba(252, 174, 30, 0.12);
+  background: rgba(30, 58, 138, 0.15);
   color: var(--color-white);
   padding-left: 28px;
   transform: translateX(3px);
@@ -537,7 +613,7 @@ h3.profile-title {
   transform: scaleY(1);
 }
 .main-navigation li a.active:hover {
-  background: rgba(252, 174, 30, 0.18);
+  background: rgba(30, 58, 138, 0.2);
 }
 .main-navigation li a i {
   margin-right: 12px;
@@ -601,10 +677,10 @@ h3.profile-title {
 }
 .social-icons a:hover {
   color: var(--color-white);
-  background: rgba(252, 174, 30, 0.2);
-  border-color: rgba(252, 174, 30, 0.4);
+  background: rgba(30, 58, 138, 0.25);
+  border-color: rgba(14, 165, 233, 0.5);
   transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(252, 174, 30, 0.2);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
 }
 
 .ai-google-scholar {
@@ -631,7 +707,7 @@ h3.profile-title {
 }
 
 .sidebar-menu::-webkit-scrollbar-thumb:hover {
-  background: rgba(252, 174, 30, 0.4);
+  background: rgba(30, 58, 138, 0.5);
 }
 
 .container {
@@ -733,14 +809,14 @@ h3.profile-title {
   gap: 10px;
 }
 
-.responsive-header .main-navigation {
+  .responsive-header .main-navigation {
   margin: 0;
   padding: 0;
   background: var(--color-dark);
 }
 
 .responsive-header .main-navigation.responsive-menu {
-  display: none;
+    display: none;
   overflow: hidden;
 }
 
@@ -927,7 +1003,7 @@ h3.profile-title {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(126, 118, 95, 0.4);
+  background: rgba(15, 23, 42, 0.5);
   top: 0;
   left: 0;
   z-index: 3;
@@ -947,7 +1023,7 @@ h3.profile-title {
 }
 .welcome-text h2 {
   font-size: 2.75rem;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-weight: 700;
   color: var(--color-white);
   margin-bottom: 1.5rem;
@@ -962,6 +1038,63 @@ h3.profile-title {
 
 .welcome-text a {
   color: var(--color-white);
+}
+
+/* Hero CTA Buttons */
+.hero-cta {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-dark);
+  border: 2px solid var(--color-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-white);
+  border: 2px solid var(--color-white);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+@media screen and (max-width: 767px) {
+  .hero-cta {
+    flex-direction: column;
+  }
+  
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+  }
 }
 
 .button {
@@ -1089,7 +1222,7 @@ h3.profile-title {
     display: block !important;
     text-align: center !important;
     margin-bottom: 0.5rem !important;
-    font-size: 1.25rem !important;
+    font-size: 1.0625rem !important;
     font-weight: 600 !important;
   }
   
@@ -1101,7 +1234,7 @@ h3.profile-title {
     position: relative !important;
     text-align: center !important;
     margin-bottom: 0.5rem !important;
-    font-size: 1rem !important;
+    font-size: 0.9375rem !important;
     font-weight: 400 !important;
   }
   
@@ -1117,7 +1250,7 @@ h3.profile-title {
     right: auto !important;
     top: auto !important;
     left: auto !important;
-    font-size: 0.9375rem !important;
+    font-size: 0.8125rem !important;
     font-weight: 500 !important;
     display: block !important;
     float: none !important;
@@ -1154,14 +1287,14 @@ h3.profile-title {
     top: auto !important;
     right: auto !important;
     left: auto !important;
-    font-size: 0.875rem !important;
+    font-size: 0.75rem !important;
     font-weight: 400 !important;
   }
   
-  /* Section titles (Education, Experience, Licenses) */
+  /* Section titles (Education, Experience, Licenses) - slightly smaller for resume page */
   .widget-title {
-    font-size: 1.5rem !important;
-    font-weight: 700 !important;
+    font-size: 1.75rem !important;
+    font-weight: 600 !important;
     margin-bottom: 1.5rem !important;
     text-align: center !important;
   }
@@ -1191,15 +1324,264 @@ h3.profile-title {
   flex-direction: column;
   color: var(--color-text-body);
   position: relative;
+  font-size: 1rem;
+  line-height: 1.7;
 }
 
 /* Desktop styles - only apply on larger screens */
 @media screen and (min-width: 768px) {
-  /* Section titles (Education, Experience, Licenses) */
+  /* Section titles (Education, Experience, Licenses) - slightly smaller for resume page */
   .page-section .widget-title {
     font-size: 1.75rem !important;
-    font-weight: 700 !important;
+    font-weight: 600 !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* ============================================
+     PUBLICATIONS PAGE - MODERN REDESIGN
+     Card-based, Clean, Contemporary Style
+     ============================================ */
+  
+  /* Main title - consistent with other pages */
+  #publications h2.widget-title {
+    font-size: 2rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 1rem !important;
+    color: var(--color-text-primary) !important;
+  }
+  
+  /* Year section headers - consistent with h4 base size */
+  #publications h4 {
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    margin-top: 4rem !important;
+    margin-bottom: 1.5rem !important;
+    color: var(--color-text-primary) !important;
+    letter-spacing: -0.01em !important;
+    position: relative !important;
+    padding-bottom: 0.75rem !important;
+  }
+  
+  #publications h4:first-of-type {
+    margin-top: 2.5rem !important;
+  }
+  
+  /* Year header underline accent */
+  #publications h4::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 3rem !important;
+    height: 3px !important;
+    background: var(--color-primary) !important;
+    border-radius: 2px !important;
+  }
+  
+  /* Publication item - tight, modern card design with hover/highlight */
+  #publications .life-item {
+    margin-bottom: 1.5rem !important;
+    padding: 1.25rem 1.5rem !important;
+    background: var(--color-white) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 1.25rem !important;
+    cursor: pointer !important;
+  }
+  
+  #publications .life-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    transform: translateY(-1px) !important;
+    border-color: var(--color-primary) !important;
+    background: rgba(30, 58, 138, 0.03) !important;
+  }
+  
+  #publications .life-item:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+  }
+  
+  /* Image container - optional, modern styling */
+  #publications .life-item-pub-img {
+    flex-shrink: 0 !important;
+    width: 180px !important;
+    margin: 0 !important;
+    float: none !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+  }
+  
+  #publications .life-item-pub-img img,
+  #publications .life-item-pub-img iframe {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    border-radius: 8px !important;
+  }
+  
+  /* Content container - tight, modern typography */
+  #publications .life-item-content {
+    flex: 1 !important;
+    min-width: 0 !important;
+    font-size: 0.9375rem !important;
+    line-height: 1.6 !important;
+    color: var(--color-text-body) !important;
+  }
+  
+  /* Paper title - tight, prominent */
+  #publications .paper-title {
+    font-size: 1.125rem !important;
+    font-weight: 600 !important;
+    line-height: 1.35 !important;
+    margin-bottom: 0.5rem !important;
+    margin-top: 0 !important;
+    display: block !important;
+    color: var(--color-text-primary) !important;
+    letter-spacing: -0.01em !important;
+  }
+  
+  /* Authors paragraph - tight */
+  #publications .pub-authors {
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 0.375rem !important;
+    margin-top: 0 !important;
+    color: var(--color-text-body) !important;
+  }
+  
+  /* Venue paragraph - tight */
+  #publications .pub-venue {
+    font-size: 0.8125rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+  }
+  
+  /* Author list - clean, modern */
+  #publications .life-item-content > br + b:not(.paper-title),
+  #publications .life-item-content > br + span {
+    font-size: 0.9375rem !important;
+    line-height: 1.7 !important;
+    color: var(--color-text-body) !important;
+    display: block !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* Venue/Conference - modern badge style */
+  #publications .pub-venue {
+    font-size: 0.8125rem !important;
+    line-height: 1.5 !important;
+    color: var(--color-text-secondary) !important;
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+  }
+  
+  #publications .pub-venue i {
+    font-style: italic !important;
+    color: var(--color-text-secondary) !important;
+  }
+  
+  /* Award badges - highlighted */
+  #publications .pub-venue i b {
+    color: var(--color-primary) !important;
+    font-weight: 600 !important;
+    font-style: normal !important;
+  }
+  
+  /* Button container - modern inline layout */
+  #publications .life-item-content br + a.button {
+    display: inline-block !important;
+    margin-top: 0 !important;
+  }
+  
+  /* Modern button design - minimal, icon-focused */
+  #publications .life-item-content .button {
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    padding: 0.5rem 1rem !important;
+    margin: 0 0.5rem 0 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.375rem !important;
+    line-height: 1 !important;
+    vertical-align: middle !important;
+    border: 1.5px solid var(--color-gray-light) !important;
+    border-radius: 6px !important;
+    background-color: var(--color-white) !important;
+    color: var(--color-text-primary) !important;
+    text-decoration: none !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    white-space: nowrap !important;
+  }
+  
+  #publications .life-item-content .button:hover {
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    color: var(--color-white) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(30, 58, 138, 0.4) !important;
+  }
+  
+  /* Button icons */
+  #publications .life-item-content .button i {
+    font-size: 0.875rem !important;
+    line-height: 1 !important;
+    vertical-align: middle !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* First button - no left margin */
+  #publications .life-item-content br + .button {
+    margin-left: 0 !important;
+  }
+  
+  /* Clean spacing */
+  #publications .life-item-content br {
+    line-height: 1.75 !important;
+  }
+  
+  /* Modern list styling */
+  #publications ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  #publications li {
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Modern divider */
+  #publications hr {
+    margin: 3rem 0 !important;
+    border: none !important;
+    height: 1px !important;
+    background: linear-gradient(to right, transparent, var(--color-gray-light), transparent) !important;
+  }
+  
+  /* Google Scholar link - modern styling */
+  #publications .content-wrapper > div > p,
+  #publications .content-wrapper > div > div > p {
+    font-size: 0.9375rem !important;
+    color: var(--color-text-secondary) !important;
     margin-bottom: 2rem !important;
+  }
+  
+  #publications .content-wrapper > div > p a,
+  #publications .content-wrapper > div > div > p a {
+    color: var(--color-primary) !important;
+    font-weight: 500 !important;
+    text-decoration: underline !important;
+    text-underline-offset: 3px !important;
   }
   
   /* First row: Name/Title on left, Date on right */
@@ -1210,7 +1592,7 @@ h3.profile-title {
     margin: 0 !important;
     margin-bottom: 0.5rem !important;
     width: 100% !important;
-    font-size: 1.375rem !important;
+    font-size: 1.125rem !important;
     font-weight: 600 !important;
   }
 
@@ -1222,7 +1604,7 @@ h3.profile-title {
     margin: 0 !important;
     text-align: right !important;
     width: auto !important;
-    font-size: 1rem !important;
+    font-size: 0.875rem !important;
     font-weight: 500 !important;
   }
 
@@ -1235,7 +1617,7 @@ h3.profile-title {
     padding: 0 !important;
     color: var(--color-text-secondary) !important;
     font-weight: 400 !important;
-    font-size: 0.9375rem !important;
+    font-size: 0.8125rem !important;
     line-height: 1.5 !important;
     text-align: right !important;
     width: auto !important;
@@ -1250,7 +1632,7 @@ h3.profile-title {
     line-height: 1.6 !important;
     width: calc(100% - 200px) !important;
     padding-right: 200px;
-    font-size: 1.0625rem !important;
+    font-size: 0.9375rem !important;
     font-weight: 400 !important;
   }
 
