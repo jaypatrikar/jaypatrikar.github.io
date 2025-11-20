@@ -255,9 +255,10 @@ p {
 /* Consistent typography classes across all pages */
 .page-body-text {
   font-size: 1rem;
-  line-height: 1.7;
+  line-height: 1.75;
   color: var(--color-text-body);
   max-width: 100%;
+  letter-spacing: 0.01em;
 }
 
 .page-intro-text {
@@ -277,6 +278,23 @@ p {
 /* Research in News section */
 .news-details {
   text-align: left;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-light);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.news-details:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-primary-light);
+}
+
+.news-details[open] {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.12);
 }
 
 .news-summary {
@@ -285,6 +303,7 @@ p {
   padding: 0;
   margin: 0;
   outline: none;
+  transition: color 0.2s ease;
 }
 
 .news-summary::-webkit-details-marker {
@@ -294,10 +313,11 @@ p {
 .news-summary::before {
   content: '▶';
   display: inline-block;
-  margin-right: 0.5rem;
+  margin-right: 0.75rem;
   color: var(--color-primary);
-  transition: transform 0.2s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 0.875rem;
+  vertical-align: middle;
 }
 
 .news-details[open] .news-summary::before {
@@ -308,8 +328,53 @@ p {
   color: var(--color-primary);
 }
 
+.news-details[open] .news-summary {
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
 .news-summary .section-subtitle {
   display: inline-block;
+}
+
+/* Improved list styling for news items */
+.news-details ul {
+  padding-left: 0;
+  margin-top: 1rem;
+}
+
+.news-details ul li {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.7;
+  color: var(--color-text-body);
+}
+
+.news-details ul li::before {
+  content: '●';
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-size: 0.875rem;
+}
+
+.news-details ul li a {
+  color: var(--color-primary-dark);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.news-details ul li a:hover {
+  color: var(--color-primary);
+  text-decoration-thickness: 2px;
+}
+
+.news-details ul li i {
+  color: var(--color-text-secondary);
+  font-style: italic;
 }
 
 /* Center on mobile */
@@ -337,10 +402,20 @@ li {
 .banner-bg {
   float: right;
   width: 77%;
+  background: #fafbfc;
+}
+
+.main-content {
+  background: #ffffff;
 }
 
 .content-wrapper {
   padding: 0 50px 0 50px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
 /*---------------------------------------------------------
@@ -435,14 +510,23 @@ hr {
   outline: 0;
   border: 0;
   width: 100%;
-  height: 4px;
-  background: var(--color-gray-light);
-  margin-top: 40px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--color-gray-light), transparent);
+  margin-top: 50px;
   margin-bottom: 0;
 }
 
 .page-section {
   padding-top: 50px;
+  animation: fadeIn 0.6s ease-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Tablet and below (max-width: 991px) */
@@ -470,8 +554,9 @@ hr {
   background: var(--color-sidebar-bg);
   color: var(--color-sidebar-text);
   overflow-y: auto;
-  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
 }
 
 /* Tablet landscape and medium desktops (max-width: 1199px) */
@@ -496,18 +581,18 @@ hr {
 .profile-image {
   width: 150px;
   height: 150px;
-  border: 3px solid rgba(255, 255, 255, 0.2);
+  border: 3px solid rgba(255, 255, 255, 0.25);
   border-radius: 75px;
   overflow: hidden;
   margin: 0 auto 25px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 4px rgba(30, 58, 138, 0.15);
-  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 4px rgba(16, 185, 129, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   background: var(--color-overlay-light);
 }
 .profile-image:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 0 4px rgba(30, 58, 138, 0.25);
-  border-color: rgba(14, 165, 233, 0.5);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 0 4px rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.6);
 }
 .profile-image img {
   width: 100%;
@@ -677,10 +762,10 @@ h3.profile-title {
 }
 .social-icons a:hover {
   color: var(--color-white);
-  background: rgba(30, 58, 138, 0.25);
-  border-color: rgba(14, 165, 233, 0.5);
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
 }
 
 .ai-google-scholar {
@@ -952,19 +1037,23 @@ h3.profile-title {
 
 /*------ banner ------ */
 .banner-bg {
-  padding: 60px 80px;
+  padding: 80px 80px;
   position: relative;
   background: var(--color-dark);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   z-index: 2;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
 }
 
 /* Tablet and below (max-width: 991px) */
 @media screen and (max-width: 991px) {
   .banner-bg {
-    padding: 40px 30px;
+    padding: 50px 30px;
+    min-height: 350px;
   }
   
   .welcome-text h2 {
@@ -973,13 +1062,15 @@ h3.profile-title {
   
   .welcome-text h5 {
     font-size: 1.125rem;
+    max-width: 100%;
   }
 }
 
 /* Mobile (max-width: 767px) */
 @media screen and (max-width: 767px) {
   .banner-bg {
-    padding: 30px 15px;
+    padding: 40px 15px;
+    min-height: 300px;
   }
   
   .welcome-text {
@@ -996,6 +1087,7 @@ h3.profile-title {
   .welcome-text h5 {
     font-size: 1rem;
     padding-left: 0;
+    max-width: 100%;
   }
 }
 
@@ -1003,7 +1095,7 @@ h3.profile-title {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(15, 23, 42, 0.5);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(30, 58, 138, 0.5) 100%);
   top: 0;
   left: 0;
   z-index: 3;
@@ -1011,15 +1103,27 @@ h3.profile-title {
 
 .banner-overlay img {
   height: 100%;
-  opacity: 0.3;
+  opacity: 0.4;
   object-fit: cover;
   width: 100%;
   height:100%;
+  filter: brightness(0.85);
 }
 
 .welcome-text {
   position: relative;
   z-index: 4;
+  animation: fadeInUp 0.8s ease-out;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .welcome-text h2 {
   font-size: 2.75rem;
@@ -1028,12 +1132,16 @@ h3.profile-title {
   color: var(--color-white);
   margin-bottom: 1.5rem;
   line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.02em;
 }
 .welcome-text h5 {
   font-size: 1.375rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.95);
-  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.98);
+  line-height: 1.6;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  max-width: 85%;
 }
 
 .welcome-text a {
@@ -1778,9 +1886,10 @@ h3.profile-title {
 .blinking-cursor {
     font-weight: 700;
     font-size: 2.25rem;
-    color: white;
-    border-right: 4px solid white;
-    animation: blink 1s infinite step-end;
+    color: var(--color-primary-light);
+    border-right: 3px solid var(--color-primary-light);
+    animation: blink 1.2s infinite step-end;
+    padding-right: 0.25rem;
 }
 
 @keyframes blink {
@@ -1788,7 +1897,7 @@ h3.profile-title {
         border-color: transparent;
     }
     50% {
-        border-color: white;
+        border-color: var(--color-primary-light);
     }
 }
 .responsive-image {
@@ -1814,6 +1923,21 @@ h3.profile-title {
     flex-direction: column; /* Stack the image and caption vertically */
     align-items: center; /* Center the content */
     margin-left: 3px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.image-container .responsive-image {
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 100%;
+    height: auto;
+}
+
+.image-container .responsive-image:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
 }
 .research-container {
     display: flex;
