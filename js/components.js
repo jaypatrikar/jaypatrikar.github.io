@@ -140,6 +140,16 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', fun
         meta.content = content;
     }
     
+    function initClickableCards() {
+        document.addEventListener('click', function(e) {
+            var card = e.target.closest('.life-item[data-href]');
+            if (!card) return;
+            // Don't hijack clicks on links, buttons, or iframes
+            if (e.target.closest('a, button, iframe')) return;
+            window.open(card.getAttribute('data-href'), '_blank', 'noopener');
+        });
+    }
+
     function createBackToTop() {
         var btn = document.createElement('button');
         btn.className = 'back-to-top';
@@ -160,6 +170,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', fun
     }
 
     function initialize() {
+        initClickableCards();
         createBackToTop();
         // Wait a bit to ensure DOM is fully ready
         setTimeout(function() {
