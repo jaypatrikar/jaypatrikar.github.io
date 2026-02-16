@@ -664,6 +664,32 @@ h3.profile-title {
   text-decoration: none;
 }
 
+.email-reveal-btn {
+  font-size: inherit;
+  font-weight: inherit;
+  color: var(--color-sidebar-text-muted) !important;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, color 0.2s ease;
+  border-bottom: 1px dashed var(--color-sidebar-text-muted);
+}
+
+.email-reveal-btn:hover {
+  opacity: 1;
+  color: var(--color-primary) !important;
+  border-bottom-color: var(--color-primary);
+  text-decoration: none !important;
+}
+
+.email-decoded {
+  color: var(--color-sidebar-text-muted) !important;
+}
+
+.email-decoded:hover {
+  color: var(--color-primary-light) !important;
+  text-decoration: none !important;
+}
+
 .main-navigation {
   margin: 30px 0;
   padding: 0 15px;

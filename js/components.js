@@ -1,3 +1,17 @@
+// Reveal scrambled email - must be global for onclick handlers
+function revealEmail(btn, e) {
+    e.preventDefault();
+    try {
+        var email = atob(btn.getAttribute('data-encoded'));
+        var parent = btn.parentElement;
+        var decoded = parent.querySelector('.email-decoded');
+        btn.style.display = 'none';
+        decoded.href = 'mailto:' + email;
+        decoded.textContent = email;
+        decoded.style.display = 'inline';
+    } catch (err) {}
+}
+
 // Theme toggle - must be global for onclick handlers
 function toggleTheme() {
     var current = document.documentElement.getAttribute('data-theme');
@@ -126,34 +140,12 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', fun
         meta.content = content;
     }
     
-    function decodeEmail() {
-        // Decode email addresses to protect from scrapers
-        // Uses base64 encoding to hide email from HTML source
-        const emailLinks = document.querySelectorAll('[data-encoded]');
-        emailLinks.forEach(function(link) {
-            try {
-                const encoded = link.getAttribute('data-encoded');
-                const email = atob(encoded); // Decode from base64
-                link.href = 'mailto:' + email;
-                // Display email with [at] instead of @ to protect from scrapers
-                link.textContent = email.replace('@', '[at]');
-            } catch (e) {
-                console.error('Error decoding email:', e);
-            }
-        });
-    }
-    
     function initialize() {
-        // Decode email addresses that are already in the DOM
-        decodeEmail();
-        
         // Wait a bit to ensure DOM is fully ready
         setTimeout(function() {
             // Load body components only (head content is in HTML for performance)
             loadComponent('header-container', 'components/header.html');
             loadComponent('sidebar-container', 'components/sidebar.html');
-            // Decode email addresses again after components are loaded
-            setTimeout(decodeEmail, 100);
         }, 0);
     }
     
