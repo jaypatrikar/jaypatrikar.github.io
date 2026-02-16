@@ -140,7 +140,27 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', fun
         meta.content = content;
     }
     
+    function createBackToTop() {
+        var btn = document.createElement('button');
+        btn.className = 'back-to-top';
+        btn.setAttribute('aria-label', 'Back to top');
+        btn.innerHTML = '<i class="fa fa-chevron-up"></i>';
+        btn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        document.body.appendChild(btn);
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 400) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        }, { passive: true });
+    }
+
     function initialize() {
+        createBackToTop();
         // Wait a bit to ensure DOM is fully ready
         setTimeout(function() {
             // Load body components only (head content is in HTML for performance)

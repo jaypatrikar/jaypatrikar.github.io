@@ -85,7 +85,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 .blue-grey {
-  color: var(--color-dark);
+  color: var(--color-text-secondary);
 }
 
 main {
@@ -1883,7 +1883,7 @@ h3.profile-title {
   line-height: 1.6;
 }
 #footer p.copyright-text a {
-  color: var(--color-dark);
+  color: var(--color-text-secondary);
 }
 #footer p.copyright-text a:hover {
   color: var(--color-primary);
@@ -2072,10 +2072,6 @@ html[data-theme="dark"] .banner-overlay img {
   filter: brightness(0.7);
 }
 
-html[data-theme="dark"] #footer p.copyright-text a {
-  color: var(--color-text-body);
-}
-
 html[data-theme="dark"] #footer p.copyright-text a:hover {
   color: var(--color-primary);
 }
@@ -2162,4 +2158,51 @@ html[data-theme="dark"] .theme-toggle .fa-moon-o { display: none; }
 .responsive-header .theme-toggle {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.15);
+}
+
+/*---------------------------------------------------------
+ Page fade-in transition
+--------------------------------------------------------- */
+.page-content {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/*---------------------------------------------------------
+ Back to top button
+--------------------------------------------------------- */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 40px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  z-index: 999;
+}
+
+.back-to-top.visible {
+  opacity: 0.8;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
