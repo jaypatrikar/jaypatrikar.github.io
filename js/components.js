@@ -1,3 +1,18 @@
+// Theme toggle - must be global for onclick handlers
+function toggleTheme() {
+    var current = document.documentElement.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+}
+
+// Listen for system theme changes (only when user hasn't set a preference)
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+    if (!localStorage.getItem('theme')) {
+        document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+    }
+});
+
 // Component loader for reusable HTML components
 (function() {
     const BASE_URL = 'https://jaypatrikar.github.io';

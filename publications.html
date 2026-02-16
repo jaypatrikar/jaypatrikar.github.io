@@ -19,13 +19,17 @@
     <link rel="stylesheet" href="css/academicons.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/templatemo-style.css">
+    <script>
+        (function(){var t=localStorage.getItem('theme');if(!t)t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})();
+    </script>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1E3A8A">
     <meta name="msapplication-TileColor" content="#1E3A8A">
-    <meta name="theme-color" content="#1E3A8A">
+    <meta name="theme-color" content="#1E3A8A" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1A1F2E" media="(prefers-color-scheme: dark)">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jaypatrikar.github.io/publications.html">
     <meta property="og:title" content="Jay Patrikar | Publications">
@@ -633,7 +637,7 @@
                                 <li>
                                     <div class="life-item">
                                         <div class="life-item-pub-img">
-                                            <img src="img/IIT_Kanpur_Logo.svg.png" alt="IIT Kanpur logo">
+                                            <img src="img/iitk_logo.png" alt="IIT Kanpur logo">
                                         </div>
                                         <div class="life-item-content">
                                             <b class="paper-title">A 3D Guidance Law for Path Following</b>
