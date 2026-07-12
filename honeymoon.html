@@ -165,7 +165,7 @@
     display: flex; align-items: center; justify-content: space-between; gap: 8px;
   }
   .leg-title .lt-left { display: flex; align-items: center; gap: 8px; }
-  .leg-title .deco { width: 19px; height: 19px; flex-shrink: 0; }
+  .deco { width: 19px; height: 19px; flex-shrink: 0; display: inline-block; vertical-align: -3px; }
   .leg-title .chev { width: 16px; height: 16px; color: var(--ink-soft); flex-shrink: 0; }
   .leg-sub { font-size: 13.5px; color: var(--ink-soft); }
   .leg-sub .count { font-variant-numeric: tabular-nums; }
@@ -192,6 +192,41 @@
     background: var(--sea-soft); color: var(--ink); font-size: 13.5px; font-style: italic;
     display: flex; gap: 8px; align-items: flex-start;
   }
+  .warn {
+    margin-top: 16px; padding: 13px 14px; border-radius: 10px;
+    background: #fbe4d8; border: 1px solid #edb896; color: #7a3c1e; font-size: 13.5px;
+    display: flex; gap: 8px; align-items: flex-start; line-height: 1.45;
+  }
+  .warn strong { display: block; margin-bottom: 2px; }
+
+  /* ---- Ideas to explore (alternates, not booked) ---- */
+  .ideas-heading {
+    margin: 28px 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--ink-soft); font-weight: 700; display: flex; align-items: center; gap: 6px;
+  }
+  .ideas-sub { font-size: 12.5px; color: var(--ink-soft); margin: 0 0 12px; }
+  .idea-group { margin-bottom: 18px; }
+  .idea-group-label {
+    font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--dot, var(--rome));
+    font-weight: 700; margin-bottom: 8px;
+  }
+  .idea-card {
+    display: flex; align-items: flex-start; gap: 10px;
+    background: var(--bg-raised); border: 1px solid var(--line); border-radius: 10px;
+    padding: 11px 13px; margin-bottom: 8px;
+  }
+  .idea-main { flex: 1; min-width: 0; }
+  .idea-title { font-weight: 600; font-size: 14px; }
+  .idea-title a { text-decoration: none; color: var(--dot, var(--rome)); }
+  .idea-title a:hover { text-decoration: underline; }
+  .idea-note { font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; }
+  .pill {
+    display: inline-block; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 2px 7px; border-radius: 20px; margin-top: 6px;
+    background: #fbe4d8; color: #7a3c1e;
+  }
+  .idea-go { flex-shrink: 0; color: var(--ink-soft); }
+  .idea-go svg { width: 15px; height: 15px; }
 
   /* ---- Event view: detail card ---- */
   .event-hero { display: flex; align-items: center; gap: 12px; margin: 6px 0 18px; }
@@ -309,6 +344,10 @@
       <circle id="icon-map-dot" cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
       <path id="icon-phone" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
         d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/>
+      <path id="icon-external" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6 M15 3h6v6 M10 14L21 3"/>
+      <path id="icon-warn" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        d="M12 9v4 M12 17h.01 M10.3 3.9L2.6 17a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/>
     </defs>
   </svg>
 
@@ -383,6 +422,10 @@
           { id: "colosseum-tour", type: "activity", title: "Colosseum, Palatine &amp; Forum", time: "4:30 PM", summary: "Guided tour · 2.5 hrs",
             confirmation: "GYG48YRZ4R2Y",
             detail: { "Starts": "4:30 PM, Mon 31 Aug", "Duration": "2.5 hours", "Language": "English", "Guests": "2 Adults", "Booked via": "GetYourGuide" } }
+        ],
+        ideas: [
+          { category: "Transport needed", title: "FCO → Monti apartment", note: "Leonardo Express train, €14, 32 min to Termini, then short walk/metro. Or taxi flat rate €55, ~27 min door to door.", link: "https://www.trenitalia.com/en.html", reservation: false },
+          { category: "While you wait for 3pm check-in", title: "Trevi Fountain → Pantheon → Piazza Navona → Spanish Steps", note: "All walkable back to back, ~3 hrs total. Land 9:35am, so there's time to drop bags (ask Giuseppe about early bag drop) and do this before check-in.", link: "https://www.ricksteves.com/europe/italy/rome-itinerary", reservation: false }
         ]
       },
       {
@@ -393,15 +436,39 @@
             confirmation: "HMWQ5PMNBN", host: "Giuseppe", phone: "+393288651528", phoneDisplay: "+39 328 865 1528",
             address: "Via Frangipane 13, Rome", mapQuery: "Via+Frangipane+13+Rome+Italy", pdf: "honeymoon-files/rome-giuseppe.pdf",
             detail: { "Check-in": "3:00 PM, Mon 31 Aug", "Checkout": "11:00 AM, Thu 3 Sep", "Address": "Via Frangipane 13, Rome" } }
+        ],
+        ideas: [
+          { category: "Gelato", title: "Fatamorgana", note: "Organic, gluten-free options, in Monti's Piazza degli Zingari. Seasonal flavors like saffron and orange.", link: "https://www.gelateriafatamorgana.com/", reservation: false },
+          { category: "Gelato", title: "Gelateria dell'Angeleto", note: "Tiny natural gelato spot near Piazza Madonna dei Monti, often a line but worth it.", link: "https://www.google.com/maps/search/?api=1&query=Gelateria+dell+Angeletto+Monti+Rome", reservation: false },
+          { category: "Food · local", title: "La Taverna dei Monti", note: "Roman staples — carbonara, cacio e pepe, lamb. Good value, right in Monti.", link: "https://www.google.com/maps/search/?api=1&query=La+Taverna+dei+Monti+Rome", reservation: true },
+          { category: "Food · pizza", title: "Alle Carrette", note: "Some of the best pizza in Rome for the price, outdoor seating, in Monti.", link: "https://www.google.com/maps/search/?api=1&query=Alle+Carrette+Monti+Rome", reservation: false },
+          { category: "Sights", title: "Trevi → Pantheon → Piazza Navona → Spanish Steps", note: "Classic walking loop, do Trevi early morning before 9am to beat crowds.", link: "https://www.romewise.com/rome-in-3-days.html", reservation: false }
         ]
       },
       {
         id: "praiano", when: "THU 3 – SAT 5 SEP", title: "Praiano · Amalfi Coast", theme: "sea", deco: "lemon",
+        note: "Adriana's fine with a flexible check-in whenever you arrive — no rush from Rome.",
         events: [
           { id: "adriana-stay", type: "stay", title: "Ortensia Superior Room — Best Sunset &amp; Parking", time: "2 nights", summary: "Hosted by Adriana",
             confirmation: "HM94Z9J4BJ", host: "Adriana", phone: "+393396583440", phoneDisplay: "+39 339 658 3440",
             address: "Via Francesco Russo 18, Praiano", mapQuery: "Via+Francesco+Russo+18+Praiano+Italy", pdf: "honeymoon-files/praiano-adriana.pdf",
-            detail: { "Check-in": "1:00 PM, Thu 3 Sep", "Checkout": "10:00 AM, Sat 5 Sep", "Address": "Via Francesco Russo 18, Praiano" } }
+            detail: { "Check-in": "Flexible, whenever you arrive", "Checkout": "10:00 AM, Sat 5 Sep", "Address": "Via Francesco Russo 18, Praiano" } }
+        ],
+        ideas: [
+          { category: "Transport needed", title: "Private transfer, Rome → Praiano", note: "~3.5-4 hrs by car, most comfortable option with an overwater-village drop-off.", link: "https://www.joebananalimos.net/transfers/private-transfer-from-rome-to-praiano", reservation: true },
+          { category: "Transport needed", title: "Alternate: Daytrip private car", note: "Same route, different operator to compare pricing.", link: "https://daytrip.com/en/transfers/rome-it/praiano-it", reservation: true },
+          { category: "Transport needed", title: "Budget alternate: train + bus", note: "Trenitalia high-speed to Salerno, then SITA Sud bus to Praiano. Slower and more legwork with luggage.", link: "https://www.trenitalia.com/en.html", reservation: false },
+          { category: "Transport needed", title: "Your pick: via Sorrento, train + ferry", note: "Train Rome → Naples, then Circumvesuviana to Sorrento (every 30 min). From Sorrento port, ferry to Amalfi ~1h20m, runs every 4 hrs, seasonal (through Oct) — then a short taxi/bus the last stretch into Praiano since the ferry lands at Amalfi, not Praiano directly. More scenic, more moving parts.", link: "https://www.naplesbayferry.com/en/t/sorrento/amalfi", reservation: false },
+          { category: "Activity", title: "Amalfi Lemon Experience — pick your own lemons", note: "Real lemon-grove tour with picking, plus limoncello and lemon-cake tasting.", link: "https://www.amalfilemonexperience.it/lemon-tour-2/", reservation: true },
+          { category: "Activity", title: "Alternate: Amalfi Historical Garden lemon tour", note: "Similar experience, different grove and family.", link: "https://amalfihistoricalgarden.com/lemontour", reservation: true },
+          { category: "Activity", title: "Path of the Gods hike", note: "Easy once you're on the main trail, but starting from Praiano means 1000+ stairs uphill first (~1hr). For a genuinely relaxed version, taxi up to Bomerano and start there instead. 2.25-3.5 hrs total either way.", link: "https://www.positano.com/en/e/il-sentiero-degli-dei", reservation: false },
+          { category: "Activity", title: "Positano day trip by boat", note: "Ferries run through October, or book a boat tour — 15-25 min each way.", link: "https://www.positano.com/en/boat-tours", reservation: true },
+          { category: "Activity", title: "Rent a Vespa for the coast road", note: "Praiano Rent a Scooter and easyRent24H both do hotel delivery/pickup right in Praiano. Need a valid driver's license, min age 18. Multi-day is cheaper per day, but note peak-season (Jul 5–Sep 20) promo rates don't apply.", link: "https://praianorentascooter.com/en/", reservation: true },
+          { category: "Activity", title: "Alternate Vespa operator", note: "Positano Scooter — Vespa from €78/day, pickup/dropoff in Praiano available for a fee.", link: "https://positanoscooter.com/scooter-rental-praiano/", reservation: true },
+          { category: "Food · fine dining", title: "Casa Angelina", note: "Cliffside 5-star hotel restaurant, locally sourced, sweeping sea views.", link: "https://www.casangelina.com/", reservation: true },
+          { category: "Food · fine dining", title: "Kasai", note: "Modern dining with Amalfi Coast tradition, regional wine pairings.", link: "https://www.google.com/maps/search/?api=1&query=Kasai+Praiano", reservation: true },
+          { category: "Food · local", title: "Il Pirata", note: "Beachside seafood at Marina di Praia, tiny cove, grilled octopus.", link: "https://www.google.com/maps/search/?api=1&query=Il+Pirata+Marina+di+Praia", reservation: true },
+          { category: "Food · local", title: "La Strada", note: "Family-run trattoria a few steps from the center, terrace overlooking Positano.", link: "https://www.google.com/maps/search/?api=1&query=La+Strada+Praiano", reservation: false }
         ]
       },
       {
@@ -411,6 +478,13 @@
             confirmation: "HMSFXQ5BZQ", host: "Giovanni", phone: "+393208269229", phoneDisplay: "+39 320 826 9229",
             address: "Via Alessio Mazzocchi 12, Naples", mapQuery: "Via+Alessio+Mazzocchi+12+Naples+Italy", pdf: "honeymoon-files/naples-giovanni.pdf",
             detail: { "Check-in": "4:00 PM, Sat 5 Sep", "Checkout": "11:00 AM, Sun 6 Sep", "Address": "Via Alessio Mazzocchi 12, Naples" } }
+        ],
+        ideas: [
+          { category: "Transport needed", title: "Praiano → Naples", note: "~1-1.5 hrs by car/taxi, comfortable window after 10am checkout. Private transfer or taxi both fine.", link: "https://www.joebananalimos.net/transfers/private-transfer-amalfi-coast", reservation: true },
+          { category: "Transport needed", title: "Naples apartment → NAP airport", note: "Alibus shuttle €5, 15 min. Or taxi flat rate €18, 12 min. Comfortable ahead of the 4:20pm flight.", link: "https://www.naples-airport.info/transportation/", reservation: false },
+          { category: "Food · pizza", title: "Gino Sorbillo", note: "The famous one, Via dei Tribunali. Go before 11:45am or after 2:30pm to skip the worst of the line.", link: "https://www.google.com/maps/search/?api=1&query=Gino+Sorbillo+Naples", reservation: false },
+          { category: "Food · pizza", title: "L'Antica Pizzeria da Michele", note: "One of the oldest in the city — just Margherita and Marinara, nothing else.", link: "https://www.google.com/maps/search/?api=1&query=L+Antica+Pizzeria+da+Michele+Naples", reservation: false },
+          { category: "Food · pizza, local pick", title: "Da Attilio", note: "In the Pignasecca market, third-generation, widely considered the most balanced Margherita in Naples.", link: "https://www.google.com/maps/search/?api=1&query=Da+Attilio+Naples", reservation: false }
         ]
       },
       {
@@ -515,6 +589,7 @@
     }).join("");
 
     var note = day.note ? '<div class="day-note">&#127811; ' + day.note + '</div>' : "";
+    var ideas = renderIdeas(day);
 
     return '<div class="hero compact ' + (day.theme === "sea" ? "" : "") + '">' + heroFlorals() +
       '<div class="inner">' +
@@ -525,7 +600,44 @@
       '<div class="page">' +
         '<div class="event-list">' + events + '</div>' +
         note +
+        ideas +
       '</div>';
+  }
+
+  /* Alternates worth exploring but not booked yet — grouped by category, each
+     an outbound link so Suchita and Jay can browse before deciding together. */
+  function renderIdeas(day) {
+    if (!day.ideas || !day.ideas.length) return "";
+    var dot = day.theme === "sea" ? "var(--sea)" : "var(--rome)";
+
+    var groups = {};
+    var order = [];
+    day.ideas.forEach(function (idea) {
+      if (!groups[idea.category]) { groups[idea.category] = []; order.push(idea.category); }
+      groups[idea.category].push(idea);
+    });
+
+    var groupsHtml = order.map(function (cat) {
+      var cards = groups[cat].map(function (idea) {
+        var pill = idea.reservation ? '<span class="pill">Needs reservation</span>' : "";
+        return '<div class="idea-card">' +
+          '<div class="idea-main">' +
+            '<div class="idea-title"><a href="' + idea.link + '" target="_blank" rel="noopener">' + esc(idea.title) + '</a></div>' +
+            '<div class="idea-note">' + esc(idea.note) + '</div>' +
+            pill +
+          '</div>' +
+          '<a class="idea-go" href="' + idea.link + '" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#icon-external"/></svg></a>' +
+        '</div>';
+      }).join("");
+      return '<div class="idea-group"><div class="idea-group-label" style="color:' + dot + '">' + esc(cat) + '</div>' + cards + '</div>';
+    }).join("");
+
+    return '<div class="ideas-heading">' +
+        '<svg style="width:14px;height:14px" viewBox="0 0 24 24"><use href="#bloom" x="12" y="12" fill="' + dot + '" transform="scale(0.5)" style="transform-origin:12px 12px"/></svg>' +
+        'Ideas to explore' +
+      '</div>' +
+      '<p class="ideas-sub">Alternates, not booked yet — follow the links, decide together, we’ll lock it in later.</p>' +
+      groupsHtml;
   }
 
   function viewEvent(dayId, eventId) {
