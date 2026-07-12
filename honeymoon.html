@@ -39,6 +39,7 @@
     min-height: 100vh;
   }
   a { color: inherit; }
+  button { font: inherit; }
 
   /* ---------- Gate ---------- */
   #gate {
@@ -59,28 +60,13 @@
     box-shadow: 0 20px 50px -25px rgba(150, 100, 120, 0.28);
     text-align: center;
   }
-  .route {
-    position: relative;
-    height: 34px;
-    margin: 0 auto 20px;
-    max-width: 220px;
-  }
+  .route { position: relative; height: 34px; margin: 0 auto 20px; max-width: 220px; }
   .route svg { display: block; width: 100%; height: 100%; overflow: visible; }
-  .route .dashes {
-    stroke: var(--gold);
-    stroke-width: 1.5;
-    stroke-dasharray: 3 5;
-    fill: none;
-  }
-  .route .pin { fill: var(--rome); }
-  .route .pin.sea { fill: var(--sea); }
+  .route .dashes { stroke: var(--gold); stroke-width: 1.5; stroke-dasharray: 3 5; fill: none; }
   .route .plane {
-    fill: var(--ink);
-    transform-box: fill-box;
-    transform-origin: center;
+    fill: var(--ink); transform-box: fill-box; transform-origin: center;
     animation: fly 3.2s ease-in-out infinite;
   }
-  /* Simple two-point arc simulated with translate/rotate keyframes (no offset-path — broader Safari/iOS support) */
   @keyframes fly {
     0%   { transform: translate(0px, 0px) rotate(6deg); opacity: 0; }
     8%   { opacity: 1; }
@@ -91,68 +77,46 @@
   @media (prefers-reduced-motion: reduce) {
     .route .plane { animation: none; transform: translate(51px, -21px) rotate(6deg); }
   }
-  #gate form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
+  #gate form { display: flex; flex-direction: column; gap: 12px; }
   #gate p.label {
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-size: 11.5px;
-    color: var(--rome);
-    font-weight: 700;
-    margin: 0 0 2px;
+    text-transform: uppercase; letter-spacing: 0.14em; font-size: 11.5px;
+    color: var(--rome); font-weight: 700; margin: 0 0 2px;
   }
   #gate h2 {
     font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
-    font-size: 22px;
-    margin: 0 0 16px;
-    line-height: 1.25;
+    font-size: 22px; margin: 0 0 16px; line-height: 1.25;
   }
   #gate input {
-    font-size: 16px;
-    padding: 13px 14px;
-    border-radius: 10px;
-    border: 1px solid var(--line);
-    background: var(--bg);
-    color: var(--ink);
-    text-align: center;
-    letter-spacing: 0.04em;
+    font-size: 16px; padding: 13px 14px; border-radius: 10px; border: 1px solid var(--line);
+    background: var(--bg); color: var(--ink); text-align: center; letter-spacing: 0.04em;
   }
   #gate input:focus { outline: 2px solid var(--rome); outline-offset: 1px; }
-  #gate button {
-    font-size: 15px;
-    font-weight: 600;
-    padding: 13px 14px;
-    border-radius: 10px;
-    border: none;
-    background: var(--rome);
-    color: #fff8f2;
-    cursor: pointer;
+  #gate button.submit {
+    font-size: 15px; font-weight: 600; padding: 13px 14px; border-radius: 10px; border: none;
+    background: var(--rome); color: #fff8f2; cursor: pointer;
   }
-  #gate button:active { transform: scale(0.98); }
-  #gate button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  #gate button.submit:active { transform: scale(0.98); }
+  #gate button.submit:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
   #gate .error { color: var(--rome); font-size: 13px; min-height: 16px; margin: 2px 0 0; }
 
-  /* ---------- Content ---------- */
+  /* ---------- App shell ---------- */
   #content { display: none; }
+  #view { animation: fadein 0.32s ease both; }
+  @keyframes fadein {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #view { animation: none; }
+  }
 
   .hero {
-    position: relative;
-    padding: 64px 20px 40px;
-    text-align: center;
-    background:
-      linear-gradient(180deg, var(--rome-soft), transparent 75%);
+    position: relative; padding: 56px 20px 36px; text-align: center;
+    background: linear-gradient(180deg, var(--rome-soft), transparent 75%);
     overflow: hidden;
   }
-  .hero .florals {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
+  .hero.compact { padding: 26px 20px 22px; }
+  .hero .florals { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
   .hero .inner { position: relative; z-index: 1; }
   .eyebrow {
     text-transform: uppercase; letter-spacing: 0.18em; font-size: 12px;
@@ -160,116 +124,123 @@
   }
   h1 {
     font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
-    font-size: 40px; line-height: 1.1; margin: 0 0 10px;
-    text-wrap: balance; letter-spacing: -0.01em;
+    font-size: 40px; line-height: 1.1; margin: 0 0 10px; text-wrap: balance; letter-spacing: -0.01em;
   }
-  .subtitle {
-    font-family: Georgia, "Palatino Linotype", serif;
-    font-style: italic;
-    color: var(--ink-soft);
-    font-size: 17px;
-    margin: 0 0 6px;
-  }
-  .dates {
-    color: var(--ink-soft); font-size: 14px; font-variant-numeric: tabular-nums;
-    letter-spacing: 0.03em;
-  }
+  .subtitle { font-family: Georgia, "Palatino Linotype", serif; font-style: italic; color: var(--ink-soft); font-size: 17px; margin: 0 0 6px; }
+  .dates { color: var(--ink-soft); font-size: 14px; font-variant-numeric: tabular-nums; letter-spacing: 0.03em; }
   .rule-flowers { width: 92px; height: auto; margin: 22px auto 0; display: block; }
 
   .page { max-width: 620px; margin: 0 auto; padding: 8px 16px 80px; }
 
-  .timeline { position: relative; display: flex; flex-direction: column; gap: 0; padding-top: 12px; }
-  .timeline::before {
-    content: ""; position: absolute; top: 8px; bottom: 8px; left: 5px;
-    width: 1px; background: var(--line);
+  /* breadcrumb / back link */
+  .back {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13.5px; font-weight: 600; color: var(--rome);
+    text-decoration: none; padding: 6px 2px; margin-bottom: 4px;
   }
-  .leg { position: relative; padding: 0 0 30px 30px; }
-  .leg:last-child { padding-bottom: 0; }
+  .back svg { width: 15px; height: 15px; }
+  .crumbs { font-size: 12.5px; color: var(--ink-soft); margin: 2px 0 18px; }
+  .crumbs a { color: var(--ink-soft); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 2px; }
+
+  /* ---- Overview: list of days ---- */
+  .timeline { position: relative; display: flex; flex-direction: column; gap: 0; padding-top: 12px; }
+  .timeline::before { content: ""; position: absolute; top: 8px; bottom: 8px; left: 5px; width: 1px; background: var(--line); }
+  .leg { position: relative; padding: 0 0 6px 30px; }
   .leg::before {
     content: ""; position: absolute; left: 0; top: 7px; width: 11px; height: 11px;
     border-radius: 50%; background: var(--bg-raised); border: 2px solid var(--dot, var(--rome));
   }
-  .leg.sea::before { --dot: var(--sea); }
+  .leg.sea { --dot: var(--sea); }
 
-  .leg-when {
-    font-size: 12.5px; font-weight: 700; font-variant-numeric: tabular-nums;
-    letter-spacing: 0.04em; margin-bottom: 4px; color: var(--dot, var(--rome));
+  .day-link {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--bg-raised); border: 1px solid var(--line); border-left: 3px solid var(--dot, var(--rome));
+    border-radius: 4px 12px 12px 4px; padding: 15px 16px; margin-bottom: 24px;
   }
-  .leg.sea .leg-when { color: var(--sea); }
-
+  .day-link:active { transform: scale(0.99); }
+  .leg-when { font-size: 12.5px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: 0.04em; margin-bottom: 4px; color: var(--dot, var(--rome)); }
   .leg-title {
     font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
-    font-size: 22px; margin: 0 0 8px; text-wrap: balance; line-height: 1.2;
-    display: flex; align-items: center; gap: 8px;
+    font-size: 21px; margin: 0 0 6px; text-wrap: balance; line-height: 1.2;
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
   }
-  .leg-title .deco { width: 20px; height: 20px; flex-shrink: 0; }
+  .leg-title .lt-left { display: flex; align-items: center; gap: 8px; }
+  .leg-title .deco { width: 19px; height: 19px; flex-shrink: 0; }
+  .leg-title .chev { width: 16px; height: 16px; color: var(--ink-soft); flex-shrink: 0; }
+  .leg-sub { font-size: 13.5px; color: var(--ink-soft); }
+  .leg-sub .count { font-variant-numeric: tabular-nums; }
+
+  /* ---- Day view: list of events ---- */
+  .event-list { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+  .event-link {
+    display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit;
+    background: var(--bg-raised); border: 1px solid var(--line); border-radius: 12px; padding: 13px 14px;
+  }
+  .event-link:active { transform: scale(0.99); }
+  .event-icon {
+    flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--dot-soft, var(--rome-soft)); color: var(--dot, var(--rome));
+  }
+  .event-icon svg { width: 17px; height: 17px; }
+  .event-text { flex: 1; min-width: 0; }
+  .event-title { font-weight: 600; font-size: 14.5px; }
+  .event-meta { font-size: 12.5px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .event-link .chev { width: 15px; height: 15px; color: var(--ink-soft); flex-shrink: 0; }
+  .day-note {
+    margin-top: 16px; padding: 12px 14px; border-radius: 10px;
+    background: var(--sea-soft); color: var(--ink); font-size: 13.5px; font-style: italic;
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+
+  /* ---- Event view: detail card ---- */
+  .event-hero { display: flex; align-items: center; gap: 12px; margin: 6px 0 18px; }
+  .event-hero .event-icon { width: 46px; height: 46px; }
+  .event-hero .event-icon svg { width: 21px; height: 21px; }
+  .event-hero h2 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 23px; margin: 0; line-height: 1.2; text-wrap: balance;
+  }
+  .event-hero .event-kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--dot, var(--rome)); font-weight: 700; margin-bottom: 3px; }
 
   .card {
-    background: var(--bg-raised);
-    border: 1px solid var(--line);
-    border-left: 3px solid var(--dot, var(--rome));
-    border-radius: 4px 12px 12px 4px;
-    padding: 15px 16px;
-    font-size: 14.5px;
-    color: var(--ink-soft);
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    background: var(--bg-raised); border: 1px solid var(--line); border-left: 3px solid var(--dot, var(--rome));
+    border-radius: 4px 12px 12px 4px; padding: 16px 17px; font-size: 14.5px; color: var(--ink-soft);
+    display: flex; flex-direction: column; gap: 8px;
   }
-  .leg.sea .card { --dot: var(--sea); }
-
   .card strong { color: var(--ink); font-weight: 600; }
   .card .row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
   .code {
-    font-variant-numeric: tabular-nums; background: var(--rome-soft); color: var(--rome);
-    padding: 2px 8px; border-radius: 5px; font-size: 12.5px; font-weight: 700; letter-spacing: 0.02em;
-    display: inline-block;
+    font-variant-numeric: tabular-nums; background: var(--dot-soft, var(--rome-soft)); color: var(--dot, var(--rome));
+    padding: 2px 8px; border-radius: 5px; font-size: 12.5px; font-weight: 700; letter-spacing: 0.02em; display: inline-block;
   }
-  .leg.sea .code { background: var(--sea-soft); color: var(--sea); }
   .note { font-style: italic; color: var(--ink-soft); font-size: 13.5px; }
+  .field-label { font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); margin-bottom: 1px; }
 
-  .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 6px;
-  }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
   .btn {
-    flex: 1 1 auto;
-    min-width: 0;
-    text-align: center;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 10px 12px;
-    border-radius: 8px;
-    background: var(--bg);
-    border: 1px solid var(--line);
-    color: var(--ink);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    min-height: 40px;
+    flex: 1 1 auto; min-width: 0; text-align: center; text-decoration: none; font-size: 13px; font-weight: 600;
+    padding: 10px 12px; border-radius: 8px; background: var(--bg); border: 1px solid var(--line); color: var(--ink);
+    display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 40px;
   }
   .btn svg { width: 14px; height: 14px; flex-shrink: 0; }
   .btn:active { transform: scale(0.97); }
 
+  .stub {
+    margin-top: 18px; padding: 13px 14px; border: 1px dashed var(--line); border-radius: 10px;
+    font-size: 13px; color: var(--ink-soft); font-style: italic;
+  }
+
   footer {
-    max-width: 620px;
-    margin: 48px auto 0;
-    padding: 20px 16px 40px;
-    border-top: 1px solid var(--line);
-    font-size: 13px;
-    color: var(--ink-soft);
-    text-align: center;
+    max-width: 620px; margin: 48px auto 0; padding: 20px 16px 40px; border-top: 1px solid var(--line);
+    font-size: 13px; color: var(--ink-soft); text-align: center;
   }
 
   @media (max-width: 480px) {
     h1 { font-size: 30px; }
     .subtitle { font-size: 15px; }
     .leg-title { font-size: 19px; }
-    .hero { padding: 44px 16px 32px; }
+    .hero { padding: 44px 16px 30px; }
   }
 </style>
 </head>
@@ -281,234 +252,93 @@
       <svg viewBox="0 0 114 30">
         <defs>
           <g id="blossom">
-            <circle cx="0" cy="-4.2" r="3.1"/>
-            <circle cx="4" cy="-1.3" r="3.1"/>
-            <circle cx="2.5" cy="3.4" r="3.1"/>
-            <circle cx="-2.5" cy="3.4" r="3.1"/>
-            <circle cx="-4" cy="-1.3" r="3.1"/>
-            <circle cx="0" cy="0" r="2" fill="var(--gold)"/>
+            <circle cx="0" cy="-4.2" r="3.1"/><circle cx="4" cy="-1.3" r="3.1"/><circle cx="2.5" cy="3.4" r="3.1"/>
+            <circle cx="-2.5" cy="3.4" r="3.1"/><circle cx="-4" cy="-1.3" r="3.1"/><circle cx="0" cy="0" r="2" fill="var(--gold)"/>
           </g>
         </defs>
         <path class="dashes" d="M6 24 Q 57 -6 108 24"/>
         <use href="#blossom" x="6" y="24" fill="var(--rome)" transform="scale(0.6)" style="transform-origin:6px 24px"/>
         <use href="#blossom" x="108" y="24" fill="var(--sea)" transform="scale(0.6)" style="transform-origin:108px 24px"/>
-        <g class="plane">
-          <path d="M0 4 L11 4.7 L18 -0.5 L20.3 0 L16.7 6 L21 8.7 L21 10.3 L15.3 9 L11.8 12.6 L9.3 12 L11 7.3 L0 5.6 Z" transform="translate(-1 -6) rotate(6)"/>
-        </g>
+        <g class="plane"><path d="M0 4 L11 4.7 L18 -0.5 L20.3 0 L16.7 6 L21 8.7 L21 10.3 L15.3 9 L11.8 12.6 L9.3 12 L11 7.3 L0 5.6 Z" transform="translate(-1 -6) rotate(6)"/></g>
       </svg>
     </div>
     <p class="label">Private itinerary</p>
     <h2>Roma &amp; Amalfi<br>await</h2>
     <form id="gate-form" autocomplete="off">
       <input type="password" id="pw" name="pw" autofocus inputmode="text" placeholder="Password">
-      <button type="submit">Unlock</button>
+      <button type="submit" class="submit">Unlock</button>
       <p class="error" id="gate-error"></p>
     </form>
   </div>
 </div>
 
 <div id="content">
-  <div class="hero">
-    <svg class="florals" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <g id="bloom">
-          <ellipse cx="0" cy="-7" rx="5" ry="7"/>
-          <ellipse cx="6.6" cy="-2.2" rx="5" ry="7" transform="rotate(72 6.6 -2.2)"/>
-          <ellipse cx="4.1" cy="5.7" rx="5" ry="7" transform="rotate(144 4.1 5.7)"/>
-          <ellipse cx="-4.1" cy="5.7" rx="5" ry="7" transform="rotate(216 -4.1 5.7)"/>
-          <ellipse cx="-6.6" cy="-2.2" rx="5" ry="7" transform="rotate(288 -6.6 -2.2)"/>
-          <circle cx="0" cy="0" r="3.4" fill="var(--gold)"/>
-        </g>
-        <path id="leaf" d="M0 0 Q 6 -3 12 0 Q 6 3 0 0 Z"/>
-        <g id="lemonfruit">
-          <ellipse cx="0" cy="0" rx="7" ry="10"/>
-          <path d="M0 -10 q -1.5 -3 0 -4.2 q 1.5 1.2 0 4.2" fill="var(--lemon-leaf)"/>
-          <path d="M0 10 q 1.5 3 0 4.2 q -1.5 -1.2 0 -4.2" fill="var(--lemon-leaf)"/>
-        </g>
-        <g id="sailboat">
-          <path d="M-13 6 Q 0 12 13 6 L 10 9 Q 0 13 -10 9 Z"/>
-          <path d="M0 6 V -14" stroke="currentColor" stroke-width="1.2" fill="none"/>
-          <path d="M0.5 -13 Q 9 -8 0.5 5 Z"/>
-          <path d="M-0.5 -9 Q -6 -6 -0.5 2 Z" opacity="0.7"/>
-        </g>
-      </defs>
-      <use href="#bloom" x="34" y="30" fill="var(--rome)" opacity="0.55"/>
-      <use href="#leaf" x="20" y="34" fill="var(--sea)" opacity="0.5" transform="rotate(-20 20 34)"/>
-      <use href="#bloom" x="70" y="16" fill="var(--lavender)" opacity="0.45" transform="scale(0.7)" style="transform-origin:70px 16px"/>
-      <use href="#bloom" x="360" y="34" fill="var(--rome)" opacity="0.55"/>
-      <use href="#leaf" x="368" y="40" fill="var(--sea)" opacity="0.5" transform="rotate(160 368 40)"/>
-      <use href="#bloom" x="330" y="14" fill="var(--gold)" opacity="0.5" transform="scale(0.65)" style="transform-origin:330px 14px"/>
-      <use href="#bloom" x="8" y="90" fill="var(--sea)" opacity="0.35" transform="scale(0.8)" style="transform-origin:8px 90px"/>
-      <use href="#bloom" x="392" y="100" fill="var(--lavender)" opacity="0.35" transform="scale(0.8)" style="transform-origin:392px 100px"/>
-      <use href="#bloom" x="52" y="66" fill="var(--gold)" opacity="0.4" transform="scale(0.55)" style="transform-origin:52px 66px"/>
-      <use href="#bloom" x="345" y="70" fill="var(--sea)" opacity="0.4" transform="scale(0.55)" style="transform-origin:345px 70px"/>
-      <use href="#lemonfruit" x="18" y="60" fill="var(--lemon)" opacity="0.6" transform="rotate(-15 18 60) scale(0.9)" style="transform-origin:18px 60px"/>
-      <use href="#lemonfruit" x="384" y="62" fill="var(--lemon)" opacity="0.6" transform="rotate(12 384 62) scale(0.85)" style="transform-origin:384px 62px"/>
-      <use href="#sailboat" x="200" y="132" fill="var(--sea)" color="var(--sea)" opacity="0.5" transform="scale(1.1)" style="transform-origin:200px 132px"/>
-    </svg>
-    <div class="inner">
-      <p class="eyebrow">Honeymoon &middot; Italia</p>
-      <h1>Rome &amp; the Amalfi Coast</h1>
-      <p class="subtitle">Jay &amp; Suchita</p>
-      <p class="dates">28 August – 13 September 2026</p>
-      <svg class="rule-flowers" viewBox="0 0 92 14">
-        <use href="#bloom" x="46" y="7" fill="var(--rome)" transform="scale(0.75)" style="transform-origin:46px 7px"/>
-        <path d="M50 7h34M8 7h34" stroke="var(--gold)" stroke-width="1.2" stroke-dasharray="1.5 4" stroke-linecap="round"/>
-      </svg>
-    </div>
-  </div>
+  <!-- Shared SVG symbol defs, always present in DOM -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <g id="bloom">
+        <ellipse cx="0" cy="-7" rx="5" ry="7"/>
+        <ellipse cx="6.6" cy="-2.2" rx="5" ry="7" transform="rotate(72 6.6 -2.2)"/>
+        <ellipse cx="4.1" cy="5.7" rx="5" ry="7" transform="rotate(144 4.1 5.7)"/>
+        <ellipse cx="-4.1" cy="5.7" rx="5" ry="7" transform="rotate(216 -4.1 5.7)"/>
+        <ellipse cx="-6.6" cy="-2.2" rx="5" ry="7" transform="rotate(288 -6.6 -2.2)"/>
+        <circle cx="0" cy="0" r="3.4" fill="var(--gold)"/>
+      </g>
+      <path id="leaf" d="M0 0 Q 6 -3 12 0 Q 6 3 0 0 Z"/>
+      <g id="lemonfruit">
+        <ellipse cx="0" cy="0" rx="7" ry="10"/>
+        <path d="M0 -10 q -1.5 -3 0 -4.2 q 1.5 1.2 0 4.2" fill="var(--lemon-leaf)"/>
+        <path d="M0 10 q 1.5 3 0 4.2 q -1.5 -1.2 0 -4.2" fill="var(--lemon-leaf)"/>
+      </g>
+      <g id="sailboat">
+        <path d="M-13 6 Q 0 12 13 6 L 10 9 Q 0 13 -10 9 Z"/>
+        <path d="M0 6 V -14" stroke="currentColor" stroke-width="1.2" fill="none"/>
+        <path d="M0.5 -13 Q 9 -8 0.5 5 Z"/>
+        <path d="M-0.5 -9 Q -6 -6 -0.5 2 Z" opacity="0.7"/>
+      </g>
+      <path id="icon-plane" d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2.5 1.5V22l4-1 4 1v-1.5L13 19v-5.5z"/>
+      <g id="icon-stay" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/>
+      </g>
+      <path id="icon-activity" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+        d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2.2a1.8 1.8 0 0 0 0 3.6V16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2.2a1.8 1.8 0 0 0 0-3.6z"/>
+      <path id="icon-chevron" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
+      <path id="icon-back" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/>
+      <path id="icon-pdf" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6"/>
+      <path id="icon-map" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+      <circle id="icon-map-dot" cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path id="icon-phone" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/>
+    </defs>
+  </svg>
 
-  <div class="page">
-    <div class="timeline">
-
-      <div class="leg">
-        <div class="leg-when">FRI 28 AUG</div>
-        <h2 class="leg-title">Pittsburgh → Amsterdam</h2>
-        <div class="card">
-          <div class="row"><span>DL3598 &nbsp;PIT → DTW</span><strong>7:42 PM</strong></div>
-          <div class="row"><span>DL0136 &nbsp;DTW → AMS</span><strong>10:50 PM</strong></div>
-          <span class="note">Staying with Suchita's cousin in Amsterdam</span>
-        </div>
-      </div>
-
-      <div class="leg">
-        <div class="leg-when">MON 31 AUG</div>
-        <h2 class="leg-title">Amsterdam → Rome</h2>
-        <div class="card">
-          <div class="row"><span>KL1601 &nbsp;AMS → FCO</span><strong>7:20 – 9:35 AM</strong></div>
-          <div class="row"><span>Colosseum, Palatine &amp; Forum tour</span><strong>4:30 PM</strong></div>
-          <span>2.5 hrs, guided &middot; <span class="code">GYG48YRZ4R2Y</span></span>
-        </div>
-      </div>
-
-      <div class="leg">
-        <div class="leg-when">MON 31 AUG – THU 3 SEP</div>
-        <h2 class="leg-title">
-          <svg class="deco" viewBox="0 0 20 20"><use href="#bloom" x="10" y="10" fill="var(--rome)" transform="scale(1.1)" style="transform-origin:10px 10px"/></svg>
-          Rome
-        </h2>
-        <div class="card">
-          <strong>Fantastic apartment in Monti, near Colosseum</strong>
-          <span>Hosted by Giuseppe &middot; Via Frangipane 13</span>
-          <div class="row"><span>Check-in 3:00 PM / Checkout 11:00 AM</span><span class="code">HMWQ5PMNBN</span></div>
-          <span class="note">Vatican Museums, Sistine Chapel &amp; St. Peter's — booked, exact slot TBC</span>
-          <div class="actions">
-            <a class="btn" href="honeymoon-files/rome-giuseppe.pdf" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-              Confirmation
-            </a>
-            <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Via+Frangipane+13+Rome+Italy" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Map
-            </a>
-            <a class="btn" href="tel:+393288651528">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>
-              Giuseppe
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="leg sea">
-        <div class="leg-when">THU 3 – SAT 5 SEP</div>
-        <h2 class="leg-title">
-          <svg class="deco" viewBox="0 0 20 20"><use href="#lemonfruit" x="10" y="10" fill="var(--lemon)" transform="scale(0.85)" style="transform-origin:10px 10px"/></svg>
-          Praiano &middot; Amalfi Coast
-        </h2>
-        <div class="card">
-          <strong>Ortensia Superior Room — Best Sunset &amp; Parking</strong>
-          <span>Hosted by Adriana &middot; Via Francesco Russo 18</span>
-          <div class="row"><span>Check-in 1:00 PM / Checkout 10:00 AM</span><span class="code">HM94Z9J4BJ</span></div>
-          <div class="actions">
-            <a class="btn" href="honeymoon-files/praiano-adriana.pdf" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-              Confirmation
-            </a>
-            <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Via+Francesco+Russo+18+Praiano+Italy" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Map
-            </a>
-            <a class="btn" href="tel:+393396583440">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>
-              Adriana
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="leg sea">
-        <div class="leg-when">SAT 5 – SUN 6 SEP</div>
-        <h2 class="leg-title">
-          <svg class="deco" viewBox="0 0 20 20"><use href="#sailboat" x="10" y="10" fill="var(--sea)" color="var(--sea)" transform="scale(0.75)" style="transform-origin:10px 10px"/></svg>
-          Naples
-        </h2>
-        <div class="card">
-          <strong>Il Fiore di Napoli — new apartment in the center</strong>
-          <span>Hosted by Giovanni &middot; Via Alessio Mazzocchi 12</span>
-          <div class="row"><span>Check-in 4:00 PM / Checkout 11:00 AM</span><span class="code">HMSFXQ5BZQ</span></div>
-          <div class="actions">
-            <a class="btn" href="honeymoon-files/naples-giovanni.pdf" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-              Confirmation
-            </a>
-            <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Via+Alessio+Mazzocchi+12+Naples+Italy" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Map
-            </a>
-            <a class="btn" href="tel:+393208269229">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>
-              Giovanni
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="leg sea">
-        <div class="leg-when">SUN 6 SEP</div>
-        <h2 class="leg-title">Naples → Amsterdam</h2>
-        <div class="card">
-          <div class="row"><span>EJU4235 &nbsp;NAP → AMS</span><strong>4:20 – 7:00 PM</strong></div>
-          <span><span class="code">KCV26LM</span> &middot; back with Suchita's cousin through Sep 13</span>
-        </div>
-      </div>
-
-      <div class="leg">
-        <div class="leg-when">SUN 13 SEP</div>
-        <h2 class="leg-title">Amsterdam → Pittsburgh</h2>
-        <div class="card">
-          <div class="row"><span>DL0133 &nbsp;AMS → DTW</span><strong>9:20 AM</strong></div>
-          <div class="row"><span>DL4640 &nbsp;DTW → PIT</span><strong>2:15 PM</strong></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
+  <div id="view"></div>
 
   <footer>Jay &amp; Suchita &middot; last updated 12 July 2026</footer>
 </div>
 
 <script>
 (function () {
+  "use strict";
+
+  /* =========================================================
+     PASSWORD GATE
+  ========================================================= */
   var CORRECT_HASH = "8281c89a7c6190cc3c98a8a0a718e259048670175a2a3b1fc1d491277f684b24";
   var SESSION_KEY = "honeymoon-unlocked";
 
   function sha256Hex(text) {
     var enc = new TextEncoder().encode(text);
     return crypto.subtle.digest("SHA-256", enc).then(function (buf) {
-      return Array.from(new Uint8Array(buf)).map(function (b) {
-        return b.toString(16).padStart(2, "0");
-      }).join("");
+      return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, "0"); }).join("");
     });
   }
-
-  function reveal() {
+  function revealApp() {
     document.getElementById("gate").style.display = "none";
     document.getElementById("content").style.display = "block";
+    route();
   }
-
-  if (sessionStorage.getItem(SESSION_KEY) === "1") {
-    reveal();
-  }
+  if (sessionStorage.getItem(SESSION_KEY) === "1") revealApp();
 
   document.getElementById("gate-form").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -516,13 +346,267 @@
     sha256Hex(val).then(function (hash) {
       if (hash === CORRECT_HASH) {
         sessionStorage.setItem(SESSION_KEY, "1");
-        reveal();
+        revealApp();
       } else {
         document.getElementById("gate-error").textContent = "Wrong password";
         document.getElementById("pw").value = "";
       }
     });
   });
+
+  /* =========================================================
+     TRIP DATA
+     Add transport / extra hotel fields to an event's `detail`
+     object as they're booked — the event view renders whatever
+     keys are present, nothing else needs to change.
+  ========================================================= */
+  var TRIP = {
+    title: "Rome &amp; the Amalfi Coast",
+    subtitle: "Jay &amp; Suchita",
+    dates: "28 August – 13 September 2026",
+    days: [
+      {
+        id: "pit-ams", when: "FRI 28 AUG", title: "Pittsburgh → Amsterdam", theme: "rome",
+        note: "Staying with Suchita's cousin in Amsterdam",
+        events: [
+          { id: "dl3598", type: "flight", title: "DL3598", time: "7:42 PM", summary: "PIT → DTW · 7:42 PM",
+            detail: { "Route": "Pittsburgh (PIT) → Detroit (DTW)", "Flight": "DL3598", "Carrier": "Delta", "Departs": "7:42 PM, Fri 28 Aug" } },
+          { id: "dl0136", type: "flight", title: "DL0136", time: "10:50 PM", summary: "DTW → AMS · 10:50 PM",
+            detail: { "Route": "Detroit (DTW) → Amsterdam (AMS)", "Flight": "DL0136", "Carrier": "Delta", "Departs": "10:50 PM, Fri 28 Aug" } }
+        ]
+      },
+      {
+        id: "ams-fco", when: "MON 31 AUG", title: "Amsterdam → Rome", theme: "rome",
+        events: [
+          { id: "kl1601", type: "flight", title: "KL1601", time: "7:20 – 9:35 AM", summary: "AMS → FCO · 7:20 AM",
+            detail: { "Route": "Amsterdam (AMS) → Rome Fiumicino (FCO)", "Flight": "KL1601", "Carrier": "KLM", "Departs": "7:20 AM, Mon 31 Aug", "Arrives": "9:35 AM, Mon 31 Aug" } },
+          { id: "colosseum-tour", type: "activity", title: "Colosseum, Palatine &amp; Forum", time: "4:30 PM", summary: "Guided tour · 2.5 hrs",
+            confirmation: "GYG48YRZ4R2Y",
+            detail: { "Starts": "4:30 PM, Mon 31 Aug", "Duration": "2.5 hours", "Language": "English", "Guests": "2 Adults", "Booked via": "GetYourGuide" } }
+        ]
+      },
+      {
+        id: "rome", when: "MON 31 AUG – THU 3 SEP", title: "Rome", theme: "rome", deco: "flower",
+        note: "Vatican Museums, Sistine Chapel &amp; St. Peter's — booked, exact slot TBC",
+        events: [
+          { id: "giuseppe-stay", type: "stay", title: "Fantastic apartment in Monti, near Colosseum", time: "3 nights", summary: "Hosted by Giuseppe",
+            confirmation: "HMWQ5PMNBN", host: "Giuseppe", phone: "+393288651528", phoneDisplay: "+39 328 865 1528",
+            address: "Via Frangipane 13, Rome", mapQuery: "Via+Frangipane+13+Rome+Italy", pdf: "honeymoon-files/rome-giuseppe.pdf",
+            detail: { "Check-in": "3:00 PM, Mon 31 Aug", "Checkout": "11:00 AM, Thu 3 Sep", "Address": "Via Frangipane 13, Rome" } }
+        ]
+      },
+      {
+        id: "praiano", when: "THU 3 – SAT 5 SEP", title: "Praiano · Amalfi Coast", theme: "sea", deco: "lemon",
+        events: [
+          { id: "adriana-stay", type: "stay", title: "Ortensia Superior Room — Best Sunset &amp; Parking", time: "2 nights", summary: "Hosted by Adriana",
+            confirmation: "HM94Z9J4BJ", host: "Adriana", phone: "+393396583440", phoneDisplay: "+39 339 658 3440",
+            address: "Via Francesco Russo 18, Praiano", mapQuery: "Via+Francesco+Russo+18+Praiano+Italy", pdf: "honeymoon-files/praiano-adriana.pdf",
+            detail: { "Check-in": "1:00 PM, Thu 3 Sep", "Checkout": "10:00 AM, Sat 5 Sep", "Address": "Via Francesco Russo 18, Praiano" } }
+        ]
+      },
+      {
+        id: "naples", when: "SAT 5 – SUN 6 SEP", title: "Naples", theme: "sea", deco: "boat",
+        events: [
+          { id: "giovanni-stay", type: "stay", title: "Il Fiore di Napoli — new apartment in the center", time: "1 night", summary: "Hosted by Giovanni",
+            confirmation: "HMSFXQ5BZQ", host: "Giovanni", phone: "+393208269229", phoneDisplay: "+39 320 826 9229",
+            address: "Via Alessio Mazzocchi 12, Naples", mapQuery: "Via+Alessio+Mazzocchi+12+Naples+Italy", pdf: "honeymoon-files/naples-giovanni.pdf",
+            detail: { "Check-in": "4:00 PM, Sat 5 Sep", "Checkout": "11:00 AM, Sun 6 Sep", "Address": "Via Alessio Mazzocchi 12, Naples" } }
+        ]
+      },
+      {
+        id: "nap-ams", when: "SUN 6 SEP", title: "Naples → Amsterdam", theme: "sea",
+        note: "Back with Suchita's cousin through Sep 13",
+        events: [
+          { id: "eju4235", type: "flight", title: "EJU4235", time: "4:20 – 7:00 PM", summary: "NAP → AMS · 4:20 PM",
+            confirmation: "KCV26LM",
+            detail: { "Route": "Naples (NAP) → Amsterdam (AMS)", "Flight": "EJU4235", "Carrier": "easyJet", "Departs": "4:20 PM, Sun 6 Sep", "Arrives": "7:00 PM, Sun 6 Sep" } }
+        ]
+      },
+      {
+        id: "ams-pit", when: "SUN 13 SEP", title: "Amsterdam → Pittsburgh", theme: "rome",
+        events: [
+          { id: "dl0133", type: "flight", title: "DL0133", time: "9:20 AM", summary: "AMS → DTW · 9:20 AM",
+            detail: { "Route": "Amsterdam (AMS) → Detroit (DTW)", "Flight": "DL0133", "Carrier": "Delta", "Departs": "9:20 AM, Sun 13 Sep" } },
+          { id: "dl4640", type: "flight", title: "DL4640", time: "2:15 PM", summary: "DTW → PIT · 2:15 PM",
+            detail: { "Route": "Detroit (DTW) → Pittsburgh (PIT)", "Flight": "DL4640", "Carrier": "Delta", "Departs": "2:15 PM, Sun 13 Sep" } }
+        ]
+      }
+    ]
+  };
+
+  /* =========================================================
+     HELPERS
+  ========================================================= */
+  function findDay(id) { for (var i = 0; i < TRIP.days.length; i++) if (TRIP.days[i].id === id) return TRIP.days[i]; return null; }
+  function findEvent(day, id) { if (!day) return null; for (var i = 0; i < day.events.length; i++) if (day.events[i].id === id) return day.events[i]; return null; }
+  function esc(s) { return String(s == null ? "" : s); }
+
+  function decoIcon(deco, cls) {
+    if (deco === "lemon") return '<svg class="' + cls + '" viewBox="0 0 20 20"><use href="#lemonfruit" x="10" y="10" fill="var(--lemon)" transform="scale(0.85)" style="transform-origin:10px 10px"/></svg>';
+    if (deco === "boat") return '<svg class="' + cls + '" viewBox="0 0 20 20"><use href="#sailboat" x="10" y="10" fill="var(--sea)" color="var(--sea)" transform="scale(0.75)" style="transform-origin:10px 10px"/></svg>';
+    if (deco === "flower") return '<svg class="' + cls + '" viewBox="0 0 20 20"><use href="#bloom" x="10" y="10" fill="var(--rome)" transform="scale(1.1)" style="transform-origin:10px 10px"/></svg>';
+    return "";
+  }
+
+  function eventIconId(type) {
+    if (type === "flight") return "icon-plane";
+    if (type === "stay") return "icon-stay";
+    return "icon-activity";
+  }
+
+  function chevron() { return '<svg class="chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg>'; }
+  function backChevron() { return '<svg viewBox="0 0 24 24"><use href="#icon-back"/></svg>'; }
+
+  function heroFlorals() {
+    return '<svg class="florals" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice">' +
+      '<use href="#bloom" x="34" y="30" fill="var(--rome)" opacity="0.55"/>' +
+      '<use href="#leaf" x="20" y="34" fill="var(--sea)" opacity="0.5" transform="rotate(-20 20 34)"/>' +
+      '<use href="#bloom" x="70" y="16" fill="var(--lavender)" opacity="0.45" transform="scale(0.7)" style="transform-origin:70px 16px"/>' +
+      '<use href="#bloom" x="360" y="34" fill="var(--rome)" opacity="0.55"/>' +
+      '<use href="#leaf" x="368" y="40" fill="var(--sea)" opacity="0.5" transform="rotate(160 368 40)"/>' +
+      '<use href="#bloom" x="330" y="14" fill="var(--gold)" opacity="0.5" transform="scale(0.65)" style="transform-origin:330px 14px"/>' +
+      '<use href="#bloom" x="8" y="90" fill="var(--sea)" opacity="0.35" transform="scale(0.8)" style="transform-origin:8px 90px"/>' +
+      '<use href="#bloom" x="392" y="100" fill="var(--lavender)" opacity="0.35" transform="scale(0.8)" style="transform-origin:392px 100px"/>' +
+      '<use href="#bloom" x="52" y="66" fill="var(--gold)" opacity="0.4" transform="scale(0.55)" style="transform-origin:52px 66px"/>' +
+      '<use href="#bloom" x="345" y="70" fill="var(--sea)" opacity="0.4" transform="scale(0.55)" style="transform-origin:345px 70px"/>' +
+      '<use href="#lemonfruit" x="18" y="60" fill="var(--lemon)" opacity="0.6" transform="rotate(-15 18 60) scale(0.9)" style="transform-origin:18px 60px"/>' +
+      '<use href="#lemonfruit" x="384" y="62" fill="var(--lemon)" opacity="0.6" transform="rotate(12 384 62) scale(0.85)" style="transform-origin:384px 62px"/>' +
+      '<use href="#sailboat" x="200" y="132" fill="var(--sea)" color="var(--sea)" opacity="0.5" transform="scale(1.1)" style="transform-origin:200px 132px"/>' +
+      '</svg>';
+  }
+
+  /* =========================================================
+     VIEWS
+  ========================================================= */
+  function viewOverview() {
+    var rows = TRIP.days.map(function (day) {
+      return '<div class="leg ' + (day.theme === "sea" ? "sea" : "") + '">' +
+        '<a class="day-link" href="#/day/' + day.id + '">' +
+          '<div class="leg-when">' + esc(day.when) + '</div>' +
+          '<h2 class="leg-title"><span class="lt-left">' + decoIcon(day.deco, "deco") + esc(day.title) + '</span>' + chevron() + '</h2>' +
+          '<div class="leg-sub"><span class="count">' + day.events.length + '</span> event' + (day.events.length === 1 ? "" : "s") + (day.note ? ' &middot; has a note' : '') + '</div>' +
+        '</a>' +
+      '</div>';
+    }).join("");
+
+    return '<div class="hero">' + heroFlorals() +
+      '<div class="inner">' +
+        '<p class="eyebrow">Honeymoon &middot; Italia</p>' +
+        '<h1>' + TRIP.title + '</h1>' +
+        '<p class="subtitle">' + TRIP.subtitle + '</p>' +
+        '<p class="dates">' + TRIP.dates + '</p>' +
+        '<svg class="rule-flowers" viewBox="0 0 92 14"><use href="#bloom" x="46" y="7" fill="var(--rome)" transform="scale(0.75)" style="transform-origin:46px 7px"/><path d="M50 7h34M8 7h34" stroke="var(--gold)" stroke-width="1.2" stroke-dasharray="1.5 4" stroke-linecap="round"/></svg>' +
+      '</div></div>' +
+      '<div class="page"><div class="timeline">' + rows + '</div></div>';
+  }
+
+  function viewDay(dayId) {
+    var day = findDay(dayId);
+    if (!day) return viewNotFound();
+
+    var events = day.events.map(function (ev) {
+      var dotSoft = day.theme === "sea" ? "var(--sea-soft)" : "var(--rome-soft)";
+      var dot = day.theme === "sea" ? "var(--sea)" : "var(--rome)";
+      return '<a class="event-link" href="#/day/' + day.id + '/event/' + ev.id + '" style="--dot:' + dot + ';--dot-soft:' + dotSoft + '">' +
+        '<span class="event-icon"><svg viewBox="0 0 24 24"><use href="#' + eventIconId(ev.type) + '"/></svg></span>' +
+        '<span class="event-text"><span class="event-title">' + esc(ev.title) + '</span><br><span class="event-meta">' + esc(ev.summary) + '</span></span>' +
+        chevron() +
+      '</a>';
+    }).join("");
+
+    var note = day.note ? '<div class="day-note">&#127811; ' + day.note + '</div>' : "";
+
+    return '<div class="hero compact ' + (day.theme === "sea" ? "" : "") + '">' + heroFlorals() +
+      '<div class="inner">' +
+        '<a class="back" href="#/">' + backChevron() + ' All days</a>' +
+        '<p class="eyebrow">' + esc(day.when) + '</p>' +
+        '<h1 style="font-size:30px">' + decoIcon(day.deco, "deco") + ' ' + esc(day.title) + '</h1>' +
+      '</div></div>' +
+      '<div class="page">' +
+        '<div class="event-list">' + events + '</div>' +
+        note +
+      '</div>';
+  }
+
+  function viewEvent(dayId, eventId) {
+    var day = findDay(dayId);
+    var ev = findEvent(day, eventId);
+    if (!day || !ev) return viewNotFound();
+
+    var dot = day.theme === "sea" ? "var(--sea)" : "var(--rome)";
+    var dotSoft = day.theme === "sea" ? "var(--sea-soft)" : "var(--rome-soft)";
+
+    var detailRows = "";
+    if (ev.detail) {
+      Object.keys(ev.detail).forEach(function (k) {
+        detailRows += '<div class="row"><span class="field-label" style="display:inline">' + esc(k) + '</span><strong>' + esc(ev.detail[k]) + '</strong></div>';
+      });
+    }
+
+    var confirmation = ev.confirmation ? '<div class="row"><span>Confirmation</span><span class="code" style="--dot:' + dot + ';--dot-soft:' + dotSoft + '">' + esc(ev.confirmation) + '</span></div>' : "";
+
+    var actions = "";
+    if (ev.pdf || ev.mapQuery || ev.phone) {
+      actions = '<div class="actions">';
+      if (ev.pdf) actions += '<a class="btn" href="' + ev.pdf + '" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#icon-pdf"/></svg>Confirmation</a>';
+      if (ev.mapQuery) actions += '<a class="btn" href="https://www.google.com/maps/search/?api=1&query=' + ev.mapQuery + '" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#icon-map"/><use href="#icon-map-dot"/></svg>Map</a>';
+      if (ev.phone) actions += '<a class="btn" href="tel:' + ev.phone + '"><svg viewBox="0 0 24 24"><use href="#icon-phone"/></svg>' + esc(ev.host || "Call") + '</a>';
+      actions += '</div>';
+    }
+
+    var stub = '<div class="stub">Transport to/from this ' + (ev.type === "stay" ? "stay" : "event") + ' isn’t recorded yet — space is ready here once it is.</div>';
+
+    return '<div class="page" style="padding-top:20px">' +
+      '<a class="back" href="#/day/' + day.id + '">' + backChevron() + ' ' + esc(day.title) + '</a>' +
+      '<div class="crumbs"><a href="#/">All days</a> &rsaquo; <a href="#/day/' + day.id + '">' + esc(day.when) + '</a> &rsaquo; ' + esc(ev.title) + '</div>' +
+      '<div class="event-hero" style="--dot:' + dot + ';--dot-soft:' + dotSoft + '">' +
+        '<span class="event-icon"><svg viewBox="0 0 24 24"><use href="#' + eventIconId(ev.type) + '"/></svg></span>' +
+        '<div><div class="event-kicker" style="--dot:' + dot + '">' + esc(ev.type) + '</div><h2>' + esc(ev.title) + '</h2></div>' +
+      '</div>' +
+      '<div class="card" style="--dot:' + dot + '">' +
+        detailRows +
+        confirmation +
+        (ev.address ? '<span class="note">' + esc(ev.address) + '</span>' : "") +
+        actions +
+      '</div>' +
+      stub +
+    '</div>';
+  }
+
+  function viewNotFound() {
+    return '<div class="page" style="padding-top:40px;text-align:center">' +
+      '<p>That page wandered off somewhere between Rome and Amalfi.</p>' +
+      '<a class="back" href="#/" style="justify-content:center">' + backChevron() + ' Back to the itinerary</a>' +
+    '</div>';
+  }
+
+  /* =========================================================
+     ROUTER
+  ========================================================= */
+  function route() {
+    var hash = location.hash.replace(/^#\/?/, "");
+    var parts = hash.split("/").filter(Boolean);
+    var view = document.getElementById("view");
+    if (!view) return;
+
+    var html;
+    if (parts[0] === "day" && parts[1] && parts[2] === "event" && parts[3]) {
+      html = viewEvent(decodeURIComponent(parts[1]), decodeURIComponent(parts[3]));
+    } else if (parts[0] === "day" && parts[1]) {
+      html = viewDay(decodeURIComponent(parts[1]));
+    } else {
+      html = viewOverview();
+    }
+
+    view.innerHTML = html;
+    // restart the fade-in animation on every navigation
+    view.style.animation = "none";
+    void view.offsetWidth;
+    view.style.animation = "";
+    window.scrollTo(0, 0);
+  }
+
+  window.addEventListener("hashchange", route);
 })();
 </script>
 
