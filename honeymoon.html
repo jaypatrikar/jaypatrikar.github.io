@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>Rome &amp; Amalfi Coast</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+  (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({key: "AIzaSyCe7sjcE0fs7SbgToTv_ZSucVxpPIj4D2Y", v: "weekly"});
+</script>
 <style>
   /*
     Deliberately single-theme: a white-and-pastel, hand-tied-bouquet look.
@@ -145,8 +146,6 @@
     height: 62vh; min-height: 340px; border-radius: 14px; overflow: hidden;
     border: 1px solid var(--line); background: var(--bg-raised);
   }
-  .leaflet-popup-content-wrapper { background: var(--bg-raised); color: var(--ink); border-radius: 10px; }
-  .leaflet-popup-tip { background: var(--bg-raised); }
   .map-popup { font-size: 13px; line-height: 1.5; }
   .map-popup strong { display: block; font-size: 13.5px; margin-bottom: 3px; }
   .map-popup a { display: block; color: var(--rome); font-weight: 600; text-decoration: none; margin-top: 4px; }
@@ -979,58 +978,98 @@
       '</div>';
   }
 
-  function initTripMap() {
-    var el = document.getElementById("trip-map");
-    if (!el || typeof L === "undefined") return;
-    if (TRIP_MAP_INSTANCE) { TRIP_MAP_INSTANCE.remove(); TRIP_MAP_INSTANCE = null; }
+  var MAP_STYLE = [
+    { elementType: "geometry", stylers: [{ color: "#f6efe3" }] },
+    { elementType: "labels.text.stroke", stylers: [{ color: "#f6efe3" }] },
+    { elementType: "labels.text.fill", stylers: [{ color: "#8a7a83" }] },
+    { featureType: "administrative", elementType: "geometry", stylers: [{ color: "#ecdfd0" }] },
+    { featureType: "poi", stylers: [{ visibility: "off" }] },
+    { featureType: "road", elementType: "geometry", stylers: [{ color: "#fffbf3" }] },
+    { featureType: "road", elementType: "labels", stylers: [{ visibility: "off" }] },
+    { featureType: "transit", stylers: [{ visibility: "off" }] },
+    { featureType: "water", elementType: "geometry", stylers: [{ color: "#cfe3df" }] }
+  ];
 
-    var map = L.map(el, { scrollWheelZoom: false });
-    TRIP_MAP_INSTANCE = map;
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: "&copy; OpenStreetMap contributors",
-      maxZoom: 19
-    }).addTo(map);
+  async function initTripMap() {
+    var el = document.getElementById("trip-map");
+    if (!el || !window.google || !google.maps || !google.maps.importLibrary) return;
+
+    var mapsLib = await google.maps.importLibrary("maps");
+    var Map = mapsLib.Map, InfoWindow = mapsLib.InfoWindow;
+
+    TRIP_MAP_INSTANCE = new Map(el, {
+      center: { lat: 41.5, lng: -10 },
+      zoom: 3,
+      gestureHandling: "cooperative",
+      streetViewControl: false,
+      mapTypeControl: false,
+      fullscreenControl: false,
+      styles: MAP_STYLE
+    });
+    var map = TRIP_MAP_INSTANCE;
+    var infoWindow = new InfoWindow();
 
     var colorFor = { stay: "#e0879e", sight: "#d9b56e", activity: "#96b9a3", hub: "#ad93a0", food: "#cf9a6b", wine: "#c9b7db" };
     var bigTypes = { stay: 1, sight: 1, activity: 1, hub: 1 };
-    var bounds = [];
+    var bounds = new google.maps.LatLngBounds();
+
     Object.keys(MAP_POINTS).forEach(function (id) {
       var pt = MAP_POINTS[id];
       var big = !!bigTypes[pt.type];
-      bounds.push([pt.lat, pt.lng]);
-      var marker = L.circleMarker([pt.lat, pt.lng], {
-        radius: pt.type === "hub" ? 6 : (big ? 9 : 6),
-        color: "#fffbf3",
-        weight: big ? 2 : 1.5,
-        fillColor: colorFor[pt.type] || "#e0879e",
-        fillOpacity: big ? 0.95 : 0.85
-      }).addTo(map);
+      var pos = { lat: pt.lat, lng: pt.lng };
+      bounds.extend(pos);
+
+      var marker = new google.maps.Marker({
+        position: pos,
+        map: map,
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: pt.type === "hub" ? 6 : (big ? 9 : 6),
+          fillColor: colorFor[pt.type] || "#e0879e",
+          fillOpacity: big ? 0.95 : 0.85,
+          strokeColor: "#fffbf3",
+          strokeWeight: big ? 2 : 1.5
+        }
+      });
+
       var itineraryLink = pt.dayId ? ("#/day/" + pt.dayId + (pt.eventId ? "/event/" + pt.eventId : "")) : null;
       var mapsLink = pt.mapsQuery ? ("https://www.google.com/maps/search/?api=1&query=" + pt.mapsQuery) : null;
-      marker.bindPopup(
-        '<div class="map-popup"><strong>' + pt.label + "</strong>" +
+      var html = '<div class="map-popup"><strong>' + pt.label + "</strong>" +
         (itineraryLink ? '<a href="' + itineraryLink + '">Open in itinerary &rarr;</a>' : "") +
         (mapsLink ? '<a href="' + mapsLink + '" target="_blank" rel="noopener">Get directions &rarr;</a>' : "") +
-        "</div>"
-      );
+        "</div>";
+
+      marker.addListener("click", function () {
+        infoWindow.setContent(html);
+        infoWindow.open(map, marker);
+      });
     });
+
+    function dashedLine(a, b, color, scale, gap) {
+      new google.maps.Polyline({
+        path: [{ lat: a.lat, lng: a.lng }, { lat: b.lat, lng: b.lng }],
+        map: map, geodesic: true, strokeOpacity: 0,
+        icons: [{ icon: { path: "M 0,-1 0,1", strokeOpacity: 1, scale: scale, strokeColor: color }, offset: "0", repeat: gap }]
+      });
+    }
 
     MAP_SPINE.forEach(function (leg) {
       var a = MAP_POINTS[leg.from], b = MAP_POINTS[leg.to];
-      L.polyline([[a.lat, a.lng], [b.lat, b.lng]], {
-        color: "#e0879e", weight: 2, opacity: 0.7,
-        dashArray: leg.mode === "flight" ? "2 8" : null
-      }).addTo(map);
+      if (leg.mode === "flight") {
+        dashedLine(a, b, "#e0879e", 3, "10px");
+      } else {
+        new google.maps.Polyline({
+          path: [{ lat: a.lat, lng: a.lng }, { lat: b.lat, lng: b.lng }],
+          map: map, geodesic: true, strokeColor: "#e0879e", strokeOpacity: 0.7, strokeWeight: 2
+        });
+      }
     });
 
     MAP_SIDE_LINKS.forEach(function (pair) {
-      var a = MAP_POINTS[pair[0]], b = MAP_POINTS[pair[1]];
-      L.polyline([[a.lat, a.lng], [b.lat, b.lng]], {
-        color: "#96b9a3", weight: 1.5, opacity: 0.55, dashArray: "1 6"
-      }).addTo(map);
+      dashedLine(MAP_POINTS[pair[0]], MAP_POINTS[pair[1]], "#96b9a3", 2, "8px");
     });
 
-    map.fitBounds(bounds, { padding: [28, 28] });
+    map.fitBounds(bounds, 28);
   }
 
   function viewNotFound() {
