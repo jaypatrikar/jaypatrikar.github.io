@@ -24,6 +24,8 @@
     --sea-soft: #eef3e6;
     --gold: #d9b56e;
     --lavender: #c9b7db;
+    --lemon: #eecb5e;
+    --lemon-leaf: #a3c08a;
   }
 
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -198,7 +200,9 @@
   .leg-title {
     font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
     font-size: 22px; margin: 0 0 8px; text-wrap: balance; line-height: 1.2;
+    display: flex; align-items: center; gap: 8px;
   }
+  .leg-title .deco { width: 20px; height: 20px; flex-shrink: 0; }
 
   .card {
     background: var(--bg-raised);
@@ -316,6 +320,17 @@
           <circle cx="0" cy="0" r="3.4" fill="var(--gold)"/>
         </g>
         <path id="leaf" d="M0 0 Q 6 -3 12 0 Q 6 3 0 0 Z"/>
+        <g id="lemonfruit">
+          <ellipse cx="0" cy="0" rx="7" ry="10"/>
+          <path d="M0 -10 q -1.5 -3 0 -4.2 q 1.5 1.2 0 4.2" fill="var(--lemon-leaf)"/>
+          <path d="M0 10 q 1.5 3 0 4.2 q -1.5 -1.2 0 -4.2" fill="var(--lemon-leaf)"/>
+        </g>
+        <g id="sailboat">
+          <path d="M-13 6 Q 0 12 13 6 L 10 9 Q 0 13 -10 9 Z"/>
+          <path d="M0 6 V -14" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          <path d="M0.5 -13 Q 9 -8 0.5 5 Z"/>
+          <path d="M-0.5 -9 Q -6 -6 -0.5 2 Z" opacity="0.7"/>
+        </g>
       </defs>
       <use href="#bloom" x="34" y="30" fill="var(--rome)" opacity="0.55"/>
       <use href="#leaf" x="20" y="34" fill="var(--sea)" opacity="0.5" transform="rotate(-20 20 34)"/>
@@ -325,6 +340,11 @@
       <use href="#bloom" x="330" y="14" fill="var(--gold)" opacity="0.5" transform="scale(0.65)" style="transform-origin:330px 14px"/>
       <use href="#bloom" x="8" y="90" fill="var(--sea)" opacity="0.35" transform="scale(0.8)" style="transform-origin:8px 90px"/>
       <use href="#bloom" x="392" y="100" fill="var(--lavender)" opacity="0.35" transform="scale(0.8)" style="transform-origin:392px 100px"/>
+      <use href="#bloom" x="52" y="66" fill="var(--gold)" opacity="0.4" transform="scale(0.55)" style="transform-origin:52px 66px"/>
+      <use href="#bloom" x="345" y="70" fill="var(--sea)" opacity="0.4" transform="scale(0.55)" style="transform-origin:345px 70px"/>
+      <use href="#lemonfruit" x="18" y="60" fill="var(--lemon)" opacity="0.6" transform="rotate(-15 18 60) scale(0.9)" style="transform-origin:18px 60px"/>
+      <use href="#lemonfruit" x="384" y="62" fill="var(--lemon)" opacity="0.6" transform="rotate(12 384 62) scale(0.85)" style="transform-origin:384px 62px"/>
+      <use href="#sailboat" x="200" y="132" fill="var(--sea)" color="var(--sea)" opacity="0.5" transform="scale(1.1)" style="transform-origin:200px 132px"/>
     </svg>
     <div class="inner">
       <p class="eyebrow">Honeymoon &middot; Italia</p>
@@ -363,7 +383,10 @@
 
       <div class="leg">
         <div class="leg-when">MON 31 AUG – THU 3 SEP</div>
-        <h2 class="leg-title">Rome</h2>
+        <h2 class="leg-title">
+          <svg class="deco" viewBox="0 0 20 20"><use href="#bloom" x="10" y="10" fill="var(--rome)" transform="scale(1.1)" style="transform-origin:10px 10px"/></svg>
+          Rome
+        </h2>
         <div class="card">
           <strong>Fantastic apartment in Monti, near Colosseum</strong>
           <span>Hosted by Giuseppe &middot; Via Frangipane 13</span>
@@ -388,7 +411,10 @@
 
       <div class="leg sea">
         <div class="leg-when">THU 3 – SAT 5 SEP</div>
-        <h2 class="leg-title">Praiano &middot; Amalfi Coast</h2>
+        <h2 class="leg-title">
+          <svg class="deco" viewBox="0 0 20 20"><use href="#lemonfruit" x="10" y="10" fill="var(--lemon)" transform="scale(0.85)" style="transform-origin:10px 10px"/></svg>
+          Praiano &middot; Amalfi Coast
+        </h2>
         <div class="card">
           <strong>Ortensia Superior Room — Best Sunset &amp; Parking</strong>
           <span>Hosted by Adriana &middot; Via Francesco Russo 18</span>
@@ -412,7 +438,10 @@
 
       <div class="leg sea">
         <div class="leg-when">SAT 5 – SUN 6 SEP</div>
-        <h2 class="leg-title">Naples</h2>
+        <h2 class="leg-title">
+          <svg class="deco" viewBox="0 0 20 20"><use href="#sailboat" x="10" y="10" fill="var(--sea)" color="var(--sea)" transform="scale(0.75)" style="transform-origin:10px 10px"/></svg>
+          Naples
+        </h2>
         <div class="card">
           <strong>Il Fiore di Napoli — new apartment in the center</strong>
           <span>Hosted by Giovanni &middot; Via Alessio Mazzocchi 12</span>
