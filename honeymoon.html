@@ -187,6 +187,27 @@
   .event-title { font-weight: 600; font-size: 14.5px; }
   .event-meta { font-size: 12.5px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
   .event-link .chev { width: 15px; height: 15px; color: var(--ink-soft); flex-shrink: 0; }
+
+  /* ---- Hour-by-hour schedule ---- */
+  .sched-heading {
+    margin: 18px 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--ink-soft); font-weight: 700;
+  }
+  .sched-sub { font-size: 12px; color: var(--ink-soft); margin: 0 0 12px; font-style: italic; }
+  .sched-row { position: relative; display: flex; gap: 12px; padding: 0 0 16px 0; }
+  .sched-row:last-child { padding-bottom: 0; }
+  .sched-time {
+    flex-shrink: 0; width: 46px; font-size: 12.5px; font-weight: 700; font-variant-numeric: tabular-nums;
+    color: var(--dot, var(--rome)); padding-top: 1px;
+  }
+  .sched-rail { flex-shrink: 0; width: 10px; display: flex; flex-direction: column; align-items: center; }
+  .sched-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--dot, var(--rome)); margin-top: 4px; flex-shrink: 0; }
+  .sched-line { flex: 1; width: 1px; background: var(--line); margin-top: 3px; }
+  .sched-row:last-child .sched-line { display: none; }
+  .sched-body { flex: 1; padding-bottom: 2px; }
+  .sched-title { font-weight: 600; font-size: 14px; }
+  .sched-note { font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; line-height: 1.4; }
+
   .day-note {
     margin-top: 16px; padding: 12px 14px; border-radius: 10px;
     background: var(--sea-soft); color: var(--ink); font-size: 13.5px; font-style: italic;
@@ -405,7 +426,7 @@
     dates: "28 August – 13 September 2026",
     days: [
       {
-        id: "pit-ams", when: "FRI 28 AUG", title: "Pittsburgh → Amsterdam", theme: "rome",
+        id: "2026-08-28", when: "FRI 28 AUG", title: "Pittsburgh → Amsterdam", theme: "rome",
         note: "Staying with Suchita's cousin in Amsterdam",
         events: [
           { id: "dl3598", type: "flight", title: "DL3598", time: "7:42 PM", summary: "PIT → DTW · 7:42 PM",
@@ -415,50 +436,133 @@
         ]
       },
       {
-        id: "ams-fco", when: "MON 31 AUG", title: "Amsterdam → Rome", theme: "rome",
+        id: "2026-08-29", when: "SAT 29 AUG", title: "Amsterdam", theme: "rome",
+        note: "Free day with Suchita's cousin — no plan yet, this is deliberately open.",
+        events: []
+      },
+      {
+        id: "2026-08-30", when: "SUN 30 AUG", title: "Amsterdam", theme: "rome",
+        note: "Free day with Suchita's cousin — no plan yet, this is deliberately open.",
+        events: []
+      },
+      {
+        id: "2026-08-31", when: "MON 31 AUG", title: "Amsterdam → Rome", theme: "rome", deco: "flower",
         events: [
           { id: "kl1601", type: "flight", title: "KL1601", time: "7:20 – 9:35 AM", summary: "AMS → FCO · 7:20 AM",
             detail: { "Route": "Amsterdam (AMS) → Rome Fiumicino (FCO)", "Flight": "KL1601", "Carrier": "KLM", "Departs": "7:20 AM, Mon 31 Aug", "Arrives": "9:35 AM, Mon 31 Aug" } },
+          { id: "giuseppe-stay", type: "stay", title: "Fantastic apartment in Monti, near Colosseum", time: "check-in today", summary: "Hosted by Giuseppe · 3 nights",
+            confirmation: "HMWQ5PMNBN", host: "Giuseppe", phone: "+393288651528", phoneDisplay: "+39 328 865 1528",
+            address: "Via Frangipane 13, Rome", mapQuery: "Via+Frangipane+13+Rome+Italy", pdf: "honeymoon-files/rome-giuseppe.pdf",
+            detail: { "Check-in": "3:00 PM, Mon 31 Aug", "Checkout": "11:00 AM, Thu 3 Sep", "Address": "Via Frangipane 13, Rome" } },
           { id: "colosseum-tour", type: "activity", title: "Colosseum, Palatine &amp; Forum", time: "4:30 PM", summary: "Guided tour · 2.5 hrs",
             confirmation: "GYG48YRZ4R2Y",
             detail: { "Starts": "4:30 PM, Mon 31 Aug", "Duration": "2.5 hours", "Language": "English", "Guests": "2 Adults", "Booked via": "GetYourGuide" } }
         ],
+        schedule: [
+          { time: "10:00", title: "Land, clear immigration", note: "Landed 9:35am — bags + passport control first." },
+          { time: "10:35", title: "Leonardo Express → Termini", note: "€14, 32 min, direct from FCO." },
+          { time: "11:10", title: "Drop bags at Giuseppe's", note: "~10 min walk/taxi from Termini. Ask about an early bag drop — official check-in isn't until 3pm." },
+          { time: "11:30", title: "Trevi Fountain", note: "~20 min walk from Monti." },
+          { time: "12:05", title: "Pantheon", note: "~5 min walk from Trevi." },
+          { time: "12:35", title: "Piazza Navona", note: "~5 min walk from the Pantheon." },
+          { time: "13:15", title: "Walk back toward Monti", note: "~20 min." },
+          { time: "13:40", title: "Lunch: Alle Carrette", note: "Pizza, Monti." },
+          { time: "15:00", title: "Official check-in at Giuseppe's", note: "" },
+          { time: "16:00", title: "Walk to Colosseum", note: "~10-15 min from Monti." },
+          { time: "16:30", title: "Colosseum, Palatine &amp; Forum tour", note: "Booked, 2.5 hrs." },
+          { time: "19:00", title: "Tour ends", note: "" },
+          { time: "19:30", title: "Dinner: La Taverna dei Monti", note: "" },
+          { time: "21:00", title: "Gelato: Fatamorgana or dell'Angeleto", note: "Both in Monti." }
+        ],
         ideas: [
-          { category: "Transport needed", title: "FCO → Monti apartment", note: "Leonardo Express train, €14, 32 min to Termini, then short walk/metro. Or taxi flat rate €55, ~27 min door to door.", link: "https://www.trenitalia.com/en.html", reservation: false },
-          { category: "While you wait for 3pm check-in", title: "Trevi Fountain → Pantheon → Piazza Navona → Spanish Steps", note: "All walkable back to back, ~3 hrs total. Land 9:35am, so there's time to drop bags (ask Giuseppe about early bag drop) and do this before check-in.", link: "https://www.ricksteves.com/europe/italy/rome-itinerary", reservation: false }
+          { category: "Transport needed", title: "FCO → Monti apartment", note: "Leonardo Express train, €14, 32 min to Termini, then short walk/metro. Or taxi flat rate €55, ~27 min door to door.", link: "https://www.trenitalia.com/en.html", reservation: false }
         ]
       },
       {
-        id: "rome", when: "MON 31 AUG – THU 3 SEP", title: "Rome", theme: "rome", deco: "flower",
-        note: "Vatican Museums, Sistine Chapel &amp; St. Peter's — booked, exact slot TBC",
+        id: "2026-09-01", when: "TUE 1 SEP", title: "Rome · Vatican day", theme: "rome",
         events: [
-          { id: "giuseppe-stay", type: "stay", title: "Fantastic apartment in Monti, near Colosseum", time: "3 nights", summary: "Hosted by Giuseppe",
-            confirmation: "HMWQ5PMNBN", host: "Giuseppe", phone: "+393288651528", phoneDisplay: "+39 328 865 1528",
-            address: "Via Frangipane 13, Rome", mapQuery: "Via+Frangipane+13+Rome+Italy", pdf: "honeymoon-files/rome-giuseppe.pdf",
-            detail: { "Check-in": "3:00 PM, Mon 31 Aug", "Checkout": "11:00 AM, Thu 3 Sep", "Address": "Via Frangipane 13, Rome" } }
+          { id: "vatican-tour", type: "activity", title: "Vatican Museums, Sistine Chapel &amp; St. Peter's Basilica", time: "2:15 PM", summary: "Guided tour · 3 hrs",
+            confirmation: "GYGFWV8AYHL5",
+            detail: { "Starts": "2:15 PM, Tue 1 Sep", "Duration": "3 hours", "Language": "English", "Guests": "2 Adults", "Paid": "$220.88", "Booked via": "GetYourGuide" } }
+        ],
+        schedule: [
+          { time: "10:00", title: "Depart Monti toward the Vatican", note: "Metro or taxi, ~30 min." },
+          { time: "10:45", title: "Wander Borgo Pio", note: "Charming little streets right by the Vatican walls — not independently researched beyond the name, worth exploring." },
+          { time: "13:00", title: "Lunch near Borgo Pio", note: "Not independently researched yet — plenty of options right around here." },
+          { time: "14:15", title: "Arrive for the Vatican tour", note: "Starts 2:15pm sharp." },
+          { time: "14:15", title: "Vatican Museums, Sistine Chapel &amp; St. Peter's", note: "Booked, 3 hrs." },
+          { time: "17:15", title: "Tour ends", note: "" },
+          { time: "17:45", title: "Castel Sant'Angelo", note: "~15 min walk, cross the river." },
+          { time: "18:30", title: "Trastevere", note: "Wander the neighborhood — cobblestone streets, very 'local Rome.'" },
+          { time: "19:30", title: "Dinner in Trastevere", note: "Not independently researched — the neighborhood is reliably good, worth picking whatever looks lively." },
+          { time: "21:00", title: "Evening walk back, gelato en route", note: "" }
         ],
         ideas: [
           { category: "Gelato", title: "Fatamorgana", note: "Organic, gluten-free options, in Monti's Piazza degli Zingari. Seasonal flavors like saffron and orange.", link: "https://www.gelateriafatamorgana.com/", reservation: false },
-          { category: "Gelato", title: "Gelateria dell'Angeleto", note: "Tiny natural gelato spot near Piazza Madonna dei Monti, often a line but worth it.", link: "https://www.google.com/maps/search/?api=1&query=Gelateria+dell+Angeletto+Monti+Rome", reservation: false },
+          { category: "Gelato", title: "Gelateria dell'Angeleto", note: "Tiny natural gelato spot near Piazza Madonna dei Monti, often a line but worth it.", link: "https://www.google.com/maps/search/?api=1&query=Gelateria+dell+Angeletto+Monti+Rome", reservation: false }
+        ]
+      },
+      {
+        id: "2026-09-02", when: "WED 2 SEP", title: "Rome · free day", theme: "rome",
+        note: "Still at Giuseppe's in Monti.",
+        events: [],
+        schedule: [
+          { time: "10:00", title: "Spanish Steps &amp; Via Condotti", note: "" },
+          { time: "10:45", title: "Piazza del Popolo", note: "~15 min walk." },
+          { time: "11:30", title: "Villa Borghese Gardens (edge)", note: "Optional, if time allows — green space, relaxed." },
+          { time: "13:00", title: "Lunch back near Monti", note: "Alle Carrette again, or explore something new — only 2 Monti spots independently researched so far." },
+          { time: "14:30", title: "Free time / pack for tomorrow's transfer", note: "" },
+          { time: "15:30", title: "Capitoline Hill / Piazza del Campidoglio", note: "Views over the Forum, less crowded than the Colosseum side." },
+          { time: "17:00", title: "One more Monti wander, shopping", note: "" },
+          { time: "19:00", title: "Farewell Rome dinner", note: "Not independently researched yet — worth picking somewhere a bit special for the last night." },
+          { time: "21:00", title: "Last Rome gelato, pack", note: "" }
+        ],
+        ideas: [
           { category: "Food · local", title: "La Taverna dei Monti", note: "Roman staples — carbonara, cacio e pepe, lamb. Good value, right in Monti.", link: "https://www.google.com/maps/search/?api=1&query=La+Taverna+dei+Monti+Rome", reservation: true },
           { category: "Food · pizza", title: "Alle Carrette", note: "Some of the best pizza in Rome for the price, outdoor seating, in Monti.", link: "https://www.google.com/maps/search/?api=1&query=Alle+Carrette+Monti+Rome", reservation: false },
           { category: "Sights", title: "Trevi → Pantheon → Piazza Navona → Spanish Steps", note: "Classic walking loop, do Trevi early morning before 9am to beat crowds.", link: "https://www.romewise.com/rome-in-3-days.html", reservation: false }
         ]
       },
       {
-        id: "praiano", when: "THU 3 – SAT 5 SEP", title: "Praiano · Amalfi Coast", theme: "sea", deco: "lemon",
+        id: "2026-09-03", when: "THU 3 SEP", title: "Rome → Praiano", theme: "sea", deco: "lemon",
         note: "Adriana's fine with a flexible check-in whenever you arrive — no rush from Rome.",
         events: [
-          { id: "adriana-stay", type: "stay", title: "Ortensia Superior Room — Best Sunset &amp; Parking", time: "2 nights", summary: "Hosted by Adriana",
+          { id: "adriana-stay", type: "stay", title: "Ortensia Superior Room — Best Sunset &amp; Parking", time: "check-in today", summary: "Hosted by Adriana · 2 nights",
             confirmation: "HM94Z9J4BJ", host: "Adriana", phone: "+393396583440", phoneDisplay: "+39 339 658 3440",
             address: "Via Francesco Russo 18, Praiano", mapQuery: "Via+Francesco+Russo+18+Praiano+Italy", pdf: "honeymoon-files/praiano-adriana.pdf",
             detail: { "Check-in": "Flexible, whenever you arrive", "Checkout": "10:00 AM, Sat 5 Sep", "Address": "Via Francesco Russo 18, Praiano" } }
+        ],
+        schedule: [
+          { time: "10:00", title: "Pack, casual checkout from Giuseppe's", note: "Informal, no fixed time confirmed." },
+          { time: "10:30", title: "Depart Rome — transfer to Praiano begins", note: "~3.5-4 hrs by private car." },
+          { time: "14:30", title: "Arrive Praiano, check in with Adriana", note: "Flexible — go straight there whenever you land." },
+          { time: "15:00", title: "Settle in, unpack", note: "" },
+          { time: "16:00", title: "Walk down to Marina di Praia", note: "Sea views, small cove." },
+          { time: "17:00", title: "Relax — beach or sea time", note: "" },
+          { time: "19:00", title: "Dinner: Il Pirata", note: "Beachside, right at Marina di Praia." },
+          { time: "21:00", title: "Sunset from the room", note: "It's literally called the 'Best Sunset' room." }
         ],
         ideas: [
           { category: "Transport needed", title: "Private transfer, Rome → Praiano", note: "~3.5-4 hrs by car, most comfortable option with an overwater-village drop-off.", link: "https://www.joebananalimos.net/transfers/private-transfer-from-rome-to-praiano", reservation: true },
           { category: "Transport needed", title: "Alternate: Daytrip private car", note: "Same route, different operator to compare pricing.", link: "https://daytrip.com/en/transfers/rome-it/praiano-it", reservation: true },
           { category: "Transport needed", title: "Budget alternate: train + bus", note: "Trenitalia high-speed to Salerno, then SITA Sud bus to Praiano. Slower and more legwork with luggage.", link: "https://www.trenitalia.com/en.html", reservation: false },
-          { category: "Transport needed", title: "Your pick: via Sorrento, train + ferry", note: "Train Rome → Naples, then Circumvesuviana to Sorrento (every 30 min). From Sorrento port, ferry to Amalfi ~1h20m, runs every 4 hrs, seasonal (through Oct) — then a short taxi/bus the last stretch into Praiano since the ferry lands at Amalfi, not Praiano directly. More scenic, more moving parts.", link: "https://www.naplesbayferry.com/en/t/sorrento/amalfi", reservation: false },
+          { category: "Transport needed", title: "Your pick: via Sorrento, train + ferry", note: "Train Rome → Naples, then Circumvesuviana to Sorrento (every 30 min). From Sorrento port, ferry to Amalfi ~1h20m, runs every 4 hrs, seasonal (through Oct) — then a short taxi/bus the last stretch into Praiano since the ferry lands at Amalfi, not Praiano directly. More scenic, more moving parts.", link: "https://www.naplesbayferry.com/en/t/sorrento/amalfi", reservation: false }
+        ]
+      },
+      {
+        id: "2026-09-04", when: "FRI 4 SEP", title: "Praiano · Amalfi Coast, relaxed", theme: "sea", deco: "lemon",
+        note: "Still at Adriana's.",
+        events: [],
+        schedule: [
+          { time: "10:00", title: "Lemon grove tour pickup", note: "Amalfi Lemon Experience — book ahead." },
+          { time: "10:00", title: "Lemon picking + tasting + limoncello", note: "~3 hrs including transfer." },
+          { time: "13:00", title: "Lunch", note: "Often included in the lemon tour — otherwise La Strada." },
+          { time: "15:00", title: "Free / relaxed time", note: "Beach, pool, or a short Vespa ride along the coast road if you've rented one." },
+          { time: "18:00", title: "Return, freshen up", note: "" },
+          { time: "19:30", title: "Fine dining night: Casa Angelina or Kasai", note: "" },
+          { time: "21:30", title: "Sunset drinks", note: "" }
+        ],
+        ideas: [
           { category: "Activity", title: "Amalfi Lemon Experience — pick your own lemons", note: "Real lemon-grove tour with picking, plus limoncello and lemon-cake tasting.", link: "https://www.amalfilemonexperience.it/lemon-tour-2/", reservation: true },
           { category: "Activity", title: "Alternate: Amalfi Historical Garden lemon tour", note: "Similar experience, different grove and family.", link: "https://amalfihistoricalgarden.com/lemontour", reservation: true },
           { category: "Activity", title: "Path of the Gods hike", note: "Easy once you're on the main trail, but starting from Praiano means 1000+ stairs uphill first (~1hr). For a genuinely relaxed version, taxi up to Bomerano and start there instead. 2.25-3.5 hrs total either way.", link: "https://www.positano.com/en/e/il-sentiero-degli-dei", reservation: false },
@@ -472,15 +576,47 @@
         ]
       },
       {
-        id: "naples", when: "SAT 5 – SUN 6 SEP", title: "Naples", theme: "sea", deco: "boat",
+        id: "2026-09-05", when: "SAT 5 SEP", title: "Praiano → Naples", theme: "sea", deco: "boat",
         events: [
-          { id: "giovanni-stay", type: "stay", title: "Il Fiore di Napoli — new apartment in the center", time: "1 night", summary: "Hosted by Giovanni",
+          { id: "giovanni-stay", type: "stay", title: "Il Fiore di Napoli — new apartment in the center", time: "check-in today", summary: "Hosted by Giovanni · 1 night",
             confirmation: "HMSFXQ5BZQ", host: "Giovanni", phone: "+393208269229", phoneDisplay: "+39 320 826 9229",
             address: "Via Alessio Mazzocchi 12, Naples", mapQuery: "Via+Alessio+Mazzocchi+12+Naples+Italy", pdf: "honeymoon-files/naples-giovanni.pdf",
             detail: { "Check-in": "4:00 PM, Sat 5 Sep", "Checkout": "11:00 AM, Sun 6 Sep", "Address": "Via Alessio Mazzocchi 12, Naples" } }
         ],
+        schedule: [
+          { time: "10:00", title: "Checkout at Adriana's", note: "Official checkout time." },
+          { time: "10:00", title: "Transfer to Naples begins", note: "~1-1.5 hrs by car/taxi." },
+          { time: "11:30", title: "Early pizza lunch", note: "Gino Sorbillo or Da Michele — go early to dodge the line." },
+          { time: "13:00", title: "Wander the historic center", note: "Spaccanapoli street." },
+          { time: "16:00", title: "Check in at Giovanni's", note: "" },
+          { time: "16:30", title: "Rest / freshen up", note: "" },
+          { time: "17:30", title: "Piazza del Plebiscito → waterfront walk", note: "Toward Castel dell'Ovo." },
+          { time: "19:30", title: "Dinner: Da Attilio", note: "If you saved pizza for dinner instead of lunch. Otherwise seafood along Via Partenope — not independently researched yet." },
+          { time: "21:00", title: "Evening waterfront views", note: "" }
+        ],
         ideas: [
-          { category: "Transport needed", title: "Praiano → Naples", note: "~1-1.5 hrs by car/taxi, comfortable window after 10am checkout. Private transfer or taxi both fine.", link: "https://www.joebananalimos.net/transfers/private-transfer-amalfi-coast", reservation: true },
+          { category: "Transport needed", title: "Praiano → Naples", note: "~1-1.5 hrs by car/taxi, comfortable window after 10am checkout. Private transfer or taxi both fine.", link: "https://www.joebananalimos.net/transfers/private-transfer-amalfi-coast", reservation: true }
+        ]
+      },
+      {
+        id: "2026-09-06", when: "SUN 6 SEP", title: "Naples → Amsterdam", theme: "sea", deco: "boat",
+        events: [
+          { id: "eju4235", type: "flight", title: "EJU4235", time: "4:20 – 7:00 PM", summary: "NAP → AMS · 4:20 PM",
+            confirmation: "KCV26LM",
+            detail: { "Route": "Naples (NAP) → Amsterdam (AMS)", "Flight": "EJU4235", "Carrier": "easyJet", "Departs": "4:20 PM, Sun 6 Sep", "Arrives": "7:00 PM, Sun 6 Sep" } }
+        ],
+        note: "Back with Suchita's cousin through Sep 13",
+        schedule: [
+          { time: "10:00", title: "Coffee + sfogliatella", note: "Naples pastry specialty — bakery not independently researched yet." },
+          { time: "10:30", title: "Checkout, store bags if needed", note: "Ask Giovanni." },
+          { time: "11:00", title: "Last pizza stop", note: "Da Attilio, if not done the day before." },
+          { time: "12:30", title: "Wander / Castel dell'Ovo waterfront", note: "Relaxed, no rush." },
+          { time: "14:30", title: "Head back for bags", note: "" },
+          { time: "15:00", title: "Alibus or taxi to NAP airport", note: "15-20 min." },
+          { time: "15:30", title: "Airport, check-in, security", note: "" },
+          { time: "16:20", title: "EJU4235 departs", note: "" }
+        ],
+        ideas: [
           { category: "Transport needed", title: "Naples apartment → NAP airport", note: "Alibus shuttle €5, 15 min. Or taxi flat rate €18, 12 min. Comfortable ahead of the 4:20pm flight.", link: "https://www.naples-airport.info/transportation/", reservation: false },
           { category: "Food · pizza", title: "Gino Sorbillo", note: "The famous one, Via dei Tribunali. Go before 11:45am or after 2:30pm to skip the worst of the line.", link: "https://www.google.com/maps/search/?api=1&query=Gino+Sorbillo+Naples", reservation: false },
           { category: "Food · pizza", title: "L'Antica Pizzeria da Michele", note: "One of the oldest in the city — just Margherita and Marinara, nothing else.", link: "https://www.google.com/maps/search/?api=1&query=L+Antica+Pizzeria+da+Michele+Naples", reservation: false },
@@ -488,16 +624,37 @@
         ]
       },
       {
-        id: "nap-ams", when: "SUN 6 SEP", title: "Naples → Amsterdam", theme: "sea",
-        note: "Back with Suchita's cousin through Sep 13",
-        events: [
-          { id: "eju4235", type: "flight", title: "EJU4235", time: "4:20 – 7:00 PM", summary: "NAP → AMS · 4:20 PM",
-            confirmation: "KCV26LM",
-            detail: { "Route": "Naples (NAP) → Amsterdam (AMS)", "Flight": "EJU4235", "Carrier": "easyJet", "Departs": "4:20 PM, Sun 6 Sep", "Arrives": "7:00 PM, Sun 6 Sep" } }
-        ]
+        id: "2026-09-07", when: "MON 7 SEP", title: "Amsterdam", theme: "rome",
+        note: "Free day with Suchita's cousin — no plan yet, this is deliberately open.",
+        events: []
       },
       {
-        id: "ams-pit", when: "SUN 13 SEP", title: "Amsterdam → Pittsburgh", theme: "rome",
+        id: "2026-09-08", when: "TUE 8 SEP", title: "Amsterdam", theme: "rome",
+        note: "Free day with Suchita's cousin — no plan yet, this is deliberately open.",
+        events: []
+      },
+      {
+        id: "2026-09-09", when: "WED 9 SEP", title: "Amsterdam", theme: "rome",
+        note: "Free day with Suchita's cousin — no plan yet, this is deliberately open.",
+        events: []
+      },
+      {
+        id: "2026-09-10", when: "THU 10 SEP", title: "Amsterdam", theme: "rome",
+        note: "Free day with Suchita's cousin — no plan yet, this is deliberately open.",
+        events: []
+      },
+      {
+        id: "2026-09-11", when: "FRI 11 SEP", title: "Amsterdam", theme: "rome",
+        note: "Free day with Suchita's cousin — no plan yet, this is deliberately open.",
+        events: []
+      },
+      {
+        id: "2026-09-12", when: "SAT 12 SEP", title: "Amsterdam", theme: "rome",
+        note: "Free day with Suchita's cousin — no plan yet, this is deliberately open.",
+        events: []
+      },
+      {
+        id: "2026-09-13", when: "SUN 13 SEP", title: "Amsterdam → Pittsburgh", theme: "rome",
         events: [
           { id: "dl0133", type: "flight", title: "DL0133", time: "9:20 AM", summary: "AMS → DTW · 9:20 AM",
             detail: { "Route": "Amsterdam (AMS) → Detroit (DTW)", "Flight": "DL0133", "Carrier": "Delta", "Departs": "9:20 AM, Sun 13 Sep" } },
@@ -505,6 +662,7 @@
             detail: { "Route": "Detroit (DTW) → Pittsburgh (PIT)", "Flight": "DL4640", "Carrier": "Delta", "Departs": "2:15 PM, Sun 13 Sep" } }
         ]
       }
+
     ]
   };
 
@@ -558,7 +716,7 @@
         '<a class="day-link" href="#/day/' + day.id + '">' +
           '<div class="leg-when">' + esc(day.when) + '</div>' +
           '<h2 class="leg-title"><span class="lt-left">' + decoIcon(day.deco, "deco") + esc(day.title) + '</span>' + chevron() + '</h2>' +
-          '<div class="leg-sub"><span class="count">' + day.events.length + '</span> event' + (day.events.length === 1 ? "" : "s") + (day.note ? ' &middot; has a note' : '') + '</div>' +
+          '<div class="leg-sub">' + (day.events.length ? '<span class="count">' + day.events.length + '</span> event' + (day.events.length === 1 ? "" : "s") : 'Free day') + (day.schedule ? ' &middot; has a plan' : '') + '</div>' +
         '</a>' +
       '</div>';
     }).join("");
@@ -589,7 +747,9 @@
     }).join("");
 
     var note = day.note ? '<div class="day-note">&#127811; ' + day.note + '</div>' : "";
+    var schedule = renderSchedule(day);
     var ideas = renderIdeas(day);
+    var eventsBlock = events ? '<div class="event-list">' + events + '</div>' : "";
 
     return '<div class="hero compact ' + (day.theme === "sea" ? "" : "") + '">' + heroFlorals() +
       '<div class="inner">' +
@@ -598,10 +758,29 @@
         '<h1 style="font-size:30px">' + decoIcon(day.deco, "deco") + ' ' + esc(day.title) + '</h1>' +
       '</div></div>' +
       '<div class="page">' +
-        '<div class="event-list">' + events + '</div>' +
+        eventsBlock +
         note +
+        schedule +
         ideas +
       '</div>';
+  }
+
+  /* Hour-by-hour plan for a day: day.schedule = [{time, title, note}] */
+  function renderSchedule(day) {
+    if (!day.schedule || !day.schedule.length) return "";
+    var dot = day.theme === "sea" ? "var(--sea)" : "var(--rome)";
+    var rows = day.schedule.map(function (block) {
+      return '<div class="sched-row">' +
+        '<div class="sched-time">' + esc(block.time) + '</div>' +
+        '<div class="sched-rail"><div class="sched-dot"></div><div class="sched-line"></div></div>' +
+        '<div class="sched-body"><div class="sched-title">' + esc(block.title) + '</div>' +
+        (block.note ? '<div class="sched-note">' + esc(block.note) + '</div>' : "") +
+        '</div>' +
+      '</div>';
+    }).join("");
+    return '<div class="sched-heading" style="color:' + dot + '">Today’s plan</div>' +
+      '<p class="sched-sub">A draft, not locked in — swap anything.</p>' +
+      '<div class="sched-list" style="--dot:' + dot + '">' + rows + '</div>';
   }
 
   /* Alternates worth exploring but not booked yet — grouped by category, each
