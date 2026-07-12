@@ -462,6 +462,9 @@
             detail: { "Route": "Pittsburgh (PIT) → Detroit (DTW)", "Flight": "DL3598", "Carrier": "Delta", "Departs": "7:42 PM, Fri 28 Aug" } },
           { id: "dl0136", type: "flight", title: "DL0136", time: "10:50 PM", summary: "DTW → AMS · 10:50 PM",
             detail: { "Route": "Detroit (DTW) → Amsterdam (AMS)", "Flight": "DL0136", "Carrier": "Delta", "Departs": "10:50 PM, Fri 28 Aug" } }
+        ],
+        ideas: [
+          { category: "Transport needed", title: "Schiphol → Voorburg (public transit)", note: "This is an overnight flight — you'll actually land Sat morning local time. From Schiphol Airport train station, take an NS train toward Den Haag HS/Centraal (~28 min), then one stop further to Voorburg station (or check 9292.nl/NS app on arrival — some Sprinters run through without a change). 1 change typical, ~45-60 min total, €11.80pp second class. Trains run every 10-15 min all day, no advance booking needed — tap in/out with a contactless card. From Voorburg station it's a short walk or local HTM bus to Frederik van Eedenstraat 53.", link: "https://www.ns.nl/en/journeyplanner/", reservation: false }
         ]
       },
       {
@@ -488,6 +491,7 @@
             detail: { "Starts": "4:30 PM, Mon 31 Aug", "Duration": "2.5 hours", "Language": "English", "Guests": "2 Adults", "Booked via": "GetYourGuide" } }
         ],
         schedule: [
+          { time: "04:30", title: "Taxi from Voorburg to Schiphol", note: "7:20am flight means airport by ~5:15am — regular NS trains don't start running that early, so this one leg is a taxi/Uber, not transit. ~35-45 min depending on traffic." },
           { time: "10:00", title: "Land, clear immigration", note: "Landed 9:35am — bags + passport control first." },
           { time: "10:35", title: "Leonardo Express → Termini", note: "Public transit, €14, 32 min, direct from FCO.", link: "https://www.trenitalia.com/en.html" },
           { time: "11:10", title: "Drop bags at Giuseppe's", note: "~10 min walk/metro from Termini. Ask about an early bag drop — official check-in isn't until 3pm.", link: "https://www.google.com/maps/search/?api=1&query=Via+Frangipane+13+Rome" },
@@ -504,6 +508,8 @@
           { time: "21:45", title: "Gelato: Fatamorgana or dell'Angeleto", note: "Both in Monti, on the walk back.", link: "https://www.gelateriafatamorgana.com/" }
         ],
         ideas: [
+          { category: "Transport needed", title: "Voorburg → Schiphol, by taxi", note: "A 7:20am departure means being at the airport by ~5:15am. NS trains generally don't start regular service that early (roughly 5:30-6am on weekdays, often later on a Monday's first services aren't the constraint here — it's genuinely too early either way). Taxi/Uber is the realistic option for this one leg, ~35-45 min depending on traffic.", link: "https://www.google.com/maps/search/?api=1&query=Voorburg+taxi", reservation: false },
+          { category: "Transport needed", title: "If the flight time ever shifts later: Voorburg → Schiphol by train", note: "Same route as the arrival leg reversed — Voorburg station → Den Haag HS/Centraal → Schiphol Airport, ~45-60 min, 1 change, €11.80pp. Only realistic once regular NS service has started for the day.", link: "https://www.ns.nl/en/journeyplanner/", reservation: false },
           { category: "Transport needed", title: "FCO → Monti apartment, by train (public transit)", note: "Leonardo Express, €14, 32 min direct to Termini, then a 10-min walk or one metro stop. Fastest and cheapest public option — do this one.", link: "https://www.trenitalia.com/en.html", reservation: false },
           { category: "Transport needed", title: "Alternate: taxi", note: "Flat rate €55, ~27 min door to door. Only worth it if the train feels like too much with bags after an overnight flight.", link: "https://www.google.com/maps/search/?api=1&query=FCO+taxi+rank", reservation: false }
         ]
@@ -572,9 +578,14 @@
             detail: { "Check-in": "Flexible, whenever you arrive", "Checkout": "10:00 AM, Sat 5 Sep", "Address": "Via Francesco Russo 18, Praiano" } }
         ],
         schedule: [
-          { time: "10:00", title: "Pack, casual checkout from Giuseppe's", note: "Informal, no fixed time confirmed." },
-          { time: "10:30", title: "Depart Rome — transfer to Praiano begins", note: "Public transit: high-speed train to Naples, then Circumvesuviana to Sorrento, then ferry to Amalfi + short taxi. ~4.5-5 hrs total but scenic and no driving.", link: "https://www.trenitalia.com/en.html" },
-          { time: "14:30", title: "Arrive Praiano, check in with Adriana", note: "Flexible — go straight there whenever you land.", link: "https://www.google.com/maps/search/?api=1&query=Via+Francesco+Russo+18+Praiano" },
+          { time: "08:30", title: "Pack, casual checkout from Giuseppe's", note: "Informal, no fixed time confirmed." },
+          { time: "09:00", title: "Roma Termini → Napoli Centrale", note: "Frecciarossa or Italo high-speed, ~1h10, trains every 20-30 min all day — book a specific reserved seat in advance once the date's locked in.", link: "https://www.trenitalia.com/en.html" },
+          { time: "10:15", title: "Transfer to Napoli Garibaldi (Circumvesuviana)", note: "Same building as Napoli Centrale, one level down — 10-15 min buffer to find the platform.", link: "https://www.google.com/maps/search/?api=1&query=Napoli+Garibaldi+Station" },
+          { time: "10:30", title: "Circumvesuviana → Sorrento", note: "Every 30 min, ~50 min on the faster DD trains (up to 66 min on all-stops).", link: "https://www.eavsrl.it/web/" },
+          { time: "11:30", title: "Walk to Marina Piccola port", note: "~10 min from Sorrento station." },
+          { time: "12:00", title: "NLG ferry: Sorrento → Amalfi", note: "~1h05-1h20, 6 sailings/day. Worth booking ahead in September — still peak-adjacent season.", link: "https://www.nlg.it/en/routes/sorrento-amalfi-m-n-picasso/" },
+          { time: "13:20", title: "Taxi or SITA bus: Amalfi → Praiano", note: "~15 min, last stretch since the ferry lands in Amalfi, not Praiano directly.", link: "https://www.google.com/maps/search/?api=1&query=Amalfi+to+Praiano+taxi" },
+          { time: "13:45", title: "Arrive Praiano, check in with Adriana", note: "Flexible — go straight there whenever you land.", link: "https://www.google.com/maps/search/?api=1&query=Via+Francesco+Russo+18+Praiano" },
           { time: "15:00", title: "Settle in, unpack", note: "" },
           { time: "16:00", title: "Walk down to Marina di Praia", note: "Sea views, small cove.", link: "https://www.google.com/maps/search/?api=1&query=Marina+di+Praia+Praiano" },
           { time: "17:00", title: "Relax — beach or sea time", note: "" },
@@ -582,8 +593,8 @@
           { time: "21:00", title: "Sunset from the room", note: "It's literally called the 'Best Sunset' room." }
         ],
         ideas: [
-          { category: "Transport needed", title: "Public transit: via Sorrento, train + ferry", note: "Train Rome → Naples, then Circumvesuviana to Sorrento (every 30 min). From Sorrento port, ferry to Amalfi ~1h20m, runs every 4 hrs, seasonal (through Oct) — then a short taxi/bus the last stretch into Praiano since the ferry lands at Amalfi, not Praiano directly. More scenic, all public transit, more moving parts.", link: "https://www.naplesbayferry.com/en/t/sorrento/amalfi", reservation: false },
-          { category: "Transport needed", title: "Public transit: train + bus", note: "Trenitalia high-speed to Salerno, then SITA Sud bus to Praiano. Simpler routing, fully public transit, but slower with luggage on the bus.", link: "https://www.trenitalia.com/en.html", reservation: false },
+          { category: "Transport needed", title: "Public transit: via Sorrento, train + Circumvesuviana + ferry", note: "Roma Termini → Napoli Centrale (Frecciarossa/Italo, ~1h10, every 20-30 min) → Napoli Garibaldi (same building) → Circumvesuviana to Sorrento (every 30 min, ~50-65 min) → NLG ferry Sorrento → Amalfi (~1h05-1h20, 6 sailings/day) → taxi/bus Amalfi → Praiano (~15 min). ~5.5-6.5 hrs door to door including connections. Book the high-speed train and the ferry ahead; Circumvesuviana and the last taxi you can just show up for.", link: "https://www.nlg.it/en/routes/sorrento-amalfi-m-n-picasso/", reservation: false },
+          { category: "Transport needed", title: "Public transit: train + SITA bus via Salerno", note: "Roma Termini → Salerno (high-speed, ~2h50) → SITA Sud bus Salerno → Amalfi (line 5120, ~1h15-1h40 on the coastal road, buy the ticket at a tabacchi/ticket office beforehand — can't pay onboard) → short bus/taxi to Praiano. Simpler routing (one fewer mode than the Sorrento option) but the coastal bus is slow.", link: "https://www.sitasudtrasporti.it/", reservation: false },
           { category: "Transport needed", title: "Private transfer, Rome → Praiano", note: "~3.5-4 hrs by car, most comfortable option with a door-to-door drop-off — the non-transit fallback if the connections above feel like too much with luggage.", link: "https://www.joebananalimos.net/transfers/private-transfer-from-rome-to-praiano", reservation: true },
           { category: "Transport needed", title: "Alternate: Daytrip private car", note: "Same route, different operator to compare pricing.", link: "https://daytrip.com/en/transfers/rome-it/praiano-it", reservation: true }
         ]
@@ -630,7 +641,8 @@
         ],
         schedule: [
           { time: "10:00", title: "Checkout at Adriana's", note: "Official checkout time." },
-          { time: "10:00", title: "Transfer to Naples begins", note: "Public transit: SITA Sud bus to Sorrento or Amalfi, then Circumvesuviana/train onward — or the direct SITA bus toward Naples. ~2-2.5 hrs, more legwork with luggage than a car.", link: "https://www.sitasudtrasporti.it/" },
+          { time: "10:00", title: "SITA Sud bus: Praiano → Sorrento", note: "Line 5070/5110 (Sorrento-Positano-Amalfi corridor), westbound along the coast road — stops right in Praiano. Every 30-60 min, less frequent Sundays. Buy the ticket before boarding (tabacchi, bars, or the Costiera SITA 24h pass, €10 unlimited) — can't pay on the bus. ~50-60 min with coastal stops.", link: "https://www.sitasudtrasporti.it/" },
+          { time: "11:00", title: "Circumvesuviana: Sorrento → Napoli Garibaldi", note: "Every 30 min, ~50-65 min depending on the train.", link: "https://www.eavsrl.it/web/" },
           { time: "11:30", title: "Early pizza lunch", note: "Gino Sorbillo or Da Michele — go early to dodge the line.", link: "https://www.google.com/maps/search/?api=1&query=Gino+Sorbillo+Naples" },
           { time: "13:00", title: "Wander the historic center", note: "Spaccanapoli street.", link: "https://www.google.com/maps/search/?api=1&query=Spaccanapoli+Naples" },
           { time: "16:00", title: "Check in at Giovanni's", note: "", link: "https://www.google.com/maps/search/?api=1&query=Via+Alessio+Mazzocchi+12+Naples" },
@@ -640,7 +652,7 @@
           { time: "21:00", title: "Evening waterfront views", note: "", link: "https://www.google.com/maps/search/?api=1&query=Castel+dell+Ovo+Naples" }
         ],
         ideas: [
-          { category: "Transport needed", title: "Public transit: SITA Sud bus + train", note: "SITA Sud bus from Praiano to Sorrento or Amalfi/Salerno, connecting to a train into Naples. ~2-2.5 hrs total, fully public transit but more changes with luggage.", link: "https://www.sitasudtrasporti.it/", reservation: false },
+          { category: "Transport needed", title: "Public transit: SITA Sud bus + Circumvesuviana", note: "SITA Sud bus westbound to Sorrento (line 5070/5110, ~50-60 min, buy tickets at a tabacchi beforehand — not on board) → Circumvesuviana to Napoli Garibaldi (every 30 min, ~50-65 min). ~2-2.25 hrs total including the connection. This way is faster than going via Amalfi/Salerno, where the coastal bus is notoriously slow.", link: "https://www.sitasudtrasporti.it/", reservation: false },
           { category: "Transport needed", title: "Private transfer, Praiano → Naples", note: "~1-1.5 hrs by car/taxi, door to door — the non-transit fallback if the bus/train legwork feels like too much with bags.", link: "https://www.joebananalimos.net/transfers/private-transfer-amalfi-coast", reservation: true },
           { category: "Food · seafood", title: "La Cantinella", note: "Waterfront on Via Partenope, seafood-focused — seabass with crispy potatoes and saffron is the dish people come back for.", link: "https://www.google.com/maps/search/?api=1&query=La+Cantinella+Naples", reservation: true },
           { category: "Food · seafood", title: "Antonio & Antonio", note: "Family-run, right next to the water, more casual and less pricey than La Cantinella — fresh fish, friendly service.", link: "https://www.google.com/maps/search/?api=1&query=Antonio+e+Antonio+Naples", reservation: false },
@@ -663,7 +675,9 @@
           { time: "14:30", title: "Head back for bags", note: "" },
           { time: "15:00", title: "Alibus to NAP airport", note: "Public transit, €5, 15-20 min direct from the center.", link: "https://www.naples-airport.info/transportation/" },
           { time: "15:30", title: "Airport, check-in, security", note: "" },
-          { time: "16:20", title: "EJU4235 departs", note: "", link: "#/day/2026-09-06/event/eju4235" }
+          { time: "16:20", title: "EJU4235 departs", note: "", link: "#/day/2026-09-06/event/eju4235" },
+          { time: "19:00", title: "Land at Schiphol", note: "" },
+          { time: "19:45", title: "Schiphol → Voorburg", note: "Same route as the outbound: NS train to Den Haag HS/Centraal, then a stop further to Voorburg station (or check 9292.nl/NS app for a through-service). ~45-60 min, 1 change, €11.80pp, trains every 10-15 min — no need to plan ahead.", link: "https://www.ns.nl/en/journeyplanner/" }
         ],
         ideas: [
           { category: "Food · pastry", title: "Scaturchio", note: "100+ year old bakery on Piazza San Domenico Maggiore, sit-down with coffee.", link: "https://www.google.com/maps/search/?api=1&query=Scaturchio+Naples", reservation: false },
@@ -712,6 +726,11 @@
             detail: { "Route": "Amsterdam (AMS) → Detroit (DTW)", "Flight": "DL0133", "Carrier": "Delta", "Departs": "9:20 AM, Sun 13 Sep" } },
           { id: "dl4640", type: "flight", title: "DL4640", time: "2:15 PM", summary: "DTW → PIT · 2:15 PM",
             detail: { "Route": "Detroit (DTW) → Pittsburgh (PIT)", "Flight": "DL4640", "Carrier": "Delta", "Departs": "2:15 PM, Sun 13 Sep" } }
+        ],
+        schedule: [
+          { time: "06:15", title: "Voorburg → Schiphol", note: "Transatlantic flight, so airport by ~7:15-7:30am. Same route as before: Voorburg station → Den Haag HS/Centraal → Schiphol, ~45-60 min. Sunday morning service sometimes starts a bit later than weekdays — worth checking the exact first departure on 9292.nl/NS app the week of, rather than assuming it's identical to a weekday.", link: "https://www.ns.nl/en/journeyplanner/" },
+          { time: "07:20", title: "Airport, check-in, security", note: "" },
+          { time: "09:20", title: "DL0133 departs", note: "", link: "#/day/2026-09-13/event/dl0133" }
         ]
       }
 
