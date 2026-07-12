@@ -149,7 +149,7 @@
   .leaflet-popup-tip { background: var(--bg-raised); }
   .map-popup { font-size: 13px; line-height: 1.5; }
   .map-popup strong { display: block; font-size: 13.5px; margin-bottom: 3px; }
-  .map-popup a { color: var(--rome); font-weight: 600; text-decoration: none; }
+  .map-popup a { display: block; color: var(--rome); font-weight: 600; text-decoration: none; margin-top: 4px; }
   .map-popup a:hover { text-decoration: underline; }
   .map-legend {
     display: flex; flex-wrap: wrap; gap: 14px; margin-top: 14px; font-size: 12px; color: var(--ink-soft);
@@ -718,7 +718,28 @@
     vatican:   { lat: 41.9065, lng: 12.4536,  label: "Vatican Museums &amp; St. Peter's", type: "sight", dayId: "2026-09-01", eventId: "vatican-tour" },
     praiano:   { lat: 40.6270, lng: 14.5310,  label: "Praiano — Adriana's", type: "stay", dayId: "2026-09-03" },
     amalfi:    { lat: 40.6340, lng: 14.6027,  label: "Amalfi — lemon groves", type: "activity", dayId: "2026-09-04" },
-    naples:    { lat: 40.8420, lng: 14.2680,  label: "Naples — Giovanni's", type: "stay", dayId: "2026-09-05" }
+    naples:    { lat: 40.8420, lng: 14.2680,  label: "Naples — Giovanni's", type: "stay", dayId: "2026-09-05" },
+
+    /* Food, wine and gelato alternates — smaller pins, no single day owns them */
+    tavernaMonti:  { lat: 41.8931, lng: 12.4877, label: "La Taverna dei Monti", type: "food", mapsQuery: "La+Taverna+dei+Monti+Rome" },
+    alleCarrette:  { lat: 41.8936, lng: 12.4873, label: "Alle Carrette", type: "food", mapsQuery: "Alle+Carrette+Monti+Rome" },
+    angelino:      { lat: 41.8911, lng: 12.4840, label: "Angelino in Tor Margana", type: "food", mapsQuery: "Angelino+ai+Fori+Piazza+Tor+Margana+Rome" },
+    alVino:        { lat: 41.8940, lng: 12.4884, label: "Al Vino al Vino", type: "wine", mapsQuery: "Al+Vino+al+Vino+Monti+Rome" },
+    aiTreScalini:  { lat: 41.8933, lng: 12.4893, label: "Ai Tre Scalini", type: "wine", mapsQuery: "Ai+Tre+Scalini+Monti+Rome" },
+    latteria:      { lat: 41.8897, lng: 12.4693, label: "Latteria", type: "wine", mapsQuery: "Latteria+Trastevere+Rome" },
+    fatamorgana:   { lat: 41.8941, lng: 12.4869, label: "Fatamorgana", type: "food", mapsQuery: "Gelateria+Fatamorgana+Monti+Rome" },
+    angeletto:     { lat: 41.8929, lng: 12.4874, label: "Gelateria dell'Angeletto", type: "food", mapsQuery: "Gelateria+dell+Angeletto+Monti+Rome" },
+    ilPirata:      { lat: 40.6213, lng: 14.5408, label: "Il Pirata", type: "food", mapsQuery: "Il+Pirata+Marina+di+Praia" },
+    laStrada:      { lat: 40.6253, lng: 14.5288, label: "La Strada", type: "food", mapsQuery: "La+Strada+Praiano" },
+    casaAngelina:  { lat: 40.6244, lng: 14.5263, label: "Casa Angelina", type: "food", mapsQuery: "Casa+Angelina+Praiano" },
+    kasai:         { lat: 40.6249, lng: 14.5268, label: "Kasai", type: "food", mapsQuery: "Kasai+Praiano" },
+    vivaro:        { lat: 40.6259, lng: 14.5299, label: "Vivaro Wine Bar", type: "wine", mapsQuery: "Vivaro+Wine+Bar+Praiano" },
+    laMoressa:     { lat: 40.6256, lng: 14.5293, label: "La Moressa", type: "wine", mapsQuery: "La+Moressa+Praiano" },
+    sorbillo:      { lat: 40.8508, lng: 14.2601, label: "Gino Sorbillo", type: "food", mapsQuery: "Gino+Sorbillo+Naples" },
+    daMichele:     { lat: 40.8496, lng: 14.2635, label: "L'Antica Pizzeria da Michele", type: "food", mapsQuery: "L+Antica+Pizzeria+da+Michele+Naples" },
+    daAttilio:     { lat: 40.8420, lng: 14.2492, label: "Da Attilio", type: "food", mapsQuery: "Da+Attilio+Naples" },
+    spaccanapoli:  { lat: 40.8493, lng: 14.2569, label: "Spaccanapoli", type: "sight", mapsQuery: "Spaccanapoli+Naples" },
+    castelDellOvo: { lat: 40.8288, lng: 14.2478, label: "Castel dell'Ovo", type: "sight", mapsQuery: "Castel+dell+Ovo+Naples" }
   };
   var MAP_SPINE = [
     { from: "pit", to: "ams", mode: "flight" },
@@ -945,12 +966,14 @@
         '<h1 style="font-size:30px">The Route</h1>' +
       '</div></div>' +
       '<div class="page">' +
-        '<p class="map-sub">Every stay and booked stop, in the order you’ll reach them. Tap a pin for details.</p>' +
+        '<p class="map-sub">Every stay, booked stop, and food/wine alternate. Zoom in on a city for the full detail — tap a pin for more.</p>' +
         '<div id="trip-map"></div>' +
         '<div class="map-legend">' +
           '<span><i style="background:var(--rome)"></i>Stay</span>' +
           '<span><i style="background:var(--gold)"></i>Booked sight</span>' +
           '<span><i style="background:var(--sea)"></i>Activity</span>' +
+          '<span><i style="background:#cf9a6b"></i>Food</span>' +
+          '<span><i style="background:var(--lavender)"></i>Wine</span>' +
           '<span><i style="background:var(--ink-soft)"></i>Flight / airport</span>' +
         '</div>' +
       '</div>';
@@ -965,25 +988,29 @@
     TRIP_MAP_INSTANCE = map;
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "&copy; OpenStreetMap contributors",
-      maxZoom: 18
+      maxZoom: 19
     }).addTo(map);
 
-    var colorFor = { stay: "#e0879e", sight: "#d9b56e", activity: "#96b9a3", hub: "#ad93a0" };
+    var colorFor = { stay: "#e0879e", sight: "#d9b56e", activity: "#96b9a3", hub: "#ad93a0", food: "#cf9a6b", wine: "#c9b7db" };
+    var bigTypes = { stay: 1, sight: 1, activity: 1, hub: 1 };
     var bounds = [];
     Object.keys(MAP_POINTS).forEach(function (id) {
       var pt = MAP_POINTS[id];
+      var big = !!bigTypes[pt.type];
       bounds.push([pt.lat, pt.lng]);
       var marker = L.circleMarker([pt.lat, pt.lng], {
-        radius: pt.type === "hub" ? 6 : 9,
+        radius: pt.type === "hub" ? 6 : (big ? 9 : 6),
         color: "#fffbf3",
-        weight: 2,
+        weight: big ? 2 : 1.5,
         fillColor: colorFor[pt.type] || "#e0879e",
-        fillOpacity: 0.95
+        fillOpacity: big ? 0.95 : 0.85
       }).addTo(map);
-      var link = pt.dayId ? ("#/day/" + pt.dayId + (pt.eventId ? "/event/" + pt.eventId : "")) : null;
+      var itineraryLink = pt.dayId ? ("#/day/" + pt.dayId + (pt.eventId ? "/event/" + pt.eventId : "")) : null;
+      var mapsLink = pt.mapsQuery ? ("https://www.google.com/maps/search/?api=1&query=" + pt.mapsQuery) : null;
       marker.bindPopup(
         '<div class="map-popup"><strong>' + pt.label + "</strong>" +
-        (link ? '<a href="' + link + '">Open in itinerary &rarr;</a>' : "") +
+        (itineraryLink ? '<a href="' + itineraryLink + '">Open in itinerary &rarr;</a>' : "") +
+        (mapsLink ? '<a href="' + mapsLink + '" target="_blank" rel="noopener">Get directions &rarr;</a>' : "") +
         "</div>"
       );
     });
