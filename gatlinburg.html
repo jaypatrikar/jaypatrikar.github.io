@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Smokies Cabin Trip</title>
+<style>
+  /*
+    Warm cabin-in-the-woods palette: cream paper, forest green for the
+    Cosby leg, amber/gold for the Gatlinburg leg. Kept under both
+    prefers-color-scheme and data-theme rather than inverting to dark,
+    same reasoning as the Italy site — inverting this would undo the point.
+  */
+  :root, :root[data-theme="dark"], :root[data-theme="light"] {
+    --bg: #f3efe4;
+    --bg-raised: #fffdf8;
+    --ink: #3d4a3a;
+    --ink-soft: #8d9184;
+    --line: #e3ddc9;
+    --forest: #4f7942;
+    --forest-soft: #e7f0e0;
+    --amber: #c9862f;
+    --amber-soft: #faedd6;
+    --rust: #b5573a;
+    --rust-soft: #fbe4d8;
+    --stone: #7f97a8;
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+  a { color: inherit; }
+  button { font: inherit; }
+
+  /* ---------- Gate ---------- */
+  #gate {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: radial-gradient(ellipse at 50% 0%, var(--forest-soft), var(--bg) 65%);
+  }
+  #gate-card {
+    width: 100%;
+    max-width: 320px;
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 36px 28px 30px;
+    box-shadow: 0 20px 50px -25px rgba(80, 90, 60, 0.28);
+    text-align: center;
+  }
+  .ridge { position: relative; height: 34px; margin: 0 auto 20px; max-width: 220px; }
+  .ridge svg { display: block; width: 100%; height: 100%; overflow: visible; }
+  #gate form { display: flex; flex-direction: column; gap: 12px; }
+  #gate p.label {
+    text-transform: uppercase; letter-spacing: 0.14em; font-size: 11.5px;
+    color: var(--forest); font-weight: 700; margin: 0 0 2px;
+  }
+  #gate h2 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 22px; margin: 0 0 16px; line-height: 1.25;
+  }
+  #gate input {
+    font-size: 16px; padding: 13px 14px; border-radius: 10px; border: 1px solid var(--line);
+    background: var(--bg); color: var(--ink); text-align: center; letter-spacing: 0.04em;
+  }
+  #gate input:focus { outline: 2px solid var(--forest); outline-offset: 1px; }
+  #gate button.submit {
+    font-size: 15px; font-weight: 600; padding: 13px 14px; border-radius: 10px; border: none;
+    background: var(--forest); color: #fbfff6; cursor: pointer;
+  }
+  #gate button.submit:active { transform: scale(0.98); }
+  #gate button.submit:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  #gate .error { color: var(--rust); font-size: 13px; min-height: 16px; margin: 2px 0 0; }
+
+  /* ---------- App shell ---------- */
+  #content { display: none; }
+  #view { animation: fadein 0.32s ease both; }
+  @keyframes fadein {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #view { animation: none; }
+  }
+
+  .hero {
+    position: relative; padding: 56px 20px 36px; text-align: center;
+    background: linear-gradient(180deg, var(--forest-soft), transparent 75%);
+    overflow: hidden;
+  }
+  .hero.compact { padding: 26px 20px 22px; }
+  .hero .peaks { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .hero .inner { position: relative; z-index: 1; }
+  .eyebrow {
+    text-transform: uppercase; letter-spacing: 0.18em; font-size: 12px;
+    color: var(--forest); font-weight: 700; margin: 0 0 12px;
+  }
+  h1 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+    font-size: 40px; line-height: 1.1; margin: 0 0 10px; text-wrap: balance; letter-spacing: -0.01em;
+  }
+  .subtitle { font-family: Georgia, "Palatino Linotype", serif; font-style: italic; color: var(--ink-soft); font-size: 17px; margin: 0 0 6px; }
+  .dates { color: var(--ink-soft); font-size: 14px; font-variant-numeric: tabular-nums; letter-spacing: 0.03em; }
+  .rule-pine { width: 92px; height: auto; margin: 22px auto 0; display: block; }
+
+  .page { max-width: 620px; margin: 0 auto; padding: 8px 16px 80px; }
+
+  /* breadcrumb / back link */
+  .back {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13.5px; font-weight: 600; color: var(--forest);
+    text-decoration: none; padding: 6px 2px; margin-bottom: 4px;
+  }
+  .back svg { width: 15px; height: 15px; }
+  .crumbs { font-size: 12.5px; color: var(--ink-soft); margin: 2px 0 18px; }
+  .crumbs a { color: var(--ink-soft); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 2px; }
+
+  /* ---- Overview: list of days ---- */
+  .timeline { position: relative; display: flex; flex-direction: column; gap: 0; padding-top: 12px; }
+  .timeline::before { content: ""; position: absolute; top: 8px; bottom: 8px; left: 5px; width: 1px; background: var(--line); }
+  .leg { position: relative; padding: 0 0 6px 30px; }
+  .leg::before {
+    content: ""; position: absolute; left: 0; top: 7px; width: 11px; height: 11px;
+    border-radius: 50%; background: var(--bg-raised); border: 2px solid var(--dot, var(--forest));
+  }
+  .leg.amber { --dot: var(--amber); }
+
+  .day-link {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--bg-raised); border: 1px solid var(--line); border-left: 3px solid var(--dot, var(--forest));
+    border-radius: 4px 12px 12px 4px; padding: 15px 16px; margin-bottom: 24px;
+  }
+  .day-link:active { transform: scale(0.99); }
+  .leg-when { font-size: 12.5px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: 0.04em; margin-bottom: 4px; color: var(--dot, var(--forest)); }
+  .leg-title {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 21px; margin: 0 0 6px; text-wrap: balance; line-height: 1.2;
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  .leg-title .lt-left { display: flex; align-items: center; gap: 8px; }
+  .deco { width: 19px; height: 19px; flex-shrink: 0; display: inline-block; vertical-align: -3px; }
+  .leg-title .chev { width: 16px; height: 16px; color: var(--ink-soft); flex-shrink: 0; }
+  .leg-sub { font-size: 13.5px; color: var(--ink-soft); }
+  .leg-sub .count { font-variant-numeric: tabular-nums; }
+
+  /* ---- Day view: list of events ---- */
+  .event-list { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+  .event-link {
+    display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit;
+    background: var(--bg-raised); border: 1px solid var(--line); border-radius: 12px; padding: 13px 14px;
+  }
+  .event-link:active { transform: scale(0.99); }
+  .event-icon {
+    flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--dot-soft, var(--forest-soft)); color: var(--dot, var(--forest));
+  }
+  .event-icon svg { width: 17px; height: 17px; }
+  .event-text { flex: 1; min-width: 0; }
+  .event-title { font-weight: 600; font-size: 14.5px; }
+  .event-meta { font-size: 12.5px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .event-link .chev { width: 15px; height: 15px; color: var(--ink-soft); flex-shrink: 0; }
+
+  /* ---- Hour-by-hour schedule ---- */
+  .sched-heading {
+    margin: 18px 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--ink-soft); font-weight: 700;
+  }
+  .sched-sub { font-size: 12px; color: var(--ink-soft); margin: 0 0 12px; font-style: italic; }
+  .sched-row { position: relative; display: flex; gap: 12px; padding: 0 0 16px 0; }
+  .sched-row:last-child { padding-bottom: 0; }
+  .sched-time {
+    flex-shrink: 0; width: 66px; font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums;
+    color: var(--dot, var(--forest)); padding-top: 1px;
+  }
+  .sched-rail { flex-shrink: 0; width: 10px; display: flex; flex-direction: column; align-items: center; }
+  .sched-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--dot, var(--forest)); margin-top: 4px; flex-shrink: 0; }
+  .sched-line { flex: 1; width: 1px; background: var(--line); margin-top: 3px; }
+  .sched-row:last-child .sched-line { display: none; }
+  .sched-body { flex: 1; padding-bottom: 2px; }
+  .sched-title { font-weight: 600; font-size: 14px; }
+  .sched-link { display: inline-flex; align-items: center; gap: 4px; text-decoration: none; color: var(--dot, var(--forest)); }
+  .sched-link:hover { text-decoration: underline; }
+  .sched-link svg { width: 12px; height: 12px; flex-shrink: 0; }
+  .sched-note { font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; line-height: 1.4; }
+
+  .day-note {
+    margin-top: 16px; padding: 12px 14px; border-radius: 10px;
+    background: var(--forest-soft); color: var(--ink); font-size: 13.5px; font-style: italic;
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+  .warn {
+    margin-top: 16px; padding: 13px 14px; border-radius: 10px;
+    background: var(--rust-soft); border: 1px solid #edb896; color: #7a3c1e; font-size: 13.5px;
+    display: flex; gap: 8px; align-items: flex-start; line-height: 1.45;
+  }
+  .warn strong { display: block; margin-bottom: 2px; }
+
+  /* ---- Ideas to explore (alternates, not booked) ---- */
+  .ideas-heading {
+    margin: 28px 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--ink-soft); font-weight: 700; display: flex; align-items: center; gap: 6px;
+  }
+  .ideas-sub { font-size: 12.5px; color: var(--ink-soft); margin: 0 0 12px; }
+  .idea-group { margin-bottom: 18px; }
+  .idea-group-label {
+    font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--dot, var(--forest));
+    font-weight: 700; margin-bottom: 8px;
+  }
+  .idea-card {
+    display: flex; align-items: flex-start; gap: 10px;
+    background: var(--bg-raised); border: 1px solid var(--line); border-radius: 10px;
+    padding: 11px 13px; margin-bottom: 8px;
+  }
+  .idea-main { flex: 1; min-width: 0; }
+  .idea-title { font-weight: 600; font-size: 14px; }
+  .idea-title a { text-decoration: none; color: var(--dot, var(--forest)); }
+  .idea-title a:hover { text-decoration: underline; }
+  .idea-note { font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; }
+  .pill {
+    display: inline-block; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 2px 7px; border-radius: 20px; margin-top: 6px;
+    background: var(--rust-soft); color: #7a3c1e;
+  }
+  .pill.gold { background: var(--amber-soft); color: #7a5313; }
+  .idea-go { flex-shrink: 0; color: var(--ink-soft); }
+  .idea-go svg { width: 15px; height: 15px; }
+
+  /* ---- Event view: detail card ---- */
+  .event-hero { display: flex; align-items: center; gap: 12px; margin: 6px 0 18px; }
+  .event-hero .event-icon { width: 46px; height: 46px; }
+  .event-hero .event-icon svg { width: 21px; height: 21px; }
+  .event-hero h2 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 23px; margin: 0; line-height: 1.2; text-wrap: balance;
+  }
+  .event-hero .event-kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--dot, var(--forest)); font-weight: 700; margin-bottom: 3px; }
+
+  .card {
+    background: var(--bg-raised); border: 1px solid var(--line); border-left: 3px solid var(--dot, var(--forest));
+    border-radius: 4px 12px 12px 4px; padding: 16px 17px; font-size: 14.5px; color: var(--ink-soft);
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .card strong { color: var(--ink); font-weight: 600; }
+  .card .row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .code {
+    font-variant-numeric: tabular-nums; background: var(--dot-soft, var(--forest-soft)); color: var(--dot, var(--forest));
+    padding: 2px 8px; border-radius: 5px; font-size: 12.5px; font-weight: 700; letter-spacing: 0.02em; display: inline-block;
+  }
+  .note { font-style: italic; color: var(--ink-soft); font-size: 13.5px; }
+  .field-label { font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); margin-bottom: 1px; }
+
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .btn {
+    flex: 1 1 auto; min-width: 0; text-align: center; text-decoration: none; font-size: 13px; font-weight: 600;
+    padding: 10px 12px; border-radius: 8px; background: var(--bg); border: 1px solid var(--line); color: var(--ink);
+    display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 40px;
+  }
+  .btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .btn:active { transform: scale(0.97); }
+
+  footer {
+    max-width: 620px; margin: 48px auto 0; padding: 20px 16px 40px; border-top: 1px solid var(--line);
+    font-size: 13px; color: var(--ink-soft); text-align: center;
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 30px; }
+    .subtitle { font-size: 15px; }
+    .leg-title { font-size: 19px; }
+    .hero { padding: 44px 16px 30px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div id="gate-card">
+    <div class="ridge">
+      <svg viewBox="0 0 114 30">
+        <path d="M2 26 L20 8 L30 18 L46 4 L60 22 L74 10 L88 22 L98 14 L112 26" fill="none" stroke="var(--forest)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+        <path d="M2 27 L16 15 L26 23 L40 11 L52 25 L66 16 L80 25 L92 17 L112 27" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="0.7"/>
+      </svg>
+    </div>
+    <p class="label">Private itinerary</p>
+    <h2>The Smokies<br>await</h2>
+    <form id="gate-form" autocomplete="off">
+      <input type="password" id="pw" name="pw" autofocus inputmode="text" placeholder="Password">
+      <button type="submit" class="submit">Unlock</button>
+      <p class="error" id="gate-error"></p>
+    </form>
+  </div>
+</div>
+
+<div id="content">
+  <!-- Shared SVG symbol defs, always present in DOM -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <g id="pine">
+        <path d="M0 -14 L6 -3 L2.5 -3 L8 6 L3 6 L9 15 L-9 15 L-3 6 L-8 6 L-2.5 -3 L-6 -3 Z"/>
+        <rect x="-1.5" y="15" width="3" height="4"/>
+      </g>
+      <g id="ridgeline">
+        <path d="M0 0 L14 -12 L22 -4 L36 -16 L48 -2 L60 -13 L70 -6 L86 -16" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <path id="icon-drive" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+        d="M5 11l1.6-4.8A2 2 0 0 1 8.5 5h7a2 2 0 0 1 1.9 1.4L19 11 M4 11h16v5.2a1 1 0 0 1-1 1h-1.2a1 1 0 0 1-1-1V15H7.2v1.2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z M7 14h.01 M17 14h.01"/>
+      <g id="icon-stay" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/>
+      </g>
+      <path id="icon-hike" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+        d="M3 19l6.5-12 3 5.5 2-3.5 6.5 10z M9 12.5l1.8 3.2 M17 10l-2.2 3.8"/>
+      <path id="icon-activity" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+        d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2.2a1.8 1.8 0 0 0 0 3.6V16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2.2a1.8 1.8 0 0 0 0-3.6z"/>
+      <path id="icon-chevron" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
+      <path id="icon-back" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/>
+      <path id="icon-map" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+      <circle id="icon-map-dot" cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path id="icon-phone" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/>
+      <path id="icon-external" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6 M15 3h6v6 M10 14L21 3"/>
+      <path id="icon-warn" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        d="M12 9v4 M12 17h.01 M10.3 3.9L2.6 17a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/>
+    </defs>
+  </svg>
+
+  <div id="view"></div>
+
+  <footer>Jay &amp; Suchita &middot; last updated 16 July 2026</footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* =========================================================
+     PASSWORD GATE
+  ========================================================= */
+  var CORRECT_HASH = "3ad83e52323adc324102b5af9209212e86359e262a3ce86a36cb99d0d5523a87";
+  var SESSION_KEY = "gatlinburg-unlocked";
+
+  function sha256Hex(text) {
+    var enc = new TextEncoder().encode(text);
+    return crypto.subtle.digest("SHA-256", enc).then(function (buf) {
+      return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, "0"); }).join("");
+    });
+  }
+  function revealApp() {
+    document.getElementById("gate").style.display = "none";
+    document.getElementById("content").style.display = "block";
+    route();
+  }
+  document.getElementById("gate-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var val = document.getElementById("pw").value;
+    sha256Hex(val).then(function (hash) {
+      if (hash === CORRECT_HASH) {
+        sessionStorage.setItem(SESSION_KEY, "1");
+        revealApp();
+      } else {
+        document.getElementById("gate-error").textContent = "Wrong password";
+        document.getElementById("pw").value = "";
+      }
+    });
+  });
+
+  /* =========================================================
+     TRIP DATA
+     theme "forest" = Cosby leg, "amber" = Gatlinburg leg / travel out.
+     Event types: drive, stay, hike, activity.
+  ========================================================= */
+  var TRIP = {
+    title: "Smokies Cabin Trip",
+    subtitle: "Jay &amp; Suchita",
+    dates: "24 &ndash; 28 July 2026",
+    days: [
+      {
+        id: "2026-07-24", when: "FRI 24 JUL", title: "Pittsburgh → Cosby", theme: "forest", deco: "pine",
+        note: "Leaving in the evening means a late-night arrival — self-check-in via door code since Denise won't be there. Confirm the code with her ahead of time.",
+        events: [
+          { id: "drive-cosby", type: "drive", title: "Drive to Cosby, TN", time: "Evening departure", summary: "~340 mi · ~5.5-6 hrs",
+            detail: { "Route": "Pittsburgh, PA → Cosby, TN", "Distance": "~340 miles", "Duration": "~5.5-6 hours", "Departs": "Evening, after work" } },
+          { id: "cool-waters-stay", type: "stay", title: "Cool Waters (Charming Creekside Couple's Retreat)", time: "late-night self check-in", summary: "Hosted by Denise · 2 nights",
+            confirmation: "HMDNBEYHYS", host: "Denise", phone: "+18045434144", phoneDisplay: "+1 804-543-4144",
+            address: "811 Cool Way, Cosby TN 37722", mapQuery: "811+Cool+Way+Cosby+TN+37722",
+            detail: { "Check-in": "4:00 PM Fri 24 Jul (self-check-in, arriving late)", "Checkout": "10:00 AM Sun 26 Jul", "Address": "811 Cool Way, Cosby TN 37722" } }
+        ],
+        schedule: [
+          { time: "evening", title: "Leave Pittsburgh", note: "After work — ~5.5-6 hr drive ahead." },
+          { time: "late", title: "Arrive at Cool Waters", note: "Self-check-in via door code. Straight to bed, no activities tonight.", link: "#/day/2026-07-24/event/cool-waters-stay" }
+        ],
+        ideas: [
+          { category: "Directions from Denise (from the East)", title: "Driving route to Cool Waters", note: "TN-32 S &amp; I-40 E to Hartford Rd (7.0mi) → continue straight onto Hartford Rd (5.0mi) → right onto Lindsey Gap Rd (1.3mi) → left onto Ground Hog Rd (1.2mi) → left onto TN-32 S (0.1mi) → continue onto Trail Hollow Rd → drive to Cool Way, driveway on the right after the stone columns.", link: "https://www.google.com/maps/search/?api=1&query=811+Cool+Way+Cosby+TN", reservation: false }
+        ]
+      },
+      {
+        id: "2026-07-25", when: "SAT 25 JUL", title: "Rainbow Falls Trail", theme: "forest", deco: "pine",
+        note: "Trailhead is actually on the Gatlinburg side — about 40-45 min each way from Cosby, so today means driving there and back to Cool Waters for the night.",
+        events: [
+          { id: "rainbow-falls-hike", type: "hike", title: "Rainbow Falls Trail", time: "Late morning start", summary: "5.4 mi · Moderate · ~3.2 hrs",
+            url: "https://www.alltrails.com/trail/us/tennessee/rainbow-falls-trail",
+            mapQuery: "Rainbow+Falls+Trailhead+Cherokee+Orchard+Rd+Gatlinburg+TN",
+            detail: { "Distance": "5.4 mi round trip", "Difficulty": "Moderate", "Duration": "~3.2 hours", "Elevation gain": "1,594 ft", "Highlight": "80 ft waterfall — tallest single-drop on this side of the park", "Rating": "4.7★ (AllTrails, 20k+ hikes logged)" } }
+        ],
+        schedule: [
+          { time: "late am", title: "Sleep in, breakfast at the cabin", note: "Accounting for the late arrival Friday night." },
+          { time: "late am", title: "Drive to the Rainbow Falls trailhead", note: "Cherokee Orchard Rd, Gatlinburg — ~40-45 min from Cool Waters.", link: "https://www.google.com/maps/search/?api=1&query=Rainbow+Falls+Trailhead+Cherokee+Orchard+Rd+Gatlinburg+TN" },
+          { time: "midday", title: "Rainbow Falls Trail", note: "~3.2 hrs round trip.", link: "#/day/2026-07-25/event/rainbow-falls-hike" },
+          { time: "afternoon", title: "Drive back to Cosby", note: "" },
+          { time: "evening", title: "Relax, grill dinner at the cabin", note: "" }
+        ],
+        ideas: [
+          { category: "More adventure (optional)", title: "Rafting in the Smokies", note: "One of Denise's recs — whitewater rafting outfitter.", link: "https://www.google.com/search?q=Rafting+in+the+Smokies", reservation: true },
+          { category: "More adventure (optional)", title: "CLIMBWORKS zipline", note: "Also from Denise's welcome email.", link: "https://www.google.com/search?q=CLIMBWORKS+zipline+Smokies", reservation: true },
+          { category: "Bigger hikes near Cosby — maybe next trip", title: "Mount Cammerer via Low Gap Trail", note: "11.2mi, Hard, ~6.5hrs, 3,149ft gain. Starts right at Cosby Campground — historic stone fire tower, panoramic views. Full-day commitment, didn't fit this trip without cutting something.", link: "https://www.alltrails.com/trail/us/tennessee/mount-cammerer-via-low-gap-trail", reservation: false },
+          { category: "Bigger hikes near Cosby — maybe next trip", title: "Ramsey Cascades Trail", note: "7.9mi, Hard, ~4.5hrs. Tallest waterfall in the whole park (100ft), ~10mi from the cabin. Highest AllTrails rating in the area (4.8★).", link: "https://www.alltrails.com/trail/us/tennessee/ramsey-cascades-trail", reservation: false },
+          { category: "Alternate near Cosby — not used", title: "Hen Wallow Falls (Gabes Mountain Trail)", note: "4.6mi, Moderate, ~2.3hrs, 90ft falls. Trailhead is minutes from Cool Waters at Cosby Campground — was the original Saturday pick, dropped once the hike moved to Rainbow Falls instead.", link: "https://www.alltrails.com/trail/us/tennessee/gabes-mountain-trail-to-hen-wallow-falls", reservation: false }
+        ]
+      },
+      {
+        id: "2026-07-26", when: "SUN 26 JUL", title: "Cosby → Gatlinburg", theme: "amber", deco: "ridge",
+        note: "Pure transition/rest day — no hike. Both checkout at Cool Waters and check-in at Mountain Romance are flexible, so there's no rush at either end.",
+        events: [
+          { id: "drive-gatlinburg", type: "drive", title: "Checkout &amp; drive to Gatlinburg", time: "Flexible, early checkout OK", summary: "~40 min drive",
+            detail: { "Checkout": "Cool Waters, flexible/early OK", "Route": "Cosby, TN → Gatlinburg, TN", "Duration": "~40 minutes" } },
+          { id: "mountain-romance-stay", type: "stay", title: "Mountain Romance", time: "Late check-in, no rush", summary: "Honeymoon Hills Cabin Rentals · hosted by Jeanie · 2 nights",
+            confirmation: "HMA2D3SPMK", host: "Jeanie",
+            address: "750 Honeymoon Hill Road, Gatlinburg TN 37738", mapQuery: "750+Honeymoon+Hill+Road+Gatlinburg+TN+37738",
+            detail: { "Cabin name": "Mountain Romance — ask for it by name at check-in", "Managed by": "Honeymoon Hills Cabin Rentals of Gatlinburg", "Check-in": "4:00 PM Sun 26 Jul (flexible, late is fine)", "Checkout": "10:00 AM Tue 28 Jul", "Amenities": "King bed, heart-shaped whirlpool tub, private outdoor hot tub + TV, year-round fireplace, charcoal grill, couples-only, no pets" } }
+        ],
+        schedule: [
+          { time: "morning", title: "Relaxed wake-up, pack up at Cool Waters", note: "" },
+          { time: "late am", title: "Checkout, drive to Gatlinburg", note: "~40 min.", link: "#/day/2026-07-26/event/drive-gatlinburg" },
+          { time: "afternoon", title: "Explore downtown Gatlinburg (optional)", note: "No plan yet — deliberately open." },
+          { time: "evening", title: "Check in at Mountain Romance", note: "", link: "#/day/2026-07-26/event/mountain-romance-stay" },
+          { time: "evening", title: "Redeem attraction ticket #1 + free dinner", note: "A Grand Majestic Theater show is a good low-effort pick for tonight — see Ideas below for the full ticket list." }
+        ],
+        ideas: [
+          { category: "Free attraction tickets — 2 nights only, pick wisely", title: "Full Mountain Attractions Gift Card list", note: "Emailed by Honeymoon Hills at booking — 1 free admission per attraction per paid night, expires daily (use-it-or-lose-it), ~$700/day value. Restaurants (free daily choice): Mama's Chick Kitchen or J.O.E. and Pop's Sub Shoppe. Also: Skyland Ranch, Soaky Mountain Water Park, Grand Majestic Theater (Hit Parade / Soul of Motown / Magic of Terry Evanswood), The Great Smoky Mountain Wheel, Titanic Museum, TopJump Trampoline Park, WonderWorks, Alcatraz East Crime Museum, Adventure Park Zip Lines, Legacy Mountain Zip Lines, Beyond the Lens! Family Fun, Big Creek Expeditions, Comedy Barn Theater, Country Tonight Music Show, Crave Golf Club, Paula Deen's Lumberjack Feud Supper Show, Rocky Top Mountain Coaster, Rowdy Bear Snow Park. Vendors subject to change without notice.", link: "https://www.google.com/search?q=Honeymoon+Hills+Cabin+Rentals+Gatlinburg+attractions", reservation: true }
+        ]
+      },
+      {
+        id: "2026-07-27", when: "MON 27 JUL", title: "Alum Cave Bluffs", theme: "amber", deco: "ridge",
+        note: "By today you'll have a full night's sleep — an early-ish start still makes sense to beat parking and any afternoon heat/storms.",
+        events: [
+          { id: "alum-cave-hike", type: "hike", title: "Alum Cave Bluffs", time: "Morning", summary: "4.6 mi · Moderate · ~2.5 hrs",
+            url: "https://www.alltrails.com/trail/us/tennessee/peregrine-peak-via-alum-cave-bluffs-trail",
+            mapQuery: "Alum+Cave+Trailhead+Newfound+Gap+Rd+Gatlinburg+TN",
+            detail: { "Distance": "4.6 mi round trip", "Difficulty": "Moderate", "Duration": "~2.5 hours", "Elevation gain": "1,154 ft", "Highlights": "Arch Rock, Inspiration Point, Alum Cave Bluffs", "Rating": "4.8★ (AllTrails)", "Note": "This is the shorter version stopping at the bluffs — the full trail continues 11.2mi Hard all the way to the Mount LeConte summit, not doing that push this trip." } }
+        ],
+        schedule: [
+          { time: "early am", title: "Drive to the Alum Cave trailhead", note: "Newfound Gap Rd (US-441), ~8.7mi south of Sugarlands Visitor Center. Parking fills up early.", link: "https://www.google.com/maps/search/?api=1&query=Alum+Cave+Trailhead+Newfound+Gap+Rd+Gatlinburg+TN" },
+          { time: "morning", title: "Alum Cave Bluffs hike", note: "Arch Rock, Inspiration Point, the bluffs. ~2.5 hrs round trip.", link: "#/day/2026-07-27/event/alum-cave-hike" },
+          { time: "midday", title: "Lunch back toward Gatlinburg", note: "" },
+          { time: "afternoon", title: "Rest, hot tub back at the cabin", note: "" },
+          { time: "evening", title: "Redeem attraction ticket #2 + free dinner", note: "Soaky Mountain Water Park or Skyland Ranch are good low-physical-effort picks after a hike day." }
+        ],
+        ideas: [
+          { category: "If you want the summit instead (long day)", title: "Alum Cave Trail to Mount LeConte", note: "Full route: 11.2mi, Hard, 3,057ft gain, typically 7-8 hrs round trip. LeConte Lodge sits at the top (reservations fill a year out). This is the one to save for a trip with more recovery time built in.", link: "https://www.alltrails.com/trail/us/tennessee/alum-cave-trail-to-mount-leconte", reservation: false },
+          { category: "Other Gatlinburg-side hikes — not used this trip", title: "Grotto Falls via Trillium Gap", note: "2.7mi, Moderate, ~1.3hrs. The only Smokies waterfall you can walk behind.", link: "https://www.alltrails.com/trail/us/tennessee/grotto-falls-trail", reservation: false },
+          { category: "Other Gatlinburg-side hikes — not used this trip", title: "Chimney Tops Trail", note: "3.7mi, Hard (steep). One of the best view-per-mile payoffs in the park, gets crowded.", link: "https://www.alltrails.com/trail/us/tennessee/chimney-tops-trail", reservation: false }
+        ]
+      },
+      {
+        id: "2026-07-28", when: "TUE 28 JUL", title: "Depart", theme: "amber", deco: "ridge",
+        events: [
+          { id: "cataract-falls-hike", type: "hike", title: "Cataract Falls (optional)", time: "Morning, before checkout", summary: "1 mi · Easy · ~20 min",
+            url: "https://www.alltrails.com/trail/us/tennessee/cataract-falls--2",
+            mapQuery: "Cataract+Falls+Trailhead+Sugarlands+Visitor+Center+Gatlinburg+TN",
+            detail: { "Distance": "1 mi round trip", "Difficulty": "Easy", "Duration": "~20 minutes", "Near": "Sugarlands Visitor Center — basically on the route home", "Rating": "4.5★ (AllTrails)" } },
+          { id: "drive-home", type: "drive", title: "Drive home to Pittsburgh", time: "After 10am checkout", summary: "~340 mi · ~5.5-6 hrs",
+            detail: { "Checkout": "10:00 AM, Mountain Romance", "Route": "Gatlinburg, TN → Pittsburgh, PA", "Distance": "~340 miles", "Duration": "~5.5-6 hours" } }
+        ],
+        schedule: [
+          { time: "morning", title: "Optional easy walk: Cataract Falls", note: "Right by Sugarlands, on the way out — only ~20 min round trip.", link: "#/day/2026-07-28/event/cataract-falls-hike" },
+          { time: "10:00", title: "Checkout, Mountain Romance", note: "" },
+          { time: "late am", title: "Begin drive home", note: "" },
+          { time: "evening", title: "Arrive Pittsburgh", note: "" }
+        ]
+      }
+    ]
+  };
+
+  /* =========================================================
+     HELPERS
+  ========================================================= */
+  function findDay(id) { for (var i = 0; i < TRIP.days.length; i++) if (TRIP.days[i].id === id) return TRIP.days[i]; return null; }
+  function findEvent(day, id) { if (!day) return null; for (var i = 0; i < day.events.length; i++) if (day.events[i].id === id) return day.events[i]; return null; }
+  function esc(s) { return String(s == null ? "" : s); }
+
+  function decoIcon(deco, cls) {
+    if (deco === "pine") return '<svg class="' + cls + '" viewBox="0 0 20 34"><use href="#pine" x="10" y="16" fill="var(--forest)"/></svg>';
+    if (deco === "ridge") return '<svg class="' + cls + '" viewBox="0 0 20 20" style="width:22px;height:14px;vertical-align:-1px"><use href="#ridgeline" x="-1" y="14" color="var(--amber)"/></svg>';
+    return "";
+  }
+
+  function eventIconId(type) {
+    if (type === "drive") return "icon-drive";
+    if (type === "stay") return "icon-stay";
+    if (type === "hike") return "icon-hike";
+    return "icon-activity";
+  }
+
+  function chevron() { return '<svg class="chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg>'; }
+  function backChevron() { return '<svg viewBox="0 0 24 24"><use href="#icon-back"/></svg>'; }
+
+  function heroPeaks() {
+    return '<svg class="peaks" viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice">' +
+      '<path d="M0 140 L40 90 L70 115 L120 60 L165 120 L210 80 L250 130 L290 75 L330 120 L365 95 L400 140 Z" fill="var(--forest)" opacity="0.14"/>' +
+      '<path d="M0 150 L55 105 L95 130 L150 85 L195 140 L245 100 L285 145 L325 100 L365 135 L400 150 Z" fill="var(--amber)" opacity="0.16"/>' +
+      '<use href="#pine" x="60" y="128" fill="var(--forest)" opacity="0.4" transform="scale(0.8)" style="transform-origin:60px 128px"/>' +
+      '<use href="#pine" x="330" y="132" fill="var(--forest)" opacity="0.4" transform="scale(0.9)" style="transform-origin:330px 132px"/>' +
+      '<use href="#pine" x="200" y="140" fill="var(--forest)" opacity="0.3" transform="scale(0.6)" style="transform-origin:200px 140px"/>' +
+      '</svg>';
+  }
+
+  /* =========================================================
+     VIEWS
+  ========================================================= */
+  function viewOverview() {
+    var rows = TRIP.days.map(function (day) {
+      return '<div class="leg ' + (day.theme === "amber" ? "amber" : "") + '">' +
+        '<a class="day-link" href="#/day/' + day.id + '">' +
+          '<div class="leg-when">' + esc(day.when) + '</div>' +
+          '<h2 class="leg-title"><span class="lt-left">' + decoIcon(day.deco, "deco") + esc(day.title) + '</span>' + chevron() + '</h2>' +
+          '<div class="leg-sub">' + (day.events.length ? '<span class="count">' + day.events.length + '</span> event' + (day.events.length === 1 ? "" : "s") : 'Free day') + (day.schedule ? ' &middot; has a plan' : '') + '</div>' +
+        '</a>' +
+      '</div>';
+    }).join("");
+
+    return '<div class="hero">' + heroPeaks() +
+      '<div class="inner">' +
+        '<p class="eyebrow">Cabin trip &middot; Great Smoky Mountains</p>' +
+        '<h1>' + TRIP.title + '</h1>' +
+        '<p class="subtitle">' + TRIP.subtitle + '</p>' +
+        '<p class="dates">' + TRIP.dates + '</p>' +
+        '<svg class="rule-pine" viewBox="0 0 92 20"><use href="#pine" x="46" y="12" fill="var(--forest)" transform="scale(0.6)" style="transform-origin:46px 12px"/><path d="M50 12h34M8 12h34" stroke="var(--amber)" stroke-width="1.2" stroke-dasharray="1.5 4" stroke-linecap="round"/></svg>' +
+      '</div></div>' +
+      '<div class="page"><div class="timeline">' + rows + '</div></div>';
+  }
+
+  function viewDay(dayId) {
+    var day = findDay(dayId);
+    if (!day) return viewNotFound();
+
+    var events = day.events.map(function (ev) {
+      var dotSoft = day.theme === "amber" ? "var(--amber-soft)" : "var(--forest-soft)";
+      var dot = day.theme === "amber" ? "var(--amber)" : "var(--forest)";
+      return '<a class="event-link" href="#/day/' + day.id + '/event/' + ev.id + '" style="--dot:' + dot + ';--dot-soft:' + dotSoft + '">' +
+        '<span class="event-icon"><svg viewBox="0 0 24 24"><use href="#' + eventIconId(ev.type) + '"/></svg></span>' +
+        '<span class="event-text"><span class="event-title">' + esc(ev.title) + '</span><br><span class="event-meta">' + esc(ev.summary) + '</span></span>' +
+        chevron() +
+      '</a>';
+    }).join("");
+
+    var note = day.note ? '<div class="day-note">&#127794; ' + day.note + '</div>' : "";
+    var schedule = renderSchedule(day);
+    var ideas = renderIdeas(day);
+    var eventsBlock = events ? '<div class="event-list">' + events + '</div>' : "";
+
+    return '<div class="hero compact">' + heroPeaks() +
+      '<div class="inner">' +
+        '<a class="back" href="#/">' + backChevron() + ' All days</a>' +
+        '<p class="eyebrow">' + esc(day.when) + '</p>' +
+        '<h1 style="font-size:30px">' + decoIcon(day.deco, "deco") + ' ' + esc(day.title) + '</h1>' +
+      '</div></div>' +
+      '<div class="page">' +
+        eventsBlock +
+        note +
+        schedule +
+        ideas +
+      '</div>';
+  }
+
+  /* Hour-by-hour plan for a day: day.schedule = [{time, title, note, link}] */
+  function renderSchedule(day) {
+    if (!day.schedule || !day.schedule.length) return "";
+    var dot = day.theme === "amber" ? "var(--amber)" : "var(--forest)";
+    var rows = day.schedule.map(function (block) {
+      var titleHtml = block.link
+        ? '<a href="' + block.link + '"' + (block.link.indexOf("#/") === 0 ? "" : ' target="_blank" rel="noopener"') + ' class="sched-link">' + esc(block.title) + (block.link.indexOf("#/") === 0 ? "" : ' <svg viewBox="0 0 24 24"><use href="#icon-external"/></svg>') + '</a>'
+        : esc(block.title);
+      return '<div class="sched-row">' +
+        '<div class="sched-time">' + esc(block.time) + '</div>' +
+        '<div class="sched-rail"><div class="sched-dot"></div><div class="sched-line"></div></div>' +
+        '<div class="sched-body"><div class="sched-title">' + titleHtml + '</div>' +
+        (block.note ? '<div class="sched-note">' + esc(block.note) + '</div>' : "") +
+        '</div>' +
+      '</div>';
+    }).join("");
+    return '<div class="sched-heading" style="color:' + dot + '">Today&rsquo;s plan</div>' +
+      '<p class="sched-sub">A draft, not locked in — swap anything.</p>' +
+      '<div class="sched-list" style="--dot:' + dot + '">' + rows + '</div>';
+  }
+
+  /* Alternates worth exploring but not booked yet — grouped by category. */
+  function renderIdeas(day) {
+    if (!day.ideas || !day.ideas.length) return "";
+    var dot = day.theme === "amber" ? "var(--amber)" : "var(--forest)";
+
+    var groups = {};
+    var order = [];
+    day.ideas.forEach(function (idea) {
+      if (!groups[idea.category]) { groups[idea.category] = []; order.push(idea.category); }
+      groups[idea.category].push(idea);
+    });
+
+    var groupsHtml = order.map(function (cat) {
+      var cards = groups[cat].map(function (idea) {
+        var pill = idea.reservation ? '<span class="pill ' + (day.theme === "amber" ? "gold" : "") + '">Check details / reservation</span>' : "";
+        return '<div class="idea-card">' +
+          '<div class="idea-main">' +
+            '<div class="idea-title"><a href="' + idea.link + '" target="_blank" rel="noopener">' + esc(idea.title) + '</a></div>' +
+            '<div class="idea-note">' + esc(idea.note) + '</div>' +
+            pill +
+          '</div>' +
+          '<a class="idea-go" href="' + idea.link + '" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#icon-external"/></svg></a>' +
+        '</div>';
+      }).join("");
+      return '<div class="idea-group"><div class="idea-group-label" style="color:' + dot + '">' + esc(cat) + '</div>' + cards + '</div>';
+    }).join("");
+
+    return '<div class="ideas-heading">' +
+        '<svg style="width:14px;height:14px" viewBox="0 0 20 34"><use href="#pine" x="10" y="16" fill="' + dot + '" transform="scale(0.5)" style="transform-origin:10px 16px"/></svg>' +
+        'Ideas to explore' +
+      '</div>' +
+      '<p class="ideas-sub">Alternates and options, not locked in — follow the links, decide together.</p>' +
+      groupsHtml;
+  }
+
+  function viewEvent(dayId, eventId) {
+    var day = findDay(dayId);
+    var ev = findEvent(day, eventId);
+    if (!day || !ev) return viewNotFound();
+
+    var dot = day.theme === "amber" ? "var(--amber)" : "var(--forest)";
+    var dotSoft = day.theme === "amber" ? "var(--amber-soft)" : "var(--forest-soft)";
+
+    var detailRows = "";
+    if (ev.detail) {
+      Object.keys(ev.detail).forEach(function (k) {
+        detailRows += '<div class="row"><span class="field-label" style="display:inline">' + esc(k) + '</span><strong>' + esc(ev.detail[k]) + '</strong></div>';
+      });
+    }
+
+    var confirmation = ev.confirmation ? '<div class="row"><span>Confirmation</span><span class="code" style="--dot:' + dot + ';--dot-soft:' + dotSoft + '">' + esc(ev.confirmation) + '</span></div>' : "";
+
+    var actions = "";
+    if (ev.url || ev.mapQuery || ev.phone) {
+      actions = '<div class="actions">';
+      if (ev.url) actions += '<a class="btn" href="' + ev.url + '" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#icon-external"/></svg>AllTrails</a>';
+      if (ev.mapQuery) actions += '<a class="btn" href="https://www.google.com/maps/search/?api=1&query=' + ev.mapQuery + '" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#icon-map"/><use href="#icon-map-dot"/></svg>Map</a>';
+      if (ev.phone) actions += '<a class="btn" href="tel:' + ev.phone + '"><svg viewBox="0 0 24 24"><use href="#icon-phone"/></svg>' + esc(ev.host || "Call") + '</a>';
+      actions += '</div>';
+    }
+
+    return '<div class="page" style="padding-top:20px">' +
+      '<a class="back" href="#/day/' + day.id + '">' + backChevron() + ' ' + esc(day.title) + '</a>' +
+      '<div class="crumbs"><a href="#/">All days</a> &rsaquo; <a href="#/day/' + day.id + '">' + esc(day.when) + '</a> &rsaquo; ' + esc(ev.title) + '</div>' +
+      '<div class="event-hero" style="--dot:' + dot + ';--dot-soft:' + dotSoft + '">' +
+        '<span class="event-icon"><svg viewBox="0 0 24 24"><use href="#' + eventIconId(ev.type) + '"/></svg></span>' +
+        '<div><div class="event-kicker" style="--dot:' + dot + '">' + esc(ev.type) + '</div><h2>' + esc(ev.title) + '</h2></div>' +
+      '</div>' +
+      '<div class="card" style="--dot:' + dot + '">' +
+        detailRows +
+        confirmation +
+        (ev.address ? '<span class="note">' + esc(ev.address) + '</span>' : "") +
+        actions +
+      '</div>' +
+    '</div>';
+  }
+
+  function viewNotFound() {
+    return '<div class="page" style="padding-top:40px;text-align:center">' +
+      '<p>That trail wandered off somewhere in the Smokies.</p>' +
+      '<a class="back" href="#/" style="justify-content:center">' + backChevron() + ' Back to the itinerary</a>' +
+    '</div>';
+  }
+
+  /* =========================================================
+     ROUTER
+  ========================================================= */
+  function route() {
+    var hash = location.hash.replace(/^#\/?/, "");
+    var parts = hash.split("/").filter(Boolean);
+    var view = document.getElementById("view");
+    if (!view) return;
+
+    var html;
+    if (parts[0] === "day" && parts[1] && parts[2] === "event" && parts[3]) {
+      html = viewEvent(decodeURIComponent(parts[1]), decodeURIComponent(parts[3]));
+    } else if (parts[0] === "day" && parts[1]) {
+      html = viewDay(decodeURIComponent(parts[1]));
+    } else {
+      html = viewOverview();
+    }
+
+    view.innerHTML = html;
+    view.style.animation = "none";
+    void view.offsetWidth;
+    view.style.animation = "";
+    window.scrollTo(0, 0);
+  }
+
+  window.addEventListener("hashchange", route);
+
+  // Checked here (after TRIP data + all view functions are defined) rather
+  // than up near the gate code, so a same-session reload doesn't call
+  // route() before TRIP exists.
+  if (sessionStorage.getItem(SESSION_KEY) === "1") revealApp();
+})();
+</script>
+
+</body>
+</html>
