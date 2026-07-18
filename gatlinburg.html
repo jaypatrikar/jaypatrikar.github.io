@@ -411,27 +411,27 @@
     dates: "24 &ndash; 28 July 2026",
     days: [
       {
-        id: "2026-07-24", when: "FRI 24 JUL", title: "Pittsburgh → Cosby", theme: "forest", deco: "pine",
-        note: "Leaving in the evening means a late-night arrival — self-check-in via door code since Denise won't be there. Confirm the code with her ahead of time.",
+        id: "2026-07-24", when: "FRI 24 JUL", title: "Pittsburgh → Sevierville", theme: "forest", deco: "pine",
+        note: "Leaving in the evening means a late-night arrival — self-check-in, confirm the door code with Dmitrii ahead of time since it'll be after hours.",
         events: [
-          { id: "drive-cosby", type: "drive", title: "Drive to Cosby, TN", time: "Evening departure", summary: "~340 mi · ~5.5-6 hrs",
-            detail: { "Route": "Pittsburgh, PA → Cosby, TN", "Distance": "~340 miles", "Duration": "~5.5-6 hours", "Departs": "Evening, after work" } },
-          { id: "cool-waters-stay", type: "stay", title: "Cool Waters (Charming Creekside Couple's Retreat)", time: "late-night self check-in", summary: "Hosted by Denise · 2 nights",
-            confirmation: "HMDNBEYHYS", host: "Denise", phone: "+18045434144", phoneDisplay: "+1 804-543-4144",
-            address: "811 Cool Way, Cosby TN 37722", mapQuery: "811+Cool+Way+Cosby+TN+37722",
-            detail: { "Check-in": "4:00 PM Fri 24 Jul (self-check-in, arriving late)", "Checkout": "10:00 AM Sun 26 Jul", "Address": "811 Cool Way, Cosby TN 37722" } }
+          { id: "drive-sevierville", type: "drive", title: "Drive to Sevierville, TN", time: "Evening departure", summary: "~340 mi · ~5.5-6 hrs",
+            detail: { "Route": "Pittsburgh, PA → Sevierville, TN", "Distance": "~340 miles", "Duration": "~5.5-6 hours", "Departs": "Evening, after work" } },
+          { id: "geo-dome-stay", type: "stay", title: "Mountain Geo Dome Escape | Hot Tub under the Stars", time: "late-night self check-in", summary: "Hosted by Dmitrii · 2 nights",
+            host: "Dmitrii",
+            address: "1545 Mountain Trail Lane, Sevierville TN 37876", mapQuery: "1545+Mountain+Trail+Lane+Sevierville+TN+37876",
+            detail: { "Host": "Dmitrii", "Check-in": "4:00 PM Fri 24 Jul (self-check-in, arriving late)", "Checkout": "10:00 AM Sun 26 Jul", "Address": "1545 Mountain Trail Lane, Sevierville TN 37876", "Near": "Foxfire Adventure Park, off Dixon Branch Rd" } }
         ],
         schedule: [
           { time: "evening", title: "Leave Pittsburgh", note: "After work — ~5.5-6 hr drive ahead." },
-          { time: "late", title: "Arrive at Cool Waters", note: "Self-check-in via door code. Straight to bed, no activities tonight.", link: "#/day/2026-07-24/event/cool-waters-stay" }
+          { time: "late", title: "Arrive at the Geo Dome", note: "Self-check-in via door code. Straight to bed, no activities tonight.", link: "#/day/2026-07-24/event/geo-dome-stay" }
         ],
         ideas: [
-          { category: "Directions from Denise (from the East)", title: "Driving route to Cool Waters", note: "TN-32 S &amp; I-40 E to Hartford Rd (7.0mi) → continue straight onto Hartford Rd (5.0mi) → right onto Lindsey Gap Rd (1.3mi) → left onto Ground Hog Rd (1.2mi) → left onto TN-32 S (0.1mi) → continue onto Trail Hollow Rd → drive to Cool Way, driveway on the right after the stone columns.", link: "https://www.google.com/maps/search/?api=1&query=811+Cool+Way+Cosby+TN", reservation: false }
+          { category: "Directions from Dmitrii", title: "Getting to the dome", note: "The dome is about 25 minutes from Sevierville. Follow GPS to the dome address — once off Dixon Branch Rd, white round \"Meridian Mountain\" signs keep you on track. The dome itself is marked with the sign \"Dome B.\"", link: "https://www.google.com/maps/search/?api=1&query=1545+Mountain+Trail+Lane+Sevierville+TN+37876", reservation: false }
         ]
       },
       {
         id: "2026-07-25", when: "SAT 25 JUL", title: "Rainbow Falls Trail", theme: "forest", deco: "pine",
-        note: "Trailhead is actually on the Gatlinburg side — about 40-45 min each way from Cosby, so today means driving there and back to Cool Waters for the night.",
+        note: "The dome is roughly 30-40 min from the Rainbow Falls trailhead (approximate, confirm once you're driving it — the property's rural access road adds some time beyond the straight-line Sevierville-to-Gatlinburg distance).",
         events: [
           { id: "rainbow-falls-hike", type: "hike", title: "Rainbow Falls Trail", time: "Late morning start", summary: "5.4 mi · Moderate · ~3.2 hrs",
             url: "https://www.alltrails.com/trail/us/tennessee/rainbow-falls-trail",
@@ -439,36 +439,35 @@
             detail: { "Distance": "5.4 mi round trip", "Difficulty": "Moderate", "Duration": "~3.2 hours", "Elevation gain": "1,594 ft", "Highlight": "80 ft waterfall — tallest single-drop on this side of the park", "Rating": "4.7★ (AllTrails, 20k+ hikes logged)" } }
         ],
         schedule: [
-          { time: "late am", title: "Sleep in, breakfast at the cabin", note: "Accounting for the late arrival Friday night." },
-          { time: "late am", title: "Drive to the Rainbow Falls trailhead", note: "Cherokee Orchard Rd, Gatlinburg — ~40-45 min from Cool Waters.", link: "https://www.alltrails.com/trail/us/tennessee/rainbow-falls-trail" },
+          { time: "late am", title: "Sleep in, breakfast at the dome", note: "Accounting for the late arrival Friday night." },
+          { time: "late am", title: "Drive to the Rainbow Falls trailhead", note: "Cherokee Orchard Rd, Gatlinburg — roughly 30-40 min from the dome.", link: "https://www.alltrails.com/trail/us/tennessee/rainbow-falls-trail" },
           { time: "midday", title: "Rainbow Falls Trail", note: "~3.2 hrs round trip.", link: "#/day/2026-07-25/event/rainbow-falls-hike" },
           { time: "afternoon", title: "Lunch: Tom & Earl's Back Alley Grill", note: "651 Parkway #110, Gatlinburg — casual burgers/sandwiches, open 11am-10pm daily, easy stop on the way back through town.", link: "https://www.google.com/maps/search/?api=1&query=Tom+and+Earls+Back+Alley+Grill+Gatlinburg+TN" },
-          { time: "afternoon", title: "Drive back to Cosby", note: "" },
-          { time: "evening", title: "Relax, grill dinner at the cabin", note: "" }
+          { time: "afternoon", title: "Drive back to the dome", note: "" },
+          { time: "evening", title: "Relax, hot tub under the stars", note: "" }
         ],
         ideas: [
-          { category: "Food", title: "Carver's Orchard & Applehouse", note: "3460 Cosby Hwy — home cooking, orchard, near the cabin. Heads up: Thu-Sun 11am-5pm only, so it's a lunch/early-stop option, not dinner.", link: "https://www.google.com/maps/search/?api=1&query=Carvers+Orchard+Applehouse+Restaurant+Cosby+TN", reservation: false },
-          { category: "More adventure (optional)", title: "Rafting in the Smokies", note: "One of Denise's recs — whitewater rafting outfitter.", link: "https://www.google.com/search?q=Rafting+in+the+Smokies", reservation: true },
-          { category: "More adventure (optional)", title: "CLIMBWORKS zipline", note: "Also from Denise's welcome email.", link: "https://www.google.com/search?q=CLIMBWORKS+zipline+Smokies", reservation: true },
-          { category: "Bigger hikes near Cosby — maybe next trip", title: "Mount Cammerer via Low Gap Trail", note: "11.2mi, Hard, ~6.5hrs, 3,149ft gain. Starts right at Cosby Campground — historic stone fire tower, panoramic views. Full-day commitment, didn't fit this trip without cutting something.", link: "https://www.alltrails.com/trail/us/tennessee/mount-cammerer-via-low-gap-trail", reservation: false },
-          { category: "Bigger hikes near Cosby — maybe next trip", title: "Ramsey Cascades Trail", note: "7.9mi, Hard, ~4.5hrs. Tallest waterfall in the whole park (100ft), ~10mi from the cabin. Highest AllTrails rating in the area (4.8★).", link: "https://www.alltrails.com/trail/us/tennessee/ramsey-cascades-trail", reservation: false },
-          { category: "Alternate near Cosby — not used", title: "Hen Wallow Falls (Gabes Mountain Trail)", note: "4.6mi, Moderate, ~2.3hrs, 90ft falls. Trailhead is minutes from Cool Waters at Cosby Campground — was the original Saturday pick, dropped once the hike moved to Rainbow Falls instead.", link: "https://www.alltrails.com/trail/us/tennessee/gabes-mountain-trail-to-hen-wallow-falls", reservation: false }
+          { category: "More adventure (optional)", title: "Rafting in the Smokies", note: "Whitewater rafting outfitter in the area.", link: "https://www.google.com/search?q=Rafting+in+the+Smokies", reservation: true },
+          { category: "More adventure (optional)", title: "CLIMBWORKS zipline", note: "Zipline outfitter in the area.", link: "https://www.google.com/search?q=CLIMBWORKS+zipline+Smokies", reservation: true },
+          { category: "Bigger hikes, Cosby side of the park — maybe next trip", title: "Mount Cammerer via Low Gap Trail", note: "11.2mi, Hard, ~6.5hrs, 3,149ft gain. Starts at Cosby Campground (northeast side of the park, a real drive from Sevierville) — historic stone fire tower, panoramic views. Full-day commitment, didn't fit this trip.", link: "https://www.alltrails.com/trail/us/tennessee/mount-cammerer-via-low-gap-trail", reservation: false },
+          { category: "Bigger hikes, Cosby side of the park — maybe next trip", title: "Ramsey Cascades Trail", note: "7.9mi, Hard, ~4.5hrs. Tallest waterfall in the whole park (100ft). Also on the Cosby/Greenbrier side. Highest AllTrails rating in the area (4.8★).", link: "https://www.alltrails.com/trail/us/tennessee/ramsey-cascades-trail", reservation: false },
+          { category: "Alternate — not used", title: "Hen Wallow Falls (Gabes Mountain Trail)", note: "4.6mi, Moderate, ~2.3hrs, 90ft falls. Cosby Campground trailhead — was the original Saturday pick when the first cabin was in Cosby, dropped once the hike moved to Rainbow Falls and the cabin moved to Sevierville.", link: "https://www.alltrails.com/trail/us/tennessee/gabes-mountain-trail-to-hen-wallow-falls", reservation: false }
         ]
       },
       {
-        id: "2026-07-26", when: "SUN 26 JUL", title: "Cosby → Gatlinburg", theme: "amber", deco: "ridge",
-        note: "Pure transition/rest day — no hike. Both checkout at Cool Waters and check-in at Mountain Romance are flexible, so there's no rush at either end.",
+        id: "2026-07-26", when: "SUN 26 JUL", title: "Sevierville → Gatlinburg", theme: "amber", deco: "ridge",
+        note: "Pure transition/rest day — no hike. Both checkout at the dome and check-in at Mountain Romance are flexible, so there's no rush at either end.",
         events: [
-          { id: "drive-gatlinburg", type: "drive", title: "Checkout &amp; drive to Gatlinburg", time: "Flexible, early checkout OK", summary: "~40 min drive",
-            detail: { "Checkout": "Cool Waters, flexible/early OK", "Route": "Cosby, TN → Gatlinburg, TN", "Duration": "~40 minutes" } },
+          { id: "drive-gatlinburg", type: "drive", title: "Checkout &amp; drive to Gatlinburg", time: "Flexible, early checkout OK", summary: "~30 min drive",
+            detail: { "Checkout": "Mountain Geo Dome Escape, flexible/early OK", "Route": "Sevierville, TN → Gatlinburg, TN", "Duration": "~25-30 minutes (approximate)" } },
           { id: "mountain-romance-stay", type: "stay", title: "Mountain Romance", time: "Late check-in, no rush", summary: "Honeymoon Hills Cabin Rentals · hosted by Jeanie · 2 nights",
             confirmation: "HMA2D3SPMK", host: "Jeanie",
             address: "750 Honeymoon Hill Road, Gatlinburg TN 37738", mapQuery: "750+Honeymoon+Hill+Road+Gatlinburg+TN+37738",
             detail: { "Cabin name": "Mountain Romance — ask for it by name at check-in", "Managed by": "Honeymoon Hills Cabin Rentals of Gatlinburg", "Check-in": "4:00 PM Sun 26 Jul (flexible, late is fine)", "Checkout": "10:00 AM Tue 28 Jul", "Amenities": "King bed, heart-shaped whirlpool tub, private outdoor hot tub + TV, year-round fireplace, charcoal grill, couples-only, no pets" } }
         ],
         schedule: [
-          { time: "morning", title: "Relaxed wake-up, pack up at Cool Waters", note: "" },
-          { time: "late am", title: "Checkout, drive to Gatlinburg", note: "~40 min.", link: "#/day/2026-07-26/event/drive-gatlinburg" },
+          { time: "morning", title: "Relaxed wake-up, pack up at the dome", note: "" },
+          { time: "late am", title: "Checkout, drive to Gatlinburg", note: "~25-30 min.", link: "#/day/2026-07-26/event/drive-gatlinburg" },
           { time: "afternoon", title: "Explore downtown Gatlinburg (optional)", note: "No plan yet — deliberately open." },
           { time: "evening", title: "Check in at Mountain Romance", note: "", link: "#/day/2026-07-26/event/mountain-romance-stay" },
           { time: "evening", title: "Free dinner: Mama's Chicken Kitchen or J.O.E. and Pop's Sub Shoppe", note: "Same building, 1244 East Pkwy, Gatlinburg — both open 11am-9pm daily. Pick one for tonight, save the other for Monday.", link: "https://www.google.com/maps/search/?api=1&query=1244+East+Pkwy+Gatlinburg+TN" },
@@ -728,21 +727,21 @@
   ========================================================= */
   var MAP_POINTS = {
     pit:          { lat: 40.4915, lng: -80.2329, label: "Pittsburgh — home", type: "hub" },
-    coolWaters:   { lat: 35.7828, lng: -83.2035, label: "Cool Waters — Cosby cabin", type: "stay", dayId: "2026-07-24", eventId: "cool-waters-stay" },
+    geoDome:      { lat: 35.7900, lng: -83.5700, label: "Mountain Geo Dome Escape — Sevierville", type: "stay", dayId: "2026-07-24", eventId: "geo-dome-stay" },
     rainbowFalls: { lat: 35.6857, lng: -83.4869, label: "Rainbow Falls Trail", type: "activity", dayId: "2026-07-25", eventId: "rainbow-falls-hike" },
     mtnRomance:   { lat: 35.7050, lng: -83.4800, label: "Mountain Romance — Gatlinburg cabin", type: "stay", dayId: "2026-07-26", eventId: "mountain-romance-stay" },
     alumCave:     { lat: 35.6323, lng: -83.4508, label: "Alum Cave Trailhead → Mt. LeConte", type: "activity", dayId: "2026-07-27", eventId: "alum-cave-hike" },
     cataractFalls:{ lat: 35.6786, lng: -83.5339, label: "Cataract Falls", type: "activity", dayId: "2026-07-28", eventId: "cataract-falls-hike" },
     roaringFork:  { lat: 35.6959, lng: -83.4956, label: "Roaring Fork Motor Nature Trail — bear-viewing road", type: "sight", mapsQuery: "Roaring+Fork+Motor+Nature+Trail+Gatlinburg+TN" },
-    cosbyCamp:    { lat: 35.7815, lng: -83.2097, label: "Cosby Campground — Hen Wallow / Mt. Cammerer trailheads", type: "sight", mapsQuery: "Cosby+Campground+TN" }
+    cosbyCamp:    { lat: 35.7815, lng: -83.2097, label: "Cosby Campground — Hen Wallow / Mt. Cammerer trailheads (not near this trip's cabins)", type: "sight", mapsQuery: "Cosby+Campground+TN" }
   };
   var MAP_SPINE = [
-    { from: "pit", to: "coolWaters", mode: "ground" },
-    { from: "coolWaters", to: "mtnRomance", mode: "ground" },
+    { from: "pit", to: "geoDome", mode: "ground" },
+    { from: "geoDome", to: "mtnRomance", mode: "ground" },
     { from: "mtnRomance", to: "pit", mode: "ground" }
   ];
   var MAP_SIDE_LINKS = [
-    ["coolWaters", "rainbowFalls"], ["coolWaters", "cosbyCamp"],
+    ["geoDome", "rainbowFalls"],
     ["mtnRomance", "alumCave"], ["mtnRomance", "cataractFalls"], ["mtnRomance", "roaringFork"]
   ];
 
