@@ -408,21 +408,38 @@
   var TRIP = {
     title: "Smokies Cabin Trip",
     subtitle: "Jay &amp; Suchita",
-    dates: "24 &ndash; 28 July 2026",
+    dates: "23 &ndash; 28 July 2026",
     days: [
       {
-        id: "2026-07-24", when: "FRI 24 JUL", title: "Pittsburgh → Sevierville", theme: "forest", deco: "pine",
-        note: "Leaving in the evening means a late-night arrival — self-check-in, confirm the door code with Dmitrii ahead of time since it'll be after hours.",
+        id: "2026-07-23", when: "THU 23 JUL", title: "Pittsburgh → New River Gorge, WV", theme: "forest", deco: "pine",
+        note: "First leg of a two-night split drive, easier than one long haul. Overnight stop is deliberately open, decide once you're actually on the road.",
         events: [
-          { id: "drive-sevierville", type: "drive", title: "Drive to Sevierville, TN", time: "Evening departure", summary: "~340 mi · ~5.5-6 hrs",
-            detail: { "Route": "Pittsburgh, PA → Sevierville, TN", "Distance": "~340 miles", "Duration": "~5.5-6 hours", "Departs": "Evening, after work" } },
+          { id: "drive-nrg", type: "drive", title: "Drive to the New River Gorge area", time: "Evening departure", summary: "~220 mi · ~3.5-4 hrs",
+            detail: { "Route": "Pittsburgh, PA → Fayetteville/New River Gorge, WV", "Distance": "~220 miles", "Duration": "~3.5-4 hours", "Departs": "Evening, after work" } }
+        ],
+        schedule: [
+          { time: "evening", title: "Leave Pittsburgh", note: "After work — ~3.5-4 hr drive, much shorter than doing the whole 340mi in one go." },
+          { time: "night", title: "Overnight near New River Gorge", note: "Lodging TBD — decide once you're driving. Fayetteville, WV is the usual base town for the park." }
+        ],
+        ideas: [
+          { category: "Since you're passing through", title: "New River Gorge Bridge", note: "America's newest National Park (designated 2020) — one of the highest bridges in the US, iconic overlook. Worth a quick stop even without full sightseeing time.", link: "https://www.google.com/maps/search/?api=1&query=New+River+Gorge+Bridge+Fayetteville+WV", reservation: false },
+          { category: "Since you're passing through", title: "Whitewater rafting / gorge activities", note: "New River Gorge is a major rafting/climbing hub if there's ever a reason to come back for a dedicated trip.", link: "https://www.google.com/search?q=New+River+Gorge+rafting", reservation: true }
+        ]
+      },
+      {
+        id: "2026-07-24", when: "FRI 24 JUL", title: "New River Gorge → Sevierville", theme: "forest", deco: "pine",
+        note: "Working day from wherever you stayed Thursday night, then the second driving leg in the evening. Confirm the door code with Dmitrii ahead of time since arrival will be after hours.",
+        events: [
+          { id: "drive-sevierville", type: "drive", title: "Drive to Sevierville, TN", time: "Evening departure", summary: "~260 mi · ~4-4.5 hrs",
+            detail: { "Route": "New River Gorge, WV → Sevierville, TN", "Distance": "~260 miles", "Duration": "~4-4.5 hours", "Departs": "Evening, after work" } },
           { id: "geo-dome-stay", type: "stay", title: "Mountain Geo Dome Escape | Hot Tub under the Stars", time: "late-night self check-in", summary: "Hosted by Dmitrii · 2 nights",
             host: "Dmitrii",
             address: "1545 Mountain Trail Lane, Sevierville TN 37876", mapQuery: "1545+Mountain+Trail+Lane+Sevierville+TN+37876",
             detail: { "Host": "Dmitrii", "Check-in": "4:00 PM Fri 24 Jul (self-check-in, arriving late)", "Checkout": "10:00 AM Sun 26 Jul", "Address": "1545 Mountain Trail Lane, Sevierville TN 37876", "Near": "Foxfire Adventure Park, off Dixon Branch Rd" } }
         ],
         schedule: [
-          { time: "evening", title: "Leave Pittsburgh", note: "After work — ~5.5-6 hr drive ahead." },
+          { time: "day", title: "Work remotely", note: "From wherever Thursday night's stop ends up." },
+          { time: "evening", title: "Leave New River Gorge area", note: "~4-4.5 hr drive ahead." },
           { time: "late", title: "Arrive at the Geo Dome", note: "Self-check-in via door code. Straight to bed, no activities tonight.", link: "#/day/2026-07-24/event/geo-dome-stay" }
         ],
         ideas: [
@@ -727,6 +744,7 @@
   ========================================================= */
   var MAP_POINTS = {
     pit:          { lat: 40.4915, lng: -80.2329, label: "Pittsburgh — home", type: "hub" },
+    newRiverGorge:{ lat: 38.0708, lng: -81.0787, label: "New River Gorge, WV — overnight stop (lodging TBD)", type: "waypoint", dayId: "2026-07-23", eventId: "drive-nrg" },
     geoDome:      { lat: 35.7900, lng: -83.5700, label: "Mountain Geo Dome Escape — Sevierville", type: "stay", dayId: "2026-07-24", eventId: "geo-dome-stay" },
     rainbowFalls: { lat: 35.6857, lng: -83.4869, label: "Rainbow Falls Trail", type: "activity", dayId: "2026-07-25", eventId: "rainbow-falls-hike" },
     mtnRomance:   { lat: 35.7050, lng: -83.4800, label: "Mountain Romance — Gatlinburg cabin", type: "stay", dayId: "2026-07-26", eventId: "mountain-romance-stay" },
@@ -736,7 +754,8 @@
     cosbyCamp:    { lat: 35.7815, lng: -83.2097, label: "Cosby Campground — Hen Wallow / Mt. Cammerer trailheads (not near this trip's cabins)", type: "sight", mapsQuery: "Cosby+Campground+TN" }
   };
   var MAP_SPINE = [
-    { from: "pit", to: "geoDome", mode: "ground" },
+    { from: "pit", to: "newRiverGorge", mode: "ground" },
+    { from: "newRiverGorge", to: "geoDome", mode: "ground" },
     { from: "geoDome", to: "mtnRomance", mode: "ground" },
     { from: "mtnRomance", to: "pit", mode: "ground" }
   ];
