@@ -497,26 +497,29 @@
         ]
       },
       {
-        id: "2026-07-27", when: "MON 27 JUL", title: "Alum Cave → Mount LeConte", theme: "amber", deco: "ridge",
-        note: "The full summit push — 11.2mi, Hard, 3,057ft gain, typically 7-8 hrs round trip. By today you'll have a full night's sleep, but this is a big day: start early for parking and to be off the mountain with daylight and margin to spare.",
+        id: "2026-07-27", when: "MON 27 JUL", title: "Kuwohi Sunrise → Grotto Falls", theme: "amber", deco: "ridge",
+        note: "Alum Cave/LeConte is cancelled — swapped for a lighter day. Early sunrise run up to Kuwohi (Clingmans Dome), relaxed midday, short waterfall hike at Grotto Falls in the evening via Roaring Fork.",
         events: [
-          { id: "alum-cave-hike", type: "hike", title: "Alum Cave Trail to Mount LeConte", time: "Early morning", summary: "11.2 mi · Hard · ~7-8 hrs",
-            url: "https://www.alltrails.com/trail/us/tennessee/alum-cave-trail-to-mount-leconte",
-            mapQuery: "Alum+Cave+Trailhead+Newfound+Gap+Rd+Gatlinburg+TN",
-            detail: { "Distance": "11.2 mi round trip", "Difficulty": "Hard", "Duration": "~7-8 hours", "Elevation gain": "3,057 ft", "Highlights": "Arch Rock (1.3mi), Inspiration Point (2.3mi), Alum Cave Bluffs, then on to LeConte Lodge at the summit", "Rating": "4.8★ (AllTrails, 16k+ reviews)", "Note": "LeConte Lodge at the top sells drinks/snacks and has water refill + restrooms — no overnight without a reservation made months out. Cliff Top and Myrtle Point are further short add-ons from the lodge if there's energy left." } }
+          { id: "kuwohi-sunrise", type: "hike", title: "Kuwohi (Clingmans Dome) Sunrise", time: "Early morning", summary: "0.5 mi · Steep but short · ~45 min drive + walk",
+            url: "https://www.alltrails.com/trail/us/tennessee/clingmans-dome-observation-tower",
+            mapQuery: "Clingmans+Dome+Observation+Tower+Gatlinburg+TN",
+            detail: { "Sunrise": "6:37 AM", "Leave cabin by": "5:30 AM", "Drive": "~45 min from Mountain Romance", "Walk": "0.5 mi paved but steep, to the observation tower", "Note": "Windy and cold at the summit even in July — bring a jacket. 360° view, best payoff sunrise spot in the park." } },
+          { id: "grotto-falls-hike", type: "hike", title: "Grotto Falls via Trillium Gap", time: "Evening", summary: "2.7 mi · Moderate · ~1.3 hrs",
+            url: "https://www.alltrails.com/trail/us/tennessee/grotto-falls-trail",
+            mapQuery: "Grotto+Falls+Trailhead+Roaring+Fork+Motor+Nature+Trail+Gatlinburg+TN",
+            detail: { "Distance": "2.7 mi round trip", "Difficulty": "Moderate", "Duration": "~1.3 hours", "Access": "Via Roaring Fork Motor Nature Trail, right by Gatlinburg", "Highlight": "The only waterfall in the Smokies you can walk behind" } }
         ],
         schedule: [
-          { time: "early am", title: "Drive to the Alum Cave trailhead", note: "Newfound Gap Rd (US-441), ~8.7mi south of Sugarlands Visitor Center. This is the busiest trailhead in the park — get there early, both lots fill fast.", link: "https://www.alltrails.com/trail/us/tennessee/alum-cave-trail-to-mount-leconte" },
-          { time: "morning", title: "Alum Cave Trail to Mount LeConte", note: "Arch Rock → Inspiration Point → the bluffs → LeConte Lodge. ~7-8 hrs round trip — this is the whole day.", link: "#/day/2026-07-27/event/alum-cave-hike" },
-          { time: "afternoon", title: "Descend, drive back to the cabin", note: "Expect to be wiped — keep the evening light." },
-          { time: "evening", title: "Rest, hot tub", note: "" },
-          { time: "evening", title: "Free dinner: whichever of Mama's / J.O.E. and Pop's you didn't use Sunday", note: "Same spot, 1244 East Pkwy — open till 9pm, easy after a long day.", link: "https://www.google.com/maps/search/?api=1&query=1244+East+Pkwy+Gatlinburg+TN" }
+          { time: "5:30 am", title: "Leave for Kuwohi/Clingmans Dome", note: "~45 min drive, arrive before sunrise (6:37am).", link: "#/day/2026-07-27/event/kuwohi-sunrise" },
+          { time: "early am", title: "Kuwohi sunrise + tower walk", note: "0.5mi paved, steep. Bring a jacket.", link: "#/day/2026-07-27/event/kuwohi-sunrise" },
+          { time: "midday", title: "Relaxed — breakfast, downtown, or hot tub", note: "Deliberately open after the early start." },
+          { time: "evening", title: "Grotto Falls via Trillium Gap", note: "~2.7mi RT, ~1.3hrs. Access via Roaring Fork Motor Nature Trail.", link: "#/day/2026-07-27/event/grotto-falls-hike" },
+          { time: "evening", title: "Free dinner: whichever of Mama's / J.O.E. and Pop's you didn't use Sunday", note: "Same spot, 1244 East Pkwy — open till 9pm.", link: "https://www.google.com/maps/search/?api=1&query=1244+East+Pkwy+Gatlinburg+TN" }
         ],
         ideas: [
           { category: "Food — if you want a real sit-down instead", title: "Red Oak Bistro", note: "669 Glades Rd — best-reviewed spot in the area, European small plates. Heads up: closed Mon-Wed, so it doesn't actually work tonight — would need a different night or a swap.", link: "https://www.google.com/maps/search/?api=1&query=Red+Oak+Bistro+669+Glades+Rd+Gatlinburg+TN", reservation: true },
-          { category: "Shorter fallback, if the weather or legs say no", title: "Alum Cave Bluffs only (skip the summit)", note: "Same trailhead, turn around at the bluffs instead of continuing to LeConte: 4.6mi, Moderate, ~2.5hrs, 1,154ft gain. Good backup if the full push doesn't make sense on the day.", link: "https://www.alltrails.com/trail/us/tennessee/peregrine-peak-via-alum-cave-bluffs-trail", reservation: false },
-          { category: "Other Gatlinburg-side hikes — not used this trip", title: "Grotto Falls via Trillium Gap", note: "2.7mi, Moderate, ~1.3hrs. The only Smokies waterfall you can walk behind.", link: "https://www.alltrails.com/trail/us/tennessee/grotto-falls-trail", reservation: false },
-          { category: "Other Gatlinburg-side hikes — not used this trip", title: "Chimney Tops Trail", note: "3.7mi, Hard (steep). One of the best view-per-mile payoffs in the park, gets crowded.", link: "https://www.alltrails.com/trail/us/tennessee/chimney-tops-trail", reservation: false }
+          { category: "Other options — not used this trip", title: "Chimney Tops overlook (roadside)", note: "The trail itself is closed, but the pull-off on Newfound Gap Rd has good valley views if there's time on the Kuwohi drive.", link: "https://www.google.com/maps/search/?api=1&query=Chimney+Tops+Overlook+Newfound+Gap+Rd", reservation: false },
+          { category: "Other options — not used this trip", title: "Gatlinburg SkyBridge", note: "Touristy but the swaying bridge views over the valley are legit — good evening/sunset alternative if Grotto Falls doesn't happen.", link: "https://www.google.com/search?q=Gatlinburg+SkyLift+SkyBridge", reservation: true }
         ]
       },
       {
@@ -750,7 +753,8 @@
     geoDome:      { lat: 35.7900, lng: -83.5700, label: "Mountain Geo Dome Escape — Sevierville", type: "stay", dayId: "2026-07-24", eventId: "geo-dome-stay" },
     rainbowFalls: { lat: 35.6857, lng: -83.4869, label: "Rainbow Falls Trail", type: "activity", dayId: "2026-07-25", eventId: "rainbow-falls-hike" },
     mtnRomance:   { lat: 35.7050, lng: -83.4800, label: "Mountain Romance — Gatlinburg cabin", type: "stay", dayId: "2026-07-26", eventId: "mountain-romance-stay" },
-    alumCave:     { lat: 35.6323, lng: -83.4508, label: "Alum Cave Trailhead → Mt. LeConte", type: "activity", dayId: "2026-07-27", eventId: "alum-cave-hike" },
+    kuwohi:       { lat: 35.5629, lng: -83.4995, label: "Kuwohi (Clingmans Dome) — sunrise", type: "activity", dayId: "2026-07-27", eventId: "kuwohi-sunrise" },
+    grottoFalls:  { lat: 35.6849, lng: -83.4680, label: "Grotto Falls Trailhead", type: "activity", dayId: "2026-07-27", eventId: "grotto-falls-hike" },
     cataractFalls:{ lat: 35.6786, lng: -83.5339, label: "Cataract Falls", type: "activity", dayId: "2026-07-28", eventId: "cataract-falls-hike" },
     roaringFork:  { lat: 35.6959, lng: -83.4956, label: "Roaring Fork Motor Nature Trail — bear-viewing road", type: "sight", mapsQuery: "Roaring+Fork+Motor+Nature+Trail+Gatlinburg+TN" },
     cosbyCamp:    { lat: 35.7815, lng: -83.2097, label: "Cosby Campground — Hen Wallow / Mt. Cammerer trailheads (not near this trip's cabins)", type: "sight", mapsQuery: "Cosby+Campground+TN" }
@@ -763,7 +767,7 @@
   ];
   var MAP_SIDE_LINKS = [
     ["geoDome", "rainbowFalls"],
-    ["mtnRomance", "alumCave"], ["mtnRomance", "cataractFalls"], ["mtnRomance", "roaringFork"]
+    ["mtnRomance", "kuwohi"], ["mtnRomance", "grottoFalls"], ["mtnRomance", "cataractFalls"], ["mtnRomance", "roaringFork"]
   ];
 
   function viewMap() {
