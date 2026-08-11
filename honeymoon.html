@@ -140,6 +140,94 @@
   }
   .map-link svg { width: 15px; height: 15px; }
 
+
+  /* ---- Trip plan (Gantt) ---- built for a laptop screen, not a phone ---- */
+  .plan-page { max-width: 1360px; margin: 0 auto; padding: 8px 20px 80px; }
+  .plan-sub { font-size: 13px; color: var(--ink-soft); margin: 0 0 16px; }
+  .plan-scroll { overflow-x: auto; padding-bottom: 6px; }
+  .plan {
+    min-width: 1150px;
+    border: 1px solid var(--line); border-radius: 14px;
+    background: var(--bg-raised); overflow: hidden;
+  }
+  .plan-row { display: grid; grid-template-columns: 108px repeat(17, 1fr); align-items: stretch; }
+  .plan-row + .plan-row { border-top: 1px solid var(--line); }
+
+  .plan-head .plan-cell { padding: 8px 0 7px; text-align: center; }
+  .plan-head .plan-lab { background: transparent; }
+  .plan-dow {
+    display: block; font-size: 9.5px; letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .plan-dom { display: block; font-size: 14px; font-variant-numeric: tabular-nums; color: var(--ink); }
+  .plan-mon {
+    display: block; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .plan-cell { border-left: 1px solid var(--line); min-height: 34px; position: relative; }
+  .plan-cell.we { background: rgba(217,181,110,0.07); }
+
+  .plan-lab {
+    font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--ink-soft); padding: 11px 9px; display: flex; align-items: center;
+    background: var(--bg); position: sticky; left: 0; z-index: 2;
+  }
+
+  /* a track holds absolutely positioned bars over a 17 column grid */
+  .plan-track { position: relative; grid-column: 2 / -1; }
+  .plan-grid {
+    position: absolute; inset: 0; display: grid; grid-template-columns: repeat(17, 1fr);
+    pointer-events: none;
+  }
+  .plan-grid i { border-left: 1px solid var(--line); }
+  .plan-grid i.we { background: rgba(217,181,110,0.07); }
+  .plan-bars {
+    position: relative; display: grid; grid-template-columns: repeat(17, 1fr);
+    gap: 5px 0; padding: 7px 0;
+  }
+
+  .bar {
+    grid-row: 1; margin: 0 3px; border-radius: 8px; padding: 6px 9px;
+    font-size: 12px; line-height: 1.25; color: var(--ink);
+    border: 1px solid transparent; text-decoration: none; display: block;
+    overflow: hidden;
+  }
+  /* single day bars get less room, so they wrap and shrink instead of clipping */
+  .bar.narrow {
+    padding: 5px 4px; font-size: 10.5px; line-height: 1.2; text-align: center;
+    overflow-wrap: anywhere; margin: 0 2px;
+  }
+  .bar.narrow small { font-size: 9.5px; }
+  .bar b { font-weight: 600; }
+  .bar small { display: block; font-size: 10.5px; color: var(--ink-soft); margin-top: 1px; }
+  a.bar:hover { filter: brightness(0.97); }
+
+  .bar.stay-rome { background: var(--rome-soft); border-color: var(--rome); }
+  .bar.stay-sea  { background: var(--sea-soft);  border-color: var(--sea); }
+  .bar.fly {
+    background: #fff; border-color: var(--gold); border-style: dashed;
+    text-align: center; font-size: 11px;
+  }
+  .bar.booked { background: #f3ecf9; border-color: var(--lavender); }
+  .bar.idea {
+    background: repeating-linear-gradient(135deg, #fdf7e6, #fdf7e6 6px, #fbf1d8 6px, #fbf1d8 12px);
+    border-color: var(--lemon); border-style: dashed;
+  }
+
+  .plan-legend {
+    display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px;
+    font-size: 12px; color: var(--ink-soft);
+  }
+  .plan-legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .plan-legend i {
+    width: 16px; height: 11px; border-radius: 4px; display: inline-block;
+    flex-shrink: 0; border: 1px solid var(--line);
+  }
+  .plan-note {
+    margin-top: 18px; font-size: 12.5px; line-height: 1.6; color: var(--ink-soft);
+    border-top: 1px solid var(--line); padding-top: 14px;
+  }
+
   /* ---- Trip map ---- */
   .map-sub { font-size: 13px; color: var(--ink-soft); margin: 0 0 14px; }
   #trip-map {
@@ -403,7 +491,7 @@
 
   <div id="view"></div>
 
-  <footer>Jay &amp; Suchita &middot; last updated 12 July 2026</footer>
+  <footer>Jay &amp; Suchita &middot; last updated 11 August 2026</footer>
 </div>
 
 <script>
@@ -858,6 +946,7 @@
         '<p class="dates">' + TRIP.dates + '</p>' +
         '<svg class="rule-flowers" viewBox="0 0 92 14"><use href="#bloom" x="46" y="7" fill="var(--rome)" transform="scale(0.75)" style="transform-origin:46px 7px"/><path d="M50 7h34M8 7h34" stroke="var(--gold)" stroke-width="1.2" stroke-dasharray="1.5 4" stroke-linecap="round"/></svg>' +
         '<a class="map-link" href="#/map"><svg viewBox="0 0 24 24"><use href="#icon-map"/><use href="#icon-map-dot"/></svg>Trip map</a>' +
+        '<a class="map-link" href="#/plan" style="margin-left:10px">Plan at a glance</a>' +
       '</div></div>' +
       '<div class="page"><div class="timeline">' + rows + '</div></div>';
   }
@@ -1123,6 +1212,144 @@
   }
 
   /* =========================================================
+     TRIP PLAN  (whole trip on one screen, laptop sized)
+  ========================================================= */
+
+  /* Where we sleep. from is the arrival day, to is the departure day. */
+  var STAYS = [
+    { label: "Voorburg", sub: "Suchita's cousin", from: "2026-08-28", to: "2026-08-31", theme: "rome" },
+    { label: "Rome", sub: "Giuseppe's, Monti", from: "2026-08-31", to: "2026-09-03", theme: "rome" },
+    { label: "Praiano", sub: "Rosina's, Amalfi Coast", from: "2026-09-03", to: "2026-09-06", theme: "sea" },
+    { label: "Voorburg", sub: "Suchita's cousin", from: "2026-09-06", to: "2026-09-13", theme: "rome" }
+  ];
+
+  /* Travel days, drawn as single day markers. */
+  var LEGS = [
+    { day: "2026-08-28", label: "PIT \u2192 AMS", title: "Pittsburgh to Detroit to Amsterdam" },
+    { day: "2026-08-31", label: "AMS \u2192 FCO", title: "Amsterdam to Rome, KL1601 at 7:20 AM" },
+    { day: "2026-09-03", label: "Rome \u2192 Praiano", title: "Rome to Praiano by train and bus" },
+    { day: "2026-09-06", label: "NAP \u2192 AMS", title: "Praiano to Naples, then easyJet EJU4235 at 4:20 PM" },
+    { day: "2026-09-13", label: "AMS \u2192 PIT", title: "Amsterdam to Detroit to Pittsburgh" }
+  ];
+
+  /* Confirmed bookings and the things still only planned. */
+  var PLAN_BOOKED = [
+    { day: "2026-08-31", label: "Colosseum", sub: "4:30 PM", title: "Arena Floor, Palatine and Forum guided tour, meet 4:15" },
+    { day: "2026-09-01", label: "Vatican", sub: "2:15 PM", title: "Vatican guided tour" }
+  ];
+  var PLAN_IDEAS = [
+    { day: "2026-09-04", label: "Lemon grove", sub: "not booked", title: "Amalfi Historical Garden lemon tour, still needs reserving" },
+    { day: "2026-09-05", label: "Ravello", sub: "and Furore", title: "Villa Rufolo, Villa Cimbrone, Fiordo di Furore, SITA bus both ways" },
+    { day: "2026-09-06", label: "Naples", sub: "half day", title: "Pizza and Spaccanapoli before the 4:20 PM flight" }
+  ];
+
+  function planDayIndex() {
+    var idx = {};
+    TRIP.days.forEach(function (d, i) { idx[d.id] = i; });
+    return idx;
+  }
+
+  function planIsWeekend(dayId) {
+    var dt = new Date(dayId + "T12:00:00");
+    var n = dt.getDay();
+    return n === 0 || n === 6;
+  }
+
+  function planGridCells() {
+    return TRIP.days.map(function (d) {
+      return '<i class="' + (planIsWeekend(d.id) ? "we" : "") + '"></i>';
+    }).join("");
+  }
+
+  /* One horizontal track. items already carry start/span. */
+  function planTrack(items) {
+    var bars = items.map(function (it) {
+      var style = "grid-column:" + (it.start + 1) + " / span " + it.span + ";";
+      var cls = it.cls + (it.span === 1 ? " narrow" : "");
+      var inner = "<b>" + esc(it.label) + "</b>" + (it.sub ? "<small>" + esc(it.sub) + "</small>" : "");
+      var ttl = it.title ? ' title="' + esc(it.title) + '"' : "";
+      if (it.href) {
+        return '<a class="bar ' + cls + '" style="' + style + '"' + ttl + ' href="' + it.href + '">' + inner + "</a>";
+      }
+      return '<div class="bar ' + cls + '" style="' + style + '"' + ttl + ">" + inner + "</div>";
+    }).join("");
+    return '<div class="plan-track">' +
+      '<div class="plan-grid">' + planGridCells() + "</div>" +
+      '<div class="plan-bars">' + bars + "</div>" +
+    "</div>";
+  }
+
+  function viewPlan() {
+    var idx = planDayIndex();
+
+    var headCells = TRIP.days.map(function (d) {
+      var dt = new Date(d.id + "T12:00:00");
+      var dow = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][dt.getDay()];
+      var mon = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][dt.getMonth()];
+      return '<a class="plan-cell ' + (planIsWeekend(d.id) ? "we" : "") + '" href="#/day/' + d.id + '" ' +
+        'style="text-decoration:none">' +
+        '<span class="plan-dow">' + dow + "</span>" +
+        '<span class="plan-dom">' + dt.getDate() + "</span>" +
+        '<span class="plan-mon">' + mon + "</span>" +
+      "</a>";
+    }).join("");
+
+    var stays = STAYS.map(function (s) {
+      var a = idx[s.from], b = idx[s.to];
+      if (a === undefined || b === undefined) return null;
+      var span = Math.max(1, b - a);
+      var nights = span;
+      return {
+        start: a, span: span, cls: "stay-" + s.theme,
+        label: s.label, sub: s.sub + " · " + nights + (nights === 1 ? " night" : " nights"),
+        href: "#/day/" + s.from
+      };
+    }).filter(Boolean);
+
+    var legs = LEGS.map(function (l) {
+      if (idx[l.day] === undefined) return null;
+      return { start: idx[l.day], span: 1, cls: "fly", label: l.label, title: l.title, href: "#/day/" + l.day };
+    }).filter(Boolean);
+
+    var booked = PLAN_BOOKED.map(function (b) {
+      if (idx[b.day] === undefined) return null;
+      return { start: idx[b.day], span: 1, cls: "booked", label: b.label, sub: b.sub, title: b.title, href: "#/day/" + b.day };
+    }).filter(Boolean);
+
+    var ideas = PLAN_IDEAS.map(function (b) {
+      if (idx[b.day] === undefined) return null;
+      return { start: idx[b.day], span: 1, cls: "idea", label: b.label, sub: b.sub, title: b.title, href: "#/day/" + b.day };
+    }).filter(Boolean);
+
+    return '<div class="hero compact">' + heroFlorals() +
+      '<div class="inner">' +
+        '<a class="back" href="#/">' + backChevron() + " All days</a>" +
+        '<a class="back" href="#/map" style="float:right">Map</a>' +
+        '<p class="eyebrow">The whole trip</p>' +
+        '<h1 style="font-size:30px">Plan at a glance</h1>' +
+      "</div></div>" +
+      '<div class="plan-page">' +
+        '<p class="plan-sub">Seventeen days, Aug 28 to Sep 13. Click any bar or date to open that day.</p>' +
+        '<div class="plan-scroll"><div class="plan">' +
+          '<div class="plan-row plan-head"><div class="plan-lab"></div>' + headCells + "</div>" +
+          '<div class="plan-row"><div class="plan-lab">Where</div>' + planTrack(stays) + "</div>" +
+          '<div class="plan-row"><div class="plan-lab">Travel</div>' + planTrack(legs) + "</div>" +
+          '<div class="plan-row"><div class="plan-lab">Booked</div>' + planTrack(booked) + "</div>" +
+          '<div class="plan-row"><div class="plan-lab">Planned</div>' + planTrack(ideas) + "</div>" +
+        "</div></div>" +
+        '<div class="plan-legend">' +
+          '<span><i style="background:var(--rome-soft);border-color:var(--rome)"></i>Netherlands and Rome</span>' +
+          '<span><i style="background:var(--sea-soft);border-color:var(--sea)"></i>Amalfi Coast</span>' +
+          '<span><i style="background:#fff;border-color:var(--gold);border-style:dashed"></i>Travel day</span>' +
+          '<span><i style="background:#f3ecf9;border-color:var(--lavender)"></i>Booked and paid</span>' +
+          '<span><i style="background:#fdf7e6;border-color:var(--lemon);border-style:dashed"></i>Planned, not booked</span>' +
+        "</div>" +
+        '<p class="plan-note">Bars in the Where row span from arrival to departure, so the day you change cities shows under both. ' +
+        'Anything in the Planned row still needs someone to actually book it.</p>' +
+      "</div>";
+  }
+
+  /* =========================================================
      ROUTER
   ========================================================= */
   function route() {
@@ -1138,6 +1365,8 @@
       html = viewDay(decodeURIComponent(parts[1]));
     } else if (parts[0] === "map") {
       html = viewMap();
+    } else if (parts[0] === "plan") {
+      html = viewPlan();
     } else {
       html = viewOverview();
     }
