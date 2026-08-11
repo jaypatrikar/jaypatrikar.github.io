@@ -209,6 +209,13 @@
     text-align: center; font-size: 11px;
   }
   .bar.booked { background: #f3ecf9; border-color: var(--lavender); }
+  .bar.empty {
+    background: transparent; border-color: var(--line); border-style: dashed;
+    color: var(--ink-soft); text-align: center; font-size: 10px;
+    letter-spacing: 0.06em; text-transform: lowercase;
+    display: flex; align-items: center; justify-content: center; min-height: 28px;
+  }
+  a.bar.empty:hover { background: var(--bg); border-color: var(--ink-soft); }
   .bar.idea {
     background: repeating-linear-gradient(135deg, #fdf7e6, #fdf7e6 6px, #fbf1d8 6px, #fbf1d8 12px);
     border-color: var(--lemon); border-style: dashed;
@@ -1243,6 +1250,35 @@
     { day: "2026-09-06", label: "Naples", sub: "half day", title: "Pizza and Spaccanapoli before the 4:20 PM flight" }
   ];
 
+  /* Rome and Amalfi window. Fill a string in to turn a placeholder into a real bar. */
+  var FOOD_DAYS = ["2026-08-31", "2026-09-01", "2026-09-02", "2026-09-03",
+                   "2026-09-04", "2026-09-05", "2026-09-06"];
+  var PLAN_LUNCH  = {
+    "2026-08-31": "", "2026-09-01": "", "2026-09-02": "", "2026-09-03": "",
+    "2026-09-04": "", "2026-09-05": "", "2026-09-06": ""
+  };
+  var PLAN_DINNER = {
+    "2026-08-31": "", "2026-09-01": "", "2026-09-02": "", "2026-09-03": "",
+    "2026-09-04": "", "2026-09-05": "", "2026-09-06": ""
+  };
+  /* Getting around within a day, as opposed to the big legs in LEGS. */
+  var PLAN_LOCAL = {
+    "2026-08-31": "", "2026-09-01": "", "2026-09-02": "", "2026-09-03": "",
+    "2026-09-04": "", "2026-09-05": "", "2026-09-06": ""
+  };
+
+  function planSlotRow(map, placeholder) {
+    return FOOD_DAYS.map(function (d) {
+      var idx = planDayIndex();
+      if (idx[d] === undefined) return null;
+      var val = map[d];
+      if (val) {
+        return { start: idx[d], span: 1, cls: "booked", label: val, href: "#/day/" + d };
+      }
+      return { start: idx[d], span: 1, cls: "empty", label: placeholder, href: "#/day/" + d };
+    }).filter(Boolean);
+  }
+
   function planDayIndex() {
     var idx = {};
     TRIP.days.forEach(function (d, i) { idx[d.id] = i; });
@@ -1321,6 +1357,10 @@
       return { start: idx[b.day], span: 1, cls: "idea", label: b.label, sub: b.sub, title: b.title, href: "#/day/" + b.day };
     }).filter(Boolean);
 
+    var lunch  = planSlotRow(PLAN_LUNCH, "lunch");
+    var dinner = planSlotRow(PLAN_DINNER, "dinner");
+    var local  = planSlotRow(PLAN_LOCAL, "travel");
+
     return '<div class="hero compact">' + heroFlorals() +
       '<div class="inner">' +
         '<a class="back" href="#/">' + backChevron() + " All days</a>" +
@@ -1334,6 +1374,9 @@
           '<div class="plan-row plan-head"><div class="plan-lab"></div>' + headCells + "</div>" +
           '<div class="plan-row"><div class="plan-lab">Where</div>' + planTrack(stays) + "</div>" +
           '<div class="plan-row"><div class="plan-lab">Travel</div>' + planTrack(legs) + "</div>" +
+          '<div class="plan-row"><div class="plan-lab">Getting around</div>' + planTrack(local) + "</div>" +
+          '<div class="plan-row"><div class="plan-lab">Lunch</div>' + planTrack(lunch) + "</div>" +
+          '<div class="plan-row"><div class="plan-lab">Dinner</div>' + planTrack(dinner) + "</div>" +
           '<div class="plan-row"><div class="plan-lab">Booked</div>' + planTrack(booked) + "</div>" +
           '<div class="plan-row"><div class="plan-lab">Planned</div>' + planTrack(ideas) + "</div>" +
         "</div></div>" +
@@ -1343,9 +1386,11 @@
           '<span><i style="background:#fff;border-color:var(--gold);border-style:dashed"></i>Travel day</span>' +
           '<span><i style="background:#f3ecf9;border-color:var(--lavender)"></i>Booked and paid</span>' +
           '<span><i style="background:#fdf7e6;border-color:var(--lemon);border-style:dashed"></i>Planned, not booked</span>' +
+          '<span><i style="background:transparent;border-color:var(--line);border-style:dashed"></i>Empty, still to decide</span>' +
         "</div>" +
         '<p class="plan-note">Bars in the Where row span from arrival to departure, so the day you change cities shows under both. ' +
-        'Anything in the Planned row still needs someone to actually book it.</p>' +
+        'Anything in the Planned row still needs someone to actually book it. ' +
+        'The dashed empty slots cover Rome and the Amalfi Coast, Aug 31 to Sep 6, and are there to be filled in.</p>' +
       "</div>";
   }
 
