@@ -422,6 +422,42 @@
     .leg-title { font-size: 19px; }
     .hero { padding: 44px 16px 30px; }
   }
+
+/* ---- Deck: one screen per thing you are about to do. Phone first. ---- */
+.deck-wrap { position: fixed; inset: 0; background: var(--bg, #fdfbf6); z-index: 60;
+  display: flex; flex-direction: column; overscroll-behavior: none; }
+.deck-stage { flex: 1; position: relative; overflow: hidden; }
+.deck-slide { position: absolute; inset: 0; display: flex; flex-direction: column;
+  justify-content: center; padding: 28px 24px 16px; gap: 14px;
+  opacity: 0; pointer-events: none; transition: opacity .18s ease; }
+.deck-slide.is-on { opacity: 1; pointer-events: auto; }
+.deck-day { font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+  opacity: .55; font-weight: 600; }
+.deck-time { font-size: clamp(44px, 17vw, 84px); line-height: .95; font-weight: 700;
+  letter-spacing: -.02em; }
+.deck-title { font-size: clamp(21px, 6.2vw, 30px); line-height: 1.22; font-weight: 600; }
+.deck-note { font-size: clamp(14px, 4vw, 16px); line-height: 1.5; opacity: .8;
+  max-height: 42vh; overflow-y: auto; }
+.deck-go { align-self: flex-start; margin-top: 2px; padding: 10px 16px; border-radius: 999px;
+  border: 1.5px solid currentColor; text-decoration: none; font-size: 14px; font-weight: 600; }
+.deck-chapter { justify-content: center; text-align: left; }
+.deck-chapter .deck-time { font-size: clamp(30px, 9vw, 46px); }
+.deck-chapter .deck-sub { font-size: 15px; opacity: .7; line-height: 1.45; }
+.deck-rule { width: 46px; height: 4px; border-radius: 2px; background: currentColor; opacity: .35; }
+.deck-bar { display: flex; align-items: center; gap: 12px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(0,0,0,.08); font-size: 13px; }
+.deck-bar button { flex: 0 0 auto; width: 46px; height: 40px; border-radius: 10px; cursor: pointer;
+  border: 1px solid rgba(0,0,0,.15); background: transparent; font-size: 18px; line-height: 1; }
+.deck-bar button:disabled { opacity: .3; cursor: default; }
+.deck-count { flex: 1; text-align: center; opacity: .6; font-variant-numeric: tabular-nums; }
+.deck-exit { text-decoration: none; font-weight: 600; opacity: .7; padding: 0 4px; }
+.deck-now { position: absolute; top: 14px; right: 16px; font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; padding: 4px 9px; border-radius: 999px;
+  background: currentColor; }
+.deck-now span { color: var(--bg, #fdfbf6); }
+@media (min-width: 760px) {
+  .deck-slide { padding: 40px 15vw; }
+}
 </style>
 </head>
 <body>
@@ -706,7 +742,7 @@
           { time: "16:00", title: "Settle in, then walk down to Marina di Praia", note: "Sea views, small cove. Yes, back down where you landed, but without the suitcases this time.", link: "https://www.google.com/maps/search/?api=1&query=Marina+di+Praia+Praiano" },
           { time: "17:00", title: "Relax, beach or sea time", note: "" },
           { time: "19:00", title: "Aperitivo, or just sit still", note: "Dinner is not until 21:30, so this stretch is yours. The Lounge Bar at Il Pirata runs from 21:00 if you want to arrive early." },
-          { time: "20:30", title: "Sunset from the room", note: "Sunset is around 19:45 in early September, so this is the after-glow and a slow start to the evening." }
+          { time: "20:30", title: "Sunset from the room", note: "Sunset is around 19:45 in early September, so this is the after-glow and a slow start to the evening." },
           { time: "21:15", title: "Down to Marina di Praia for dinner", note: "Il Pirata is on Via Terramare, at sea level again. Dress code is smart casual. Parking at Castellano if you drive." },
           { time: "21:30", title: "Dinner: Il Pirata", note: "BOOKED. 2 guests, honeymoon and shellfish allergy both noted on the reservation. Hard edges: the table is held only 15 min past 21:30, and last order for dinner is 21:45, so do not drift. Two hour sitting. Lounge Bar has DJ or live music until 1am if you want to stay on. Bad weather can cancel it, they email you.", link: "#/day/2026-09-03/event/il-pirata" },
         ],
@@ -981,6 +1017,7 @@
         '<svg class="rule-flowers" viewBox="0 0 92 14"><use href="#bloom" x="46" y="7" fill="var(--rome)" transform="scale(0.75)" style="transform-origin:46px 7px"/><path d="M50 7h34M8 7h34" stroke="var(--gold)" stroke-width="1.2" stroke-dasharray="1.5 4" stroke-linecap="round"/></svg>' +
         '<a class="map-link" href="#/map"><svg viewBox="0 0 24 24"><use href="#icon-map"/><use href="#icon-map-dot"/></svg>Trip map</a>' +
         '<a class="map-link" href="#/plan" style="margin-left:10px">Plan at a glance</a>' +
+        '<a class="map-link" href="#/deck" style="margin-left:10px">Deck</a>' +
       '</div></div>' +
       '<div class="page"><div class="timeline">' + rows + '</div></div>';
   }
@@ -1424,6 +1461,159 @@
   /* =========================================================
      ROUTER
   ========================================================= */
+
+  /* ---------- Deck ----------
+     One slide per thing you are actually about to do, in order, across the whole
+     trip. Day cards act as chapter breaks. Built from the same TRIP object as
+     everything else, so a new schedule row becomes a new slide for free.
+     Opens on the next upcoming item, which is the point of it on the trip. */
+
+  function buildSlides() {
+    var out = [];
+    (TRIP.days || []).forEach(function (day) {
+      var dot = day.theme === "sea" ? "var(--sea)" : "var(--rome)";
+      out.push({
+        kind: "chapter", dayId: day.id, when: day.when, title: day.title,
+        note: day.note || "", color: dot, at: dayStart(day.id)
+      });
+      (day.schedule || []).forEach(function (b) {
+        out.push({
+          kind: "row", dayId: day.id, when: day.when, time: b.time, title: b.title,
+          note: b.note || "", link: b.link || "", color: dot, at: rowTime(day.id, b.time)
+        });
+      });
+    });
+    return out;
+  }
+
+  function dayStart(id) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(id || "");
+    if (!m) return null;
+    return new Date(+m[1], +m[2] - 1, +m[3], 0, 0, 0);
+  }
+
+  /* Times in TRIP are mostly "HH:MM", a few are "H:MM AM". Anything we cannot
+     parse just sorts to the start of its day, which is harmless. */
+  function rowTime(id, t) {
+    var base = dayStart(id);
+    if (!base || !t) return base;
+    var m = /(\d{1,2}):(\d{2})\s*(AM|PM)?/i.exec(t);
+    if (!m) return base;
+    var h = +m[1], min = +m[2], ap = (m[3] || "").toUpperCase();
+    if (ap === "PM" && h < 12) h += 12;
+    if (ap === "AM" && h === 12) h = 0;
+    return new Date(base.getFullYear(), base.getMonth(), base.getDate(), h, min, 0);
+  }
+
+  /* Index of the first slide at or after now. Before the trip that is 0, after
+     it that is the last slide. Uses the device clock, so it is already correct
+     once they land in Italy. */
+  function nowIndex(slides) {
+    var now = new Date();
+    for (var i = 0; i < slides.length; i++) {
+      if (slides[i].at && slides[i].at >= now) return i;
+    }
+    return slides.length ? slides.length - 1 : 0;
+  }
+
+  var DECK = { slides: [], i: 0 };
+
+  function deckSlideHtml(s, isNow) {
+    if (s.kind === "chapter") {
+      return '<div class="deck-slide deck-chapter" style="color:' + s.color + '">' +
+        '<div class="deck-rule"></div>' +
+        '<div class="deck-time">' + s.title + '</div>' +
+        '<div class="deck-day">' + esc(s.when) + '</div>' +
+        (s.note ? '<div class="deck-sub">' + esc(s.note) + '</div>' : "") +
+      '</div>';
+    }
+    return '<div class="deck-slide" style="color:' + s.color + '">' +
+      (isNow ? '<div class="deck-now"><span>next up</span></div>' : "") +
+      '<div class="deck-day">' + esc(s.when) + '</div>' +
+      '<div class="deck-time">' + esc(s.time || "") + '</div>' +
+      '<div class="deck-title">' + esc(s.title) + '</div>' +
+      (s.note ? '<div class="deck-note">' + esc(s.note) + '</div>' : "") +
+      (s.link ? '<a class="deck-go" href="' + s.link + '" target="_blank" rel="noopener">Open</a>' : "") +
+    '</div>';
+  }
+
+  function viewDeck(startAt) {
+    DECK.slides = buildSlides();
+    var auto = nowIndex(DECK.slides);
+    var i = (startAt === undefined || startAt === null) ? auto : startAt;
+    if (i < 0) i = 0;
+    if (i > DECK.slides.length - 1) i = DECK.slides.length - 1;
+    DECK.i = i;
+    DECK.auto = auto;
+
+    var slides = DECK.slides.map(function (s, n) {
+      return deckSlideHtml(s, n === auto);
+    }).join("");
+
+    return '<div class="deck-wrap" id="deck">' +
+      '<div class="deck-stage" id="deck-stage">' + slides + '</div>' +
+      '<div class="deck-bar">' +
+        '<button id="deck-prev" aria-label="Previous">&#8592;</button>' +
+        '<button id="deck-next" aria-label="Next">&#8594;</button>' +
+        '<div class="deck-count" id="deck-count"></div>' +
+        '<a class="deck-exit" id="deck-day-link" href="#/">Day</a>' +
+        '<a class="deck-exit" href="#/">Close</a>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function deckShow(n) {
+    var stage = document.getElementById("deck-stage");
+    if (!stage) return;
+    var els = stage.querySelectorAll(".deck-slide");
+    if (!els.length) return;
+    if (n < 0) n = 0;
+    if (n > els.length - 1) n = els.length - 1;
+    DECK.i = n;
+    for (var k = 0; k < els.length; k++) els[k].classList.toggle("is-on", k === n);
+    var c = document.getElementById("deck-count");
+    if (c) c.textContent = (n + 1) + " / " + els.length;
+    var prev = document.getElementById("deck-prev");
+    var next = document.getElementById("deck-next");
+    if (prev) prev.disabled = n === 0;
+    if (next) next.disabled = n === els.length - 1;
+    var link = document.getElementById("deck-day-link");
+    if (link && DECK.slides[n]) link.href = "#/day/" + DECK.slides[n].dayId;
+  }
+
+  function initDeck() {
+    deckShow(DECK.i);
+    var stage = document.getElementById("deck-stage");
+    var prev = document.getElementById("deck-prev");
+    var next = document.getElementById("deck-next");
+    if (prev) prev.onclick = function () { deckShow(DECK.i - 1); };
+    if (next) next.onclick = function () { deckShow(DECK.i + 1); };
+
+    document.onkeydown = function (e) {
+      if (!document.getElementById("deck")) return;
+      if (e.key === "ArrowRight" || e.key === " ") { deckShow(DECK.i + 1); e.preventDefault(); }
+      else if (e.key === "ArrowLeft") { deckShow(DECK.i - 1); e.preventDefault(); }
+      else if (e.key === "Escape") { location.hash = "#/"; }
+    };
+
+    /* Swipe. Ignore mostly-vertical drags so scrolling a long note still works. */
+    var x0 = null, y0 = null;
+    if (stage) {
+      stage.addEventListener("touchstart", function (e) {
+        x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
+      }, { passive: true });
+      stage.addEventListener("touchend", function (e) {
+        if (x0 === null) return;
+        var dx = e.changedTouches[0].clientX - x0;
+        var dy = e.changedTouches[0].clientY - y0;
+        if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+          deckShow(DECK.i + (dx < 0 ? 1 : -1));
+        }
+        x0 = null; y0 = null;
+      }, { passive: true });
+    }
+  }
+
   function route() {
     var hash = location.hash.replace(/^#\/?/, "");
     var parts = hash.split("/").filter(Boolean);
@@ -1439,6 +1629,8 @@
       html = viewMap();
     } else if (parts[0] === "plan") {
       html = viewPlan();
+    } else if (parts[0] === "deck") {
+      html = viewDeck(parts[1] === undefined ? null : parseInt(parts[1], 10));
     } else {
       html = viewOverview();
     }
@@ -1451,6 +1643,7 @@
     window.scrollTo(0, 0);
 
     if (parts[0] === "map") setTimeout(initTripMap, 0);
+    if (parts[0] === "deck") setTimeout(initDeck, 0);
   }
 
   window.addEventListener("hashchange", route);
