@@ -444,9 +444,13 @@
   max-height: 42vh; overflow-y: auto; }
 .deck-go { align-self: flex-start; margin-top: 2px; padding: 10px 16px; border-radius: 999px;
   border: 1.5px solid currentColor; text-decoration: none; font-size: 14px; font-weight: 600; }
-.deck-chapter { justify-content: center; text-align: left; }
-.deck-chapter .deck-time { font-size: clamp(30px, 9vw, 46px); }
-.deck-chapter .deck-sub { font-size: 15px; opacity: .7; line-height: 1.45; }
+.deck-glyph { width: 46px; height: 46px; opacity: .9; }
+.deck-sum { font-size: 15px; opacity: .75; line-height: 1.45; }
+.deck-detail { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px;
+  margin-top: 6px; font-size: 14px; line-height: 1.45;
+  max-height: 46vh; overflow-y: auto; }
+.deck-k { opacity: .55; white-space: nowrap; }
+.deck-v { overflow-wrap: anywhere; }
 .deck-rule { width: 46px; height: 4px; border-radius: 2px; background: currentColor; opacity: .35; }
 .deck-bar { display: flex; align-items: center; gap: 12px; position: sticky; bottom: 0;
   background: var(--bg, #fdfbf6); padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
@@ -1473,22 +1477,27 @@
      everything else, so a new schedule row becomes a new slide for free.
      Opens on the next upcoming item, which is the point of it on the trip. */
 
+  /* Reservations and bookings only, at Jay's request 2026-08-19. The 88 schedule
+     rows made a diary; the 15 booked events make a wallet. Each slide is one
+     thing that has a confirmation behind it, with its detail rows shown. */
   function buildSlides() {
     var out = [];
     (TRIP.days || []).forEach(function (day) {
       var dot = day.theme === "sea" ? "var(--sea)" : "var(--rome)";
-      out.push({
-        kind: "chapter", dayId: day.id, when: day.when, title: day.title,
-        note: day.note || "", color: dot, at: dayStart(day.id)
-      });
-      (day.schedule || []).forEach(function (b) {
+      (day.events || []).forEach(function (e) {
         out.push({
-          kind: "row", dayId: day.id, when: day.when, time: b.time, title: b.title,
-          note: b.note || "", link: b.link || "", color: dot, at: rowTime(day.id, b.time)
+          kind: "booking", dayId: day.id, when: day.when, type: e.type || "activity",
+          time: e.time || "", title: e.title, summary: e.summary || "",
+          detail: e.detail || null, color: dot, at: rowTime(day.id, e.time)
         });
       });
     });
     return out;
+  }
+
+  function deckGlyph(type) {
+    var id = type === "flight" ? "icon-plane" : (type === "stay" ? "icon-stay" : "icon-activity");
+    return '<svg class="deck-glyph" viewBox="0 0 24 24" aria-hidden="true"><use href="#' + id + '"/></svg>';
   }
 
   function dayStart(id) {
@@ -1524,21 +1533,20 @@
   var DECK = { slides: [], i: 0 };
 
   function deckSlideHtml(s, isNow) {
-    if (s.kind === "chapter") {
-      return '<div class="deck-slide deck-chapter" style="color:' + s.color + '">' +
-        '<div class="deck-rule"></div>' +
-        '<div class="deck-time">' + s.title + '</div>' +
-        '<div class="deck-day">' + esc(s.when) + '</div>' +
-        (s.note ? '<div class="deck-sub">' + esc(s.note) + '</div>' : "") +
-      '</div>';
+    var rows = "";
+    if (s.detail) {
+      Object.keys(s.detail).forEach(function (k) {
+        rows += '<div class="deck-k">' + esc(k) + '</div>' +
+                '<div class="deck-v">' + esc(String(s.detail[k])) + '</div>';
+      });
     }
     return '<div class="deck-slide" style="color:' + s.color + '">' +
       (isNow ? '<div class="deck-now"><span>next up</span></div>' : "") +
-      '<div class="deck-day">' + esc(s.when) + '</div>' +
-      '<div class="deck-time">' + esc(s.time || "") + '</div>' +
-      '<div class="deck-title">' + esc(s.title) + '</div>' +
-      (s.note ? '<div class="deck-note">' + esc(s.note) + '</div>' : "") +
-      (s.link ? '<a class="deck-go" href="' + s.link + '" target="_blank" rel="noopener">Open</a>' : "") +
+      deckGlyph(s.type) +
+      '<div class="deck-day">' + esc(s.when) + (s.time ? " &middot; " + esc(s.time) : "") + '</div>' +
+      '<div class="deck-title">' + s.title + '</div>' +
+      (s.summary ? '<div class="deck-sum">' + s.summary + '</div>' : "") +
+      (rows ? '<div class="deck-detail">' + rows + '</div>' : "") +
     '</div>';
   }
 
