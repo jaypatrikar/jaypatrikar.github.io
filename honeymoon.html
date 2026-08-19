@@ -424,13 +424,17 @@
   }
 
 /* ---- Deck: one screen per thing you are about to do. Phone first. ---- */
-.deck-wrap { position: fixed; inset: 0; background: var(--bg, #fdfbf6); z-index: 60;
-  display: flex; flex-direction: column; overscroll-behavior: none; }
-.deck-stage { flex: 1; position: relative; overflow: hidden; }
-.deck-slide { position: absolute; inset: 0; display: flex; flex-direction: column;
-  justify-content: center; padding: 28px 24px 16px; gap: 14px;
-  opacity: 0; pointer-events: none; transition: opacity .18s ease; }
-.deck-slide.is-on { opacity: 1; pointer-events: auto; }
+/* No fixed positioning here on purpose. #view carries `animation: fadein both`
+   whose keyframes animate transform, and a settled transform on an ancestor
+   makes it the containing block for position:fixed children. The first version
+   of this deck was therefore fixed to #view instead of the viewport and
+   rendered as nothing. Normal flow avoids the whole trap. */
+.deck-wrap { min-height: 100svh; min-height: 100vh; background: var(--bg, #fdfbf6);
+  display: flex; flex-direction: column; }
+.deck-stage { flex: 1; display: flex; }
+.deck-slide { display: none; position: relative; flex: 1; flex-direction: column;
+  justify-content: center; padding: 28px 24px 16px; gap: 14px; }
+.deck-slide.is-on { display: flex; }
 .deck-day { font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
   opacity: .55; font-weight: 600; }
 .deck-time { font-size: clamp(44px, 17vw, 84px); line-height: .95; font-weight: 700;
@@ -444,7 +448,8 @@
 .deck-chapter .deck-time { font-size: clamp(30px, 9vw, 46px); }
 .deck-chapter .deck-sub { font-size: 15px; opacity: .7; line-height: 1.45; }
 .deck-rule { width: 46px; height: 4px; border-radius: 2px; background: currentColor; opacity: .35; }
-.deck-bar { display: flex; align-items: center; gap: 12px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+.deck-bar { display: flex; align-items: center; gap: 12px; position: sticky; bottom: 0;
+  background: var(--bg, #fdfbf6); padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
   border-top: 1px solid rgba(0,0,0,.08); font-size: 13px; }
 .deck-bar button { flex: 0 0 auto; width: 46px; height: 40px; border-radius: 10px; cursor: pointer;
   border: 1px solid rgba(0,0,0,.15); background: transparent; font-size: 18px; line-height: 1; }
